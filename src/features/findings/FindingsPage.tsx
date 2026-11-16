@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { RotateCcw, Sparkles } from "lucide-react";
 import { BackgroundMedia } from "../main-menu/components/BackgroundMedia";
 import { MusicControl } from "../main-menu/components/MusicControl";
 import { FindingsHeader } from "./components/FindingsHeader";
 import { MealInputCard } from "./components/MealInputCard";
-import { MealVisualCard } from "./components/MealVisualCard";
-import { NutrientOrbit } from "./components/NutrientOrbit";
+import { CentralNutrientWheel } from "./components/CentralNutrientWheel";
 import { UnderrepresentedSection } from "./components/UnderrepresentedSection";
-import { MealContextSelector } from "./components/MealContextSelector";
-import { NutritionalProfileChart } from "./components/NutritionalProfileChart";
+import { SupportedNutrientsSection } from "./components/SupportedNutrientsSection";
+import { MealProfileSection } from "./components/MealProfileSection";
 import { FindingsDisclaimer } from "./components/FindingsDisclaimer";
 import { analyzeMeal } from "./engine/mealAnalyzer";
-import { type MealAnalysisResult, type MealOccasion } from "./types";
+import {
+  type MealAnalysisResult,
+  type MealOccasion,
+  type NutrientInfo,
+} from "./types";
+import { playMenuClickSound } from "../main-menu/utils/soundEffects";
 
 export function FindingsPage() {
   const [currentMealText, setCurrentMealText] = useState<string>("");
@@ -20,12 +25,15 @@ export function FindingsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [analysisResult, setAnalysisResult] =
     useState<MealAnalysisResult | null>(null);
+  const [selectedNutrient, setSelectedNutrient] =
+    useState<NutrientInfo | null>(null);
 
   const shouldReduceMotion = useReducedMotion();
 
   const handleDiscover = (text: string) => {
     setIsLoading(true);
     setCurrentMealText(text);
+    setSelectedNutrient(null);
 
     // Brief smooth transition delay for educational discovery feel
     setTimeout(() => {
@@ -37,14 +45,27 @@ export function FindingsPage() {
 
   const handleOccasionChange = (occasion: MealOccasion) => {
     setSelectedOccasion(occasion);
-    if (analysisResult && currentMealText) {
-      // Re-evaluate context label without altering underlying meal data
-      setAnalysisResult((prev) => (prev ? { ...prev, occasion } : null));
+    if (currentMealText) {
+      // Re-evaluate context analysis for new occasion
+      const updated = analyzeMeal(currentMealText, occasion);
+      setAnalysisResult(updated);
     }
   };
 
   const handleReset = () => {
+    playMenuClickSound();
     setAnalysisResult(null);
+    setSelectedNutrient(null);
+  };
+
+  const handleSelectNutrient = (nutrient: NutrientInfo | null) => {
+    setSelectedNutrient(nutrient);
+    if (nutrient && typeof window !== "undefined") {
+      const wheelElement = document.getElementById("nutrient-wheel-section");
+      if (wheelElement) {
+        wheelElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
   return (
@@ -85,46 +106,58 @@ export function FindingsPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-12"
           >
-            {/* Meal Visual & Identified Ingredients */}
-            <MealVisualCard analysis={analysisResult} onReset={handleReset} />
+            {/* Top Action Bar with "Try Another Meal" */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-2 border-b border-purple-500/15">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-400/30 bg-[#1e0f36]/70 text-[#c084fc] text-[11px] font-['Cinzel',serif] uppercase tracking-[0.2em] font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-[#d8b4fe]" />
+                <span>DISCOVERY RESULTS</span>
+              </div>
 
-            {/* Floating Circular Nutrient Orbit */}
-            <NutrientOrbit nutrients={analysisResult.detectedNutrients} />
+              <button
+                type="button"
+                onClick={handleReset}
+                aria-label="Try Another Meal"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#c084fc]/35 bg-[#170c2c]/80 text-[#d8b4fe] hover:text-white hover:border-[#d8b4fe] hover:bg-[#251244] hover:shadow-[0_0_20px_rgba(192,132,252,0.35)] transition-all duration-200 text-xs sm:text-sm font-['Cinzel',serif] tracking-wider uppercase font-semibold cursor-pointer active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe]"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-[#c084fc] transition-transform duration-300 group-hover:-rotate-90" />
+                <span>Try Another Meal</span>
+              </button>
+            </div>
 
-            {/* "What Could Be Missing From This Meal?" Underrepresented Section */}
+            {/* 1. Signature Central Nutrient Wheel */}
+            <div id="nutrient-wheel-section">
+              <CentralNutrientWheel
+                mealTitle={analysisResult.mealTitle}
+                nutrients={analysisResult.detectedNutrients}
+                selectedNutrient={selectedNutrient}
+                onSelectNutrient={handleSelectNutrient}
+                onBack={() => setSelectedNutrient(null)}
+              />
+            </div>
+
+            {/* 2. "What Could Be Missing From This Meal?" Underrepresented Section */}
             <UnderrepresentedSection
               underrepresented={analysisResult.underrepresentedNutrients}
             />
 
-            {/* Dedicated Nutritional Profile & Occasion Context Section */}
-            <section
-              className="my-10"
-              aria-labelledby="nutritional-profile-title"
-            >
-              <div className="text-center mb-6">
-                <h3
-                  id="nutritional-profile-title"
-                  className="font-['Cinzel',serif] text-2xl sm:text-3xl font-bold text-white tracking-wide"
-                >
-                  Explore Your Meal&apos;s Nutritional Profile
-                </h3>
-                <p className="mt-1 text-xs sm:text-sm text-[#d8b4fe]/75 font-sans">
-                  See how the foods in your meal contribute to different areas
-                  of nutrition.
-                </p>
-              </div>
+            {/* 3. "Nutrients Supported by This Meal" Discovery Cards */}
+            <SupportedNutrientsSection
+              nutrients={analysisResult.detectedNutrients}
+              onSelectNutrient={handleSelectNutrient}
+            />
 
-              {/* Breakfast / Lunch / Dinner Selector */}
-              <MealContextSelector
-                selectedOccasion={selectedOccasion}
-                onChange={handleOccasionChange}
-              />
+            {/* 4. Meal Composition, Occasion Suitability & Qualitative Curve */}
+            <MealProfileSection
+              occasion={selectedOccasion}
+              onOccasionChange={handleOccasionChange}
+              occasionEvaluation={
+                analysisResult.occasionEvaluation ??
+                analysisResult.occasionSuitability
+              }
+              profileScores={analysisResult.profileScores}
+            />
 
-              {/* Violet Line Graph with Area Fill */}
-              <NutritionalProfileChart scores={analysisResult.profileScores} />
-            </section>
-
-            {/* Educational Safety Disclaimer */}
+            {/* 5. Educational Safety Disclaimer */}
             <FindingsDisclaimer />
           </motion.div>
         )}

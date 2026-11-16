@@ -14,7 +14,7 @@ export function FindingsDisclaimer() {
           </strong>
           <p>
             These insights are for general educational awareness. Nutritional
-            contributions vary with ingredients, portions, recipes, and
+            contributions vary with ingredients, culinary methods, recipes, and
             preparation. This meal exploration does not diagnose deficiencies,
             prescribe diets, or replace personalised advice from a qualified
             healthcare professional.

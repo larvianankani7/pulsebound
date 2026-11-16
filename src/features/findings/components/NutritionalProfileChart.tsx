@@ -58,7 +58,6 @@ const DEFAULT_CATEGORIES: {
 export function NutritionalProfileChart({
   scores,
   occasionEvaluation,
-  occasion: _occasion,
   className = "",
 }: NutritionalProfileChartProps) {
   const [activePointIndex, setActivePointIndex] = useState<number | null>(null);

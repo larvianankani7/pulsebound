@@ -10,6 +10,7 @@ export interface CentralNutrientWheelProps {
   nutrients: NutrientInfo[];
   selectedNutrient?: NutrientInfo | null;
   onSelectNutrient?: (nutrient: NutrientInfo | null) => void;
+  onBack?: () => void;
   className?: string;
 }
 
@@ -41,6 +42,7 @@ export const CentralNutrientWheel: React.FC<CentralNutrientWheelProps> = ({
   nutrients,
   selectedNutrient: controlledNutrient,
   onSelectNutrient,
+  onBack,
   className = "",
 }) => {
   const [internalSelectedNutrient, setInternalSelectedNutrient] =
@@ -76,6 +78,7 @@ export const CentralNutrientWheel: React.FC<CentralNutrientWheelProps> = ({
   const handleBackToWheel = () => {
     setInternalSelectedNutrient(null);
     onSelectNutrient?.(null);
+    onBack?.();
   };
 
   // Determine dynamic radius based on number of orbiting nutrients on desktop

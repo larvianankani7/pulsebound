@@ -9,10 +9,12 @@ interface MealInputCardProps {
 }
 
 const EXAMPLE_MEALS = [
+  "Poha with peanuts, peas and lemon",
+  "Moong dal chilla",
+  "Roti, paneer and spinach sabzi",
+  "Idli with sambar and coconut chutney",
+  "Oats with banana and milk",
   "Dal, rice and curd",
-  "Roti, paneer and mixed vegetables",
-  "Idli, sambar and coconut chutney",
-  "Oats, banana and milk",
 ];
 
 export function MealInputCard({
@@ -69,12 +71,12 @@ export function MealInputCard({
                 setMealText(e.target.value);
                 if (errorMessage) setErrorMessage(null);
               }}
-              placeholder="Describe your meal... e.g. 2 chapatis, dal, spinach sabzi, curd and a small bowl of rice."
+              placeholder="Describe your meal... e.g. Poha with peanuts, peas and lemon, or Moong dal chilla."
               className="w-full rounded-2xl border border-purple-500/25 bg-[#140b24]/90 p-4 sm:p-5 text-sm sm:text-base text-white placeholder-purple-300/40 transition-all duration-300 focus:border-[#c084fc] focus:bg-[#1a0e2f] focus:outline-none focus:ring-2 focus:ring-[#c084fc]/40 resize-none font-sans"
             />
           </div>
           <p className="mt-2 text-xs text-[#d8b4fe]/70 font-sans">
-            Include ingredients or portions for a more meaningful exploration.
+            Include ingredients for a more meaningful exploration.
           </p>
         </div>
 
