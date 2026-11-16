@@ -7,6 +7,7 @@ export interface NutrientHoverTooltipProps {
   isOpen: boolean;
   placement?: "top" | "bottom" | "auto";
   className?: string;
+  onOpenDetail?: () => void;
 }
 
 /**
@@ -21,9 +22,13 @@ export const NutrientHoverTooltip: React.FC<NutrientHoverTooltipProps> = ({
   isOpen,
   placement = "top",
   className = "",
+  onOpenDetail,
 }) => {
   if (!isOpen) return null;
 
+  // Placement:
+  // "top" -> Anchors upward away from center (bottom-full mb-3)
+  // "bottom" -> Anchors downward away from center (top-full mt-3)
   const placementClasses =
     placement === "bottom"
       ? "top-full mt-3 left-1/2 -translate-x-1/2"
@@ -40,7 +45,16 @@ export const NutrientHoverTooltip: React.FC<NutrientHoverTooltipProps> = ({
     <div
       role="tooltip"
       id={`nutrient-tooltip-${nutrient.id}`}
-      className={`absolute z-50 w-64 sm:w-72 rounded-2xl border border-purple-400/40 bg-[#120921]/95 backdrop-blur-2xl p-4 text-left shadow-[0_0_30px_rgba(0,0,0,0.85),0_0_20px_rgba(192,132,252,0.3)] animate-in fade-in zoom-in-95 duration-150 pointer-events-none ${placementClasses} ${className}`}
+      data-placement={placement}
+      onClick={(e) => {
+        if (onOpenDetail) {
+          e.stopPropagation();
+          onOpenDetail();
+        }
+      }}
+      className={`absolute z-50 w-64 sm:w-72 rounded-2xl border border-purple-400/40 bg-[#120921]/95 backdrop-blur-2xl p-4 text-left shadow-[0_0_30px_rgba(0,0,0,0.85),0_0_20px_rgba(192,132,252,0.3)] animate-in fade-in zoom-in-95 duration-150 ${
+        onOpenDetail ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
+      } ${placementClasses} ${className}`}
     >
       {/* Top Header: Nutrient Name & Category Badge */}
       <div className="flex items-center justify-between border-b border-purple-500/25 pb-2 mb-2 gap-2">
@@ -68,9 +82,9 @@ export const NutrientHoverTooltip: React.FC<NutrientHoverTooltipProps> = ({
       )}
 
       {/* Educational Drill-Down Hint */}
-      <div className="flex items-center justify-end gap-1 text-[10px] text-[#d8b4fe]/75 tracking-wider uppercase font-mono pt-1 border-t border-purple-500/15">
+      <div className="flex items-center justify-end gap-1 text-[10px] text-[#d8b4fe]/85 tracking-wider uppercase font-mono pt-1 border-t border-purple-500/15 group-hover:text-white transition-colors">
         <span>Click for full profile</span>
-        <ArrowRight className="w-2.5 h-2.5" aria-hidden="true" />
+        <ArrowRight className="w-2.5 h-2.5 text-[#c084fc]" aria-hidden="true" />
       </div>
     </div>
   );

@@ -12,10 +12,10 @@ const testIron = VERIFIED_NUTRIENTS["nutrient.iron"];
 const testVitaminC = VERIFIED_NUTRIENTS["nutrient.vitamin-c"];
 
 const mockNutrients: NutrientInfo[] = [
-  testCarbs,
-  testProtein,
-  testIron,
-  testVitaminC,
+  testCarbs,    // index 0 -> 12 o'clock (top, y < 0)
+  testProtein,  // index 1 -> 3 o'clock (right, y = 0)
+  testIron,     // index 2 -> 6 o'clock (bottom, y > 0)
+  testVitaminC, // index 3 -> 9 o'clock (left, y = 0)
 ];
 
 describe("CentralNutrientWheel Component", () => {
@@ -89,6 +89,33 @@ describe("CentralNutrientWheel Component", () => {
     expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
+  it("anchors tooltips outward away from the central meal (top for upper nodes, bottom for lower nodes)", () => {
+    render(
+      <CentralNutrientWheel
+        mealTitle="POHA"
+        nutrients={mockNutrients}
+      />
+    );
+
+    // 1. Carbs is at 12 o'clock (index 0, y < 0, above center) -> should have placement="top"
+    const carbsButton = screen.getByRole("button", {
+      name: /Explore Complex Carbohydrates/i,
+    });
+    fireEvent.mouseEnter(carbsButton.parentElement!);
+    const carbsTooltip = screen.getByRole("tooltip");
+    expect(carbsTooltip).toHaveAttribute("data-placement", "top");
+    fireEvent.mouseLeave(carbsButton.parentElement!);
+
+    // 2. Iron is at 6 o'clock (index 2, y > 0, below center) -> should have placement="bottom"
+    const ironButton = screen.getByRole("button", {
+      name: /Explore Iron/i,
+    });
+    fireEvent.mouseEnter(ironButton.parentElement!);
+    const ironTooltip = screen.getByRole("tooltip");
+    expect(ironTooltip).toHaveAttribute("data-placement", "bottom");
+    fireEvent.mouseLeave(ironButton.parentElement!);
+  });
+
   it("switches to detailed nutrient card when a nutrient is clicked and calls onSelectNutrient", async () => {
     const user = userEvent.setup();
     const handleSelect = vi.fn();
@@ -143,6 +170,61 @@ describe("CentralNutrientWheel Component", () => {
       screen.getByText("Did You Know? Scientific Fact")
     ).toBeInTheDocument();
     expect(screen.getByText(testProtein.educationalFact!)).toBeInTheDocument();
+  });
+
+  it("activates the nutrient when clicking the nutrient text label directly", async () => {
+    const user = userEvent.setup();
+    const handleSelect = vi.fn();
+
+    render(
+      <CentralNutrientWheel
+        mealTitle="MOONG DAL CHILLA"
+        nutrients={mockNutrients}
+        onSelectNutrient={handleSelect}
+      />
+    );
+
+    // The text label "Protein" is inside the interactive button
+    const label = screen.getByText("Protein");
+    await user.click(label);
+
+    expect(handleSelect).toHaveBeenCalledWith(testProtein);
+    expect(
+      screen.getByRole("heading", { name: "Protein", level: 2 })
+    ).toBeInTheDocument();
+  });
+
+  it("supports mobile touch interaction: first touch reveals tooltip preview, subsequent interaction opens detail card", () => {
+    const handleSelect = vi.fn();
+
+    render(
+      <CentralNutrientWheel
+        mealTitle="MOONG DAL CHILLA"
+        nutrients={mockNutrients}
+        onSelectNutrient={handleSelect}
+      />
+    );
+
+    const proteinButton = screen.getByRole("button", {
+      name: /Explore Protein/i,
+    });
+
+    // 1. First touch tap: triggers handleTouchEnd, revealing the tooltip
+    fireEvent.touchEnd(proteinButton);
+
+    const tooltip = screen.getByRole("tooltip");
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveTextContent(testProtein.shortRole);
+    // Detail view is not yet open
+    expect(handleSelect).not.toHaveBeenCalled();
+
+    // 2. Tapping the tooltip (or tapping the button again) opens the detail card
+    fireEvent.click(tooltip);
+
+    expect(handleSelect).toHaveBeenCalledWith(testProtein);
+    expect(
+      screen.getByRole("heading", { name: "Protein", level: 2 })
+    ).toBeInTheDocument();
   });
 
   it("clicking '← Back to Nutrient Wheel' restores the circular wheel view", async () => {

@@ -110,7 +110,7 @@ export const CentralNutrientWheel: React.FC<CentralNutrientWheelProps> = ({
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full rounded-3xl border border-purple-500/20 bg-gradient-to-b from-[#110822]/80 via-[#0a0515]/85 to-[#07030e]/95 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden"
+          className="relative w-full rounded-3xl border border-purple-500/20 bg-gradient-to-b from-[#110822]/80 via-[#0a0515]/85 to-[#07030e]/95 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-visible"
         >
             {/* Header section badge */}
             <div className="flex flex-col items-center justify-center text-center mb-6">
@@ -180,7 +180,10 @@ export const CentralNutrientWheel: React.FC<CentralNutrientWheelProps> = ({
                 <div className="relative z-30 flex flex-wrap md:block items-center justify-center gap-4 sm:gap-6 w-full">
                   {nutrients.map((nutrient, idx) => {
                     const { x, y } = getOrbitCoordinates(idx, total, orbitRadius);
-                    const placement = y < -40 ? "bottom" : "top";
+                    // Invert placement so tooltips always anchor outward away from the center:
+                    // y < 0 (above center) -> "top" (anchors upward)
+                    // y >= 0 (below center) -> "bottom" (anchors downward)
+                    const placement = y < 0 ? "top" : "bottom";
 
                     const desktopStyle: React.CSSProperties = isDesktop
                       ? {
