@@ -8,6 +8,7 @@ import { MealInputCard } from "./components/MealInputCard";
 import { CentralNutrientWheel } from "./components/CentralNutrientWheel";
 import { UnderrepresentedSection } from "./components/UnderrepresentedSection";
 import { SupportedNutrientsSection } from "./components/SupportedNutrientsSection";
+import { MealProfileSection } from "./components/MealProfileSection";
 import { FindingsDisclaimer } from "./components/FindingsDisclaimer";
 import { analyzeMeal } from "./engine/mealAnalyzer";
 import { type MealAnalysisResult, type NutrientInfo } from "./types";
@@ -143,7 +144,16 @@ export function FindingsPage() {
               onSelectNutrient={handleSelectNutrient}
             />
 
-            {/* 4. Educational Safety Disclaimer */}
+            {/* 4. Explore Your Meal's Nutritional Profile & Qualitative Curve */}
+            <MealProfileSection
+              occasionEvaluation={
+                analysisResult.occasionEvaluation ??
+                analysisResult.occasionSuitability
+              }
+              profileScores={analysisResult.profileScores}
+            />
+
+            {/* 5. Educational Safety Disclaimer */}
             <FindingsDisclaimer />
           </motion.div>
         )}

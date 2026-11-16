@@ -358,12 +358,12 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       // Subtitle
       expect(
         screen.getByText(
-          /Discover how your meal's composition fits into different meal occasions\./i
+          /Discover how your meal's composition fits across core nutritional areas\./i
         )
       ).toBeInTheDocument();
     });
 
-    it("integrates MealContextSelector, NutritionalProfileChart, and explanation areas", () => {
+    it("integrates NutritionalProfileChart and explanation areas without occasion selector", () => {
       render(
         <MealProfileSection
           occasion="lunch"
@@ -372,7 +372,7 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
         />
       );
 
-      expect(screen.getByTestId("meal-context-selector")).toBeInTheDocument();
+      expect(screen.queryByTestId("meal-context-selector")).toBeNull();
       expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
       expect(screen.getByTestId("why-meal-looks-this-way")).toBeInTheDocument();
       expect(screen.getByTestId("how-to-make-more-balanced")).toBeInTheDocument();
@@ -479,13 +479,12 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       ).toBeInTheDocument();
     });
 
-    it("invokes onOccasionChange callback when occasion radio button is selected", () => {
+    it("MealContextSelector invokes onChange callback when occasion radio button is selected", () => {
       const handleOccasionChange = vi.fn();
       render(
-        <MealProfileSection
-          occasion="lunch"
-          onOccasionChange={handleOccasionChange}
-          occasionEvaluation={mockLunchEvaluation}
+        <MealContextSelector
+          selectedOccasion="lunch"
+          onChange={handleOccasionChange}
         />
       );
 

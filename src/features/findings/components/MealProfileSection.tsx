@@ -14,12 +14,11 @@ import {
   type ProfileCategoryScore,
   type QualitativeScoreItem,
 } from "../types";
-import { MealContextSelector } from "./MealContextSelector";
 import { NutritionalProfileChart } from "./NutritionalProfileChart";
 
 export interface MealProfileSectionProps {
-  occasion: MealOccasion;
-  onOccasionChange: (occ: MealOccasion) => void;
+  occasion?: MealOccasion;
+  onOccasionChange?: (occ: MealOccasion) => void;
   occasionEvaluation?: OccasionEvaluation;
   profileScores?: ProfileCategoryScore[];
   className?: string;
@@ -99,8 +98,7 @@ function createFallbackEvaluation(
 }
 
 export function MealProfileSection({
-  occasion,
-  onOccasionChange,
+  occasion = "lunch",
   occasionEvaluation,
   profileScores,
   className = "",
@@ -123,18 +121,18 @@ export function MealProfileSection({
   const occasionIcon =
     occasion === "breakfast" ? (
       <Sunrise className="w-4 h-4 text-[#c084fc]" />
-    ) : occasion === "lunch" ? (
-      <Sun className="w-4 h-4 text-[#c084fc]" />
-    ) : (
+    ) : occasion === "dinner" ? (
       <Moon className="w-4 h-4 text-[#c084fc]" />
+    ) : (
+      <Sun className="w-4 h-4 text-[#c084fc]" />
     );
 
   const occasionLabel =
     occasion === "breakfast"
       ? "Breakfast Context"
-      : occasion === "lunch"
-      ? "Lunch Context"
-      : "Dinner Context";
+      : occasion === "dinner"
+      ? "Dinner Context"
+      : "Midday Balance Context";
 
   return (
     <section
@@ -146,7 +144,7 @@ export function MealProfileSection({
       <div className="text-center mb-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-400/30 bg-[#1e0f36]/70 text-[#c084fc] text-[11px] font-['Cinzel',serif] uppercase tracking-[0.2em] font-semibold mb-3">
           <Sparkles className="w-3.5 h-3.5 text-[#d8b4fe]" />
-          <span>OCCASION & BALANCE</span>
+          <span>NUTRITIONAL PROFILE</span>
         </div>
 
         <h3
@@ -156,17 +154,11 @@ export function MealProfileSection({
           Explore Your Meal&apos;s Nutritional Profile
         </h3>
         <p className="mt-2 text-xs sm:text-sm text-[#d8b4fe]/80 max-w-xl mx-auto font-sans leading-relaxed">
-          Discover how your meal&apos;s composition fits into different meal occasions.
+          Discover how your meal&apos;s composition fits across core nutritional areas.
         </p>
       </div>
 
-      {/* 2. Meal Occasion Selector */}
-      <MealContextSelector
-        selectedOccasion={occasion}
-        onChange={onOccasionChange}
-      />
-
-      {/* 3. Qualitative SVG Line Chart */}
+      {/* 2. Qualitative SVG Line Chart */}
       <NutritionalProfileChart
         occasionEvaluation={evaluation}
         scores={profileScores}

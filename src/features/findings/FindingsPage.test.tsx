@@ -205,6 +205,27 @@ describe("SYLVARA Findings Discovery Experience", () => {
         })
       ).toBeInTheDocument();
 
+      // "Explore Your Meal's Nutritional Profile" Section with preserved violet graph
+      expect(
+        screen.getByRole("heading", {
+          name: /Explore Your Meal's Nutritional Profile/i,
+        })
+      ).toBeInTheDocument();
+      expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
+      expect(
+        screen.getByText(/Qualitative Nutritional Contribution Profile/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", {
+          name: /Why Does Your Meal Look This Way\?/i,
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", {
+          name: /How Could You Make This Meal More Balanced\?/i,
+        })
+      ).toBeInTheDocument();
+
       // Educational Safety Disclaimer
       expect(
         screen.getByText(/Educational Awareness Notice/i)
@@ -242,8 +263,8 @@ describe("SYLVARA Findings Discovery Experience", () => {
     });
   });
 
-  describe("4. Complete Removal of Meal Occasion Context Section", () => {
-    it("confirms that the meal occasion context section and selectors are completely removed", async () => {
+  describe("4. Removal of Breakfast/Lunch/Dinner Selector & Preservation of Nutritional Graph", () => {
+    it("confirms that the meal occasion selectors are removed while preserving the nutritional profile graph and explanations", async () => {
       render(
         <MemoryRouter>
           <FindingsPage />
@@ -266,20 +287,48 @@ describe("SYLVARA Findings Discovery Experience", () => {
         { timeout: 2000 }
       );
 
-      // Verify that Breakfast, Lunch, and Dinner selector radio buttons/options are NOT present
+      // 1. Verify that Breakfast, Lunch, and Dinner selectors/dropdowns are NOT present
       expect(screen.queryByRole("radio", { name: /Breakfast/i })).toBeNull();
       expect(screen.queryByRole("radio", { name: /Lunch/i })).toBeNull();
       expect(screen.queryByRole("radio", { name: /Dinner/i })).toBeNull();
+      expect(screen.queryByTestId("meal-context-selector")).toBeNull();
 
-      // Verify that meal profile section container and occasion context texts are NOT present
-      expect(screen.queryByTestId("meal-profile-section")).toBeNull();
-      expect(screen.queryByTestId("why-meal-looks-this-way")).toBeNull();
-      expect(screen.queryByText(/Explore Your Meal's Nutritional Profile/i)).toBeNull();
-      expect(screen.queryByText(/Breakfast Context/i)).toBeNull();
-      expect(screen.queryByText(/Lunch Context/i)).toBeNull();
-      expect(screen.queryByText(/Dinner Context/i)).toBeNull();
+      // 2. Verify that the nutritional graph section IS preserved and visible
+      expect(screen.getByTestId("meal-profile-section")).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", {
+          name: /Explore Your Meal's Nutritional Profile/i,
+        })
+      ).toBeInTheDocument();
 
-      // Verify that the required remaining sections exist and flow naturally
+      // Violet line graph and its components
+      expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
+      expect(
+        screen.getByText(/Qualitative Nutritional Contribution Profile/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Well Represented Components/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Areas to Potentially Complement/i)
+      ).toBeInTheDocument();
+
+      // Explanations below the graph are preserved
+      expect(screen.getByTestId("why-meal-looks-this-way")).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", {
+          name: /Why Does Your Meal Look This Way\?/i,
+        })
+      ).toBeInTheDocument();
+
+      expect(screen.getByTestId("how-to-make-more-balanced")).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", {
+          name: /How Could You Make This Meal More Balanced\?/i,
+        })
+      ).toBeInTheDocument();
+
+      // 3. Verify that the complete Findings sequence flows smoothly without empty spaces
       expect(screen.getByTestId("central-meal-title")).toBeInTheDocument();
       expect(screen.getByText(/What Could Be Missing From This Meal\?/i)).toBeInTheDocument();
       expect(screen.getByText(/Nutrients Supported by This Meal/i)).toBeInTheDocument();
