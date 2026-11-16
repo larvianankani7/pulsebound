@@ -8,20 +8,13 @@ import { MealInputCard } from "./components/MealInputCard";
 import { CentralNutrientWheel } from "./components/CentralNutrientWheel";
 import { UnderrepresentedSection } from "./components/UnderrepresentedSection";
 import { SupportedNutrientsSection } from "./components/SupportedNutrientsSection";
-import { MealProfileSection } from "./components/MealProfileSection";
 import { FindingsDisclaimer } from "./components/FindingsDisclaimer";
 import { analyzeMeal } from "./engine/mealAnalyzer";
-import {
-  type MealAnalysisResult,
-  type MealOccasion,
-  type NutrientInfo,
-} from "./types";
+import { type MealAnalysisResult, type NutrientInfo } from "./types";
 import { playMenuClickSound } from "../main-menu/utils/soundEffects";
 
 export function FindingsPage() {
   const [currentMealText, setCurrentMealText] = useState<string>("");
-  const [selectedOccasion, setSelectedOccasion] =
-    useState<MealOccasion>("lunch");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [analysisResult, setAnalysisResult] =
     useState<MealAnalysisResult | null>(null);
@@ -50,19 +43,10 @@ export function FindingsPage() {
 
     // Brief smooth transition delay for educational discovery feel
     discoverTimerRef.current = setTimeout(() => {
-      const result = analyzeMeal(text, selectedOccasion);
+      const result = analyzeMeal(text);
       setAnalysisResult(result);
       setIsLoading(false);
     }, 450);
-  };
-
-  const handleOccasionChange = (occasion: MealOccasion) => {
-    setSelectedOccasion(occasion);
-    if (currentMealText) {
-      // Re-evaluate context analysis for new occasion
-      const updated = analyzeMeal(currentMealText, occasion);
-      setAnalysisResult(updated);
-    }
   };
 
   const handleReset = () => {
@@ -83,10 +67,10 @@ export function FindingsPage() {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-[#07050a] text-[#f3e8ff]">
-      {/* 1. Reused Visual Atmospheric Background Video */}
+      {/* 1. Atmospheric Background Video */}
       <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} />
 
-      {/* 2. Reused Atmospheric Background Music Controller */}
+      {/* 2. Atmospheric Background Music Controller */}
       <MusicControl videoId="UrngDTXkOEk" />
 
       {/* 3. Scrollable Findings Discovery Showcase */}
@@ -159,18 +143,7 @@ export function FindingsPage() {
               onSelectNutrient={handleSelectNutrient}
             />
 
-            {/* 4. Meal Composition, Occasion Suitability & Qualitative Curve */}
-            <MealProfileSection
-              occasion={selectedOccasion}
-              onOccasionChange={handleOccasionChange}
-              occasionEvaluation={
-                analysisResult.occasionEvaluation ??
-                analysisResult.occasionSuitability
-              }
-              profileScores={analysisResult.profileScores}
-            />
-
-            {/* 5. Educational Safety Disclaimer */}
+            {/* 4. Educational Safety Disclaimer */}
             <FindingsDisclaimer />
           </motion.div>
         )}

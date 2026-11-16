@@ -138,7 +138,7 @@ export const NutrientOrbitNode: React.FC<NutrientOrbitNodeProps> = ({
         className="relative flex flex-col items-center justify-center group focus-visible:outline-none cursor-pointer"
       >
         {/* Circular Vector Illustration Vessel */}
-        <div className="relative flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#c084fc]/40 bg-gradient-to-br from-[#1a0e33]/90 via-[#130a24]/85 to-[#0c0617]/95 shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md transition-all duration-300 group-hover:border-[#d8b4fe] group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(192,132,252,0.5)] group-active:scale-95 group-focus-visible:ring-2 group-focus-visible:ring-[#d8b4fe] group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#07050a]">
+        <div className="relative flex flex-col items-center justify-center w-16 h-16 sm:w-18 sm:h-18 rounded-full border border-[#c084fc]/40 bg-gradient-to-br from-[#1a0e33]/90 via-[#130a24]/85 to-[#0c0617]/95 shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md transition-all duration-300 group-hover:border-[#d8b4fe] group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(192,132,252,0.5)] group-active:scale-95 group-focus-visible:ring-2 group-focus-visible:ring-[#d8b4fe] group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#07050a]">
           {/* Ambient background glow inside button */}
           <div
             className="absolute inset-0 rounded-full bg-gradient-to-b from-[#a855f7]/15 via-transparent to-[#c084fc]/5 pointer-events-none"
@@ -155,14 +155,14 @@ export const NutrientOrbitNode: React.FC<NutrientOrbitNodeProps> = ({
           <div className="relative z-10 transition-transform duration-300 group-hover:scale-105">
             <NutrientIllustration
               id={nutrient.illustrationId || nutrient.id}
-              size={38}
-              className="w-8 h-8 sm:w-10 sm:h-10"
+              size={36}
+              className="w-8 h-8 sm:w-9 sm:h-9"
             />
           </div>
         </div>
 
         {/* Nutrient Label Below Node: Part of interactive button */}
-        <span className="mt-2 font-['Cinzel',serif] text-[10px] sm:text-xs font-semibold text-[#f3e8ff] tracking-wide text-center leading-tight max-w-[88px] sm:max-w-[104px] line-clamp-2 drop-shadow-sm select-none group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(216,180,254,0.6)] transition-colors">
+        <span className="mt-1.5 font-['Cinzel',serif] text-[10px] sm:text-[11px] font-semibold text-[#f3e8ff] tracking-wide text-center leading-tight max-w-[84px] line-clamp-2 drop-shadow-sm select-none group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(216,180,254,0.6)] transition-colors">
           {nutrient.name}
         </span>
       </button>

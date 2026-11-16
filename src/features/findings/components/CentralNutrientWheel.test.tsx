@@ -319,4 +319,97 @@ describe("CentralNutrientWheel Component", () => {
       screen.getByText(/No individual nutrients detected for this meal/i)
     ).toBeInTheDocument();
   });
+
+  describe("Positioning & Radial Composition Verification", () => {
+    it("positions the central meal vessel precisely at the center of the radial stage", () => {
+      render(
+        <CentralNutrientWheel
+          mealTitle="MOONG DAL CHILLA"
+          nutrients={mockNutrients}
+        />
+      );
+
+      const stage = screen.getByTestId("radial-wheel-stage");
+      expect(stage).toBeInTheDocument();
+      expect(stage.className).toContain("relative");
+      expect(stage.className).toContain("mx-auto");
+
+      const centralMealContainer = screen.getByTestId("central-meal-container");
+      expect(centralMealContainer).toBeInTheDocument();
+      expect(centralMealContainer.className).toContain("absolute");
+      expect(centralMealContainer.className).toContain("left-1/2");
+      expect(centralMealContainer.className).toContain("top-1/2");
+      expect(centralMealContainer.className).toContain("-translate-x-1/2");
+      expect(centralMealContainer.className).toContain("-translate-y-1/2");
+    });
+
+    it("positions each nutrient circle in an absolute radial orbit around the center", () => {
+      render(
+        <CentralNutrientWheel
+          mealTitle="POHA"
+          nutrients={mockNutrients}
+        />
+      );
+
+      // Verify node wrappers are absolutely positioned with left/top calc offsets
+      for (const nutrient of mockNutrients) {
+        const wrapper = screen.getByTestId(`orbit-node-wrapper-${nutrient.id}`);
+        expect(wrapper).toBeInTheDocument();
+        expect(wrapper.className).toContain("absolute");
+        expect(wrapper.style.left).toMatch(/calc\(50%\s*[+-]/);
+        expect(wrapper.style.top).toMatch(/calc\(50%\s*[+-]/);
+        expect(wrapper.style.transform).toBe("translate(-50%, -50%)");
+      }
+    });
+
+    it("places the nutrient text label directly beneath the circular vessel inside the button", () => {
+      render(
+        <CentralNutrientWheel
+          mealTitle="POHA"
+          nutrients={mockNutrients}
+        />
+      );
+
+      const proteinButton = screen.getByRole("button", {
+        name: /Explore Protein/i,
+      });
+
+      // The label is a span inside the button following the circular vessel div
+      const label = proteinButton.querySelector("span");
+      expect(label).toBeInTheDocument();
+      expect(label).toHaveTextContent("Protein");
+      expect(label?.className).toContain("mt-1.5");
+      expect(label?.className).toContain("text-center");
+    });
+
+    it("renders clean responsive nutrient grid beneath central meal vessel on mobile screens", () => {
+      // Mock window.innerWidth to mobile phone width (375px)
+      window.innerWidth = 375;
+      fireEvent(window, new Event("resize"));
+
+      render(
+        <CentralNutrientWheel
+          mealTitle="MOONG DAL CHILLA"
+          nutrients={mockNutrients}
+        />
+      );
+
+      const mobileStage = screen.getByTestId("mobile-wheel-stage");
+      expect(mobileStage).toBeInTheDocument();
+      expect(screen.queryByTestId("radial-wheel-stage")).toBeNull();
+
+      // Central meal title rendered
+      expect(screen.getByTestId("central-meal-title")).toHaveTextContent("MOONG DAL CHILLA");
+
+      // All nutrients rendered in clean responsive grid
+      expect(screen.getByText("Complex Carbohydrates")).toBeInTheDocument();
+      expect(screen.getByText("Protein")).toBeInTheDocument();
+      expect(screen.getByText("Iron")).toBeInTheDocument();
+      expect(screen.getByText("Vitamin C")).toBeInTheDocument();
+
+      // Restore window.innerWidth to desktop default
+      window.innerWidth = 1024;
+      fireEvent(window, new Event("resize"));
+    });
+  });
 });

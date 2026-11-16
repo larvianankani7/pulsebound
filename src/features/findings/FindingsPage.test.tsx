@@ -205,26 +205,6 @@ describe("SYLVARA Findings Discovery Experience", () => {
         })
       ).toBeInTheDocument();
 
-      // "Explore Your Meal's Nutritional Profile" Section
-      expect(
-        screen.getByRole("heading", {
-          name: /Explore Your Meal's Nutritional Profile/i,
-        })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/Meal Composition & Occasion Suitability/i)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("heading", {
-          name: /Why Does Your Meal Look This Way\?/i,
-        })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("heading", {
-          name: /How Could You Make This Meal More Balanced\?/i,
-        })
-      ).toBeInTheDocument();
-
       // Educational Safety Disclaimer
       expect(
         screen.getByText(/Educational Awareness Notice/i)
@@ -262,8 +242,8 @@ describe("SYLVARA Findings Discovery Experience", () => {
     });
   });
 
-  describe("4. Occasion Switching", () => {
-    it("switches occasion between Breakfast, Lunch, and Dinner updating occasion context", async () => {
+  describe("4. Complete Removal of Meal Occasion Context Section", () => {
+    it("confirms that the meal occasion context section and selectors are completely removed", async () => {
       render(
         <MemoryRouter>
           <FindingsPage />
@@ -286,38 +266,24 @@ describe("SYLVARA Findings Discovery Experience", () => {
         { timeout: 2000 }
       );
 
-      // Verify occasion radio options exist
-      const breakfastRadio = screen.getByRole("radio", { name: /Breakfast/i });
-      const lunchRadio = screen.getByRole("radio", { name: /Lunch/i });
-      const dinnerRadio = screen.getByRole("radio", { name: /Dinner/i });
+      // Verify that Breakfast, Lunch, and Dinner selector radio buttons/options are NOT present
+      expect(screen.queryByRole("radio", { name: /Breakfast/i })).toBeNull();
+      expect(screen.queryByRole("radio", { name: /Lunch/i })).toBeNull();
+      expect(screen.queryByRole("radio", { name: /Dinner/i })).toBeNull();
 
-      expect(breakfastRadio).toBeInTheDocument();
-      expect(lunchRadio).toBeInTheDocument();
-      expect(dinnerRadio).toBeInTheDocument();
+      // Verify that meal profile section container and occasion context texts are NOT present
+      expect(screen.queryByTestId("meal-profile-section")).toBeNull();
+      expect(screen.queryByTestId("why-meal-looks-this-way")).toBeNull();
+      expect(screen.queryByText(/Explore Your Meal's Nutritional Profile/i)).toBeNull();
+      expect(screen.queryByText(/Breakfast Context/i)).toBeNull();
+      expect(screen.queryByText(/Lunch Context/i)).toBeNull();
+      expect(screen.queryByText(/Dinner Context/i)).toBeNull();
 
-      // Switch to Breakfast
-      fireEvent.click(breakfastRadio);
-      await waitFor(() => {
-        expect(
-          screen.getAllByText(/Breakfast Context/i).length
-        ).toBeGreaterThan(0);
-      });
-
-      // Switch to Dinner
-      fireEvent.click(dinnerRadio);
-      await waitFor(() => {
-        expect(
-          screen.getAllByText(/Dinner Context/i).length
-        ).toBeGreaterThan(0);
-      });
-
-      // Switch back to Lunch
-      fireEvent.click(lunchRadio);
-      await waitFor(() => {
-        expect(
-          screen.getAllByText(/Lunch Context/i).length
-        ).toBeGreaterThan(0);
-      });
+      // Verify that the required remaining sections exist and flow naturally
+      expect(screen.getByTestId("central-meal-title")).toBeInTheDocument();
+      expect(screen.getByText(/What Could Be Missing From This Meal\?/i)).toBeInTheDocument();
+      expect(screen.getByText(/Nutrients Supported by This Meal/i)).toBeInTheDocument();
+      expect(screen.getByText(/Educational Awareness Notice/i)).toBeInTheDocument();
     });
   });
 
