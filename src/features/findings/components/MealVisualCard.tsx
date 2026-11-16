@@ -336,11 +336,6 @@ export function MealVisualCard({ analysis, onReset }: MealVisualCardProps) {
               className="flex items-center gap-2 rounded-lg border border-purple-500/30 bg-[#190d2e]/80 px-3 py-1.5 text-xs text-white"
             >
               <span className="font-medium text-[#e9d5ff]">{item.name}</span>
-              {item.quantityText && (
-                <span className="text-[10px] text-[#c084fc] font-mono">
-                  ({item.quantityText})
-                </span>
-              )}
             </div>
           ))}
         </div>

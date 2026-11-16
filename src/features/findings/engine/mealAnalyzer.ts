@@ -22,14 +22,12 @@ export function analyzeMeal(
 
   for (const food of VERIFIED_FOODS) {
     let matched = false;
-    let matchedAlias = "";
 
     for (const alias of food.aliases) {
       // Word boundary match
       const regex = new RegExp(`\\b${alias}\\b`, "i");
       if (regex.test(normalizedDesc)) {
         matched = true;
-        matchedAlias = alias;
         break;
       }
     }
@@ -37,18 +35,9 @@ export function analyzeMeal(
     if (matched) {
       detectedFoodIds.add(food.id);
 
-      // Check if a quantity was supplied before the word (e.g., "2 chapatis", "1 bowl")
-      const qtyRegex = new RegExp(
-        `(\\d+(?:\\.\\d+)?(?:\\s*(?:bowl|cup|plate|glass|tbsp|g|piece|pieces))?)\\s+${matchedAlias}`,
-        "i"
-      );
-      const match = normalizedDesc.match(qtyRegex);
-      const quantityText = match ? match[1] : food.defaultPortionDesc;
-
       detectedIngredients.push({
         foodId: food.id,
         name: food.name,
-        quantityText,
         foodGroup: food.foodGroup,
       });
     }
@@ -59,7 +48,6 @@ export function analyzeMeal(
     detectedIngredients.push({
       foodId: "food.general",
       name: "Custom Meal Selection",
-      quantityText: "Described Portion",
       foodGroup: "vegetables",
     });
   }
@@ -93,27 +81,44 @@ export function analyzeMeal(
     underrepresentedNutrients.push({
       nutrientId: "nutrient.fibre",
       nutrientName: "Dietary Fibre",
+      illustrationId: "fibre",
       role: "Supports steady digestive rhythm, fosters beneficial microbiome flora, and moderates glucose absorption.",
       reason:
         "Your described meal appears to have limited whole-grain, legume, or vegetable fibre sources.",
       suggestedFoods: [
         {
           name: "Lentils / Dal",
+          foodName: "Lentils / Dal",
+          illustrationId: "dal",
+          nutrientContribution: "Rich in soluble & insoluble fibre, plant protein, and folate",
+          pairingAdvice: "Enjoy as a warm bowl with whole grains or steamed rice",
           description: "Rich in soluble & insoluble fibre",
           foodGroup: "Pulses",
         },
         {
           name: "Leafy Greens (Palak / Methi)",
+          foodName: "Leafy Greens (Palak / Methi)",
+          illustrationId: "spinach",
+          nutrientContribution: "Provides cellular cellulose, iron, and protective carotenoids",
+          pairingAdvice: "Lightly saute with spices or fold into curries",
           description: "Provides cellular cellulose and vital micronutrients",
           foodGroup: "Vegetables",
         },
         {
           name: "Whole Wheat Chapatis / Oats",
+          foodName: "Whole Wheat Chapatis / Oats",
+          illustrationId: "roti",
+          nutrientContribution: "Complex cereal bran fibre and sustained stamina",
+          pairingAdvice: "Pairs seamlessly with vegetable sabzis and dals",
           description: "Offers complex cereal bran fibre",
           foodGroup: "Grains",
         },
         {
           name: "Fresh Fruits (Guava / Apples)",
+          foodName: "Fresh Fruits (Guava / Apples)",
+          illustrationId: "fruits",
+          nutrientContribution: "High in pectin, prebiotic fibre, and Vitamin C",
+          pairingAdvice: "Savor fresh between meals or alongside breakfast",
           description: "High in pectin and prebiotics",
           foodGroup: "Fruits",
         },
@@ -126,27 +131,44 @@ export function analyzeMeal(
     underrepresentedNutrients.push({
       nutrientId: "nutrient.calcium",
       nutrientName: "Calcium",
+      illustrationId: "calcium",
       role: "Provides foundational structural density for teeth and bones, and governs neuro-muscular signaling.",
       reason:
         "If dairy or fortified alternatives are absent, this meal may contribute less bioavailable calcium.",
       suggestedFoods: [
         {
           name: "Curd / Raita",
+          foodName: "Curd / Raita",
+          illustrationId: "curd",
+          nutrientContribution: "Probiotic cultures, bioavailable calcium, and protein",
+          pairingAdvice: "Serve chilled with a pinch of roasted cumin alongside lunch",
           description: "Probiotic and calcium-dense",
           foodGroup: "Dairy",
         },
         {
           name: "Paneer",
+          foodName: "Paneer",
+          illustrationId: "paneer",
+          nutrientContribution: "Concentrated dairy calcium, complete protein, and phosphorus",
+          pairingAdvice: "Cube into stir-fries or grill lightly with spices",
           description: "Concentrated dairy calcium and amino acids",
           foodGroup: "Dairy",
         },
         {
           name: "Ragi (Finger Millet)",
+          foodName: "Ragi (Finger Millet)",
+          illustrationId: "grains",
+          nutrientContribution: "Exceptionally high plant-based calcium and complex carbs",
+          pairingAdvice: "Prepare as warm porridge or wholesome ragi dosas",
           description: "Exceptionally high plant-based calcium grain",
           foodGroup: "Grains",
         },
         {
           name: "Sesame Seeds / Til",
+          foodName: "Sesame Seeds / Til",
+          illustrationId: "seeds",
+          nutrientContribution: "Dense mineral-rich seed sprinkle high in calcium and zinc",
+          pairingAdvice: "Toast and sprinkle over cooked vegetables or salads",
           description: "Dense mineral-rich seed sprinkle",
           foodGroup: "Nuts & Seeds",
         },
@@ -159,27 +181,44 @@ export function analyzeMeal(
     underrepresentedNutrients.push({
       nutrientId: "nutrient.vitamin-c",
       nutrientName: "Vitamin C",
+      illustrationId: "vitamin-c",
       role: "Aids collagen biosynthesis, delivers antioxidant defense, and enhances the absorption of non-haem plant iron.",
       reason:
         "A fresh raw fruit or lightly cooked vegetable could provide a valuable Vitamin C boost.",
       suggestedFoods: [
         {
           name: "Fresh Amla (Indian Gooseberry)",
+          foodName: "Fresh Amla (Indian Gooseberry)",
+          illustrationId: "lemon",
+          nutrientContribution: "One of nature's richest natural Vitamin C sources",
+          pairingAdvice: "Grate fresh into salads, juices, or chutneys",
           description: "One of nature's richest Vitamin C sources",
           foodGroup: "Fruits",
         },
         {
           name: "Lemon / Lime Juice Squeeze",
+          foodName: "Lemon / Lime Juice Squeeze",
+          illustrationId: "lemon",
+          nutrientContribution: "Abundant ascorbic acid unlocking plant iron absorption",
+          pairingAdvice: "Squeeze fresh over warm dals, poha, or chilla right before eating",
           description: "Effortless citrus pairing on cooked dal",
           foodGroup: "Fruits",
         },
         {
           name: "Fresh Salad (Tomato / Capsicum)",
+          foodName: "Fresh Salad (Tomato / Capsicum)",
+          illustrationId: "vegetables",
+          nutrientContribution: "Crisp raw vegetable antioxidant booster rich in Vitamin C",
+          pairingAdvice: "Enjoy raw alongside hot cooked meals for enzymatic vitality",
           description: "Crisp raw vegetable antioxidant booster",
           foodGroup: "Vegetables",
         },
         {
           name: "Guava / Oranges",
+          foodName: "Guava / Oranges",
+          illustrationId: "fruits",
+          nutrientContribution: "Wholesome seasonal fruit companion delivering antioxidants",
+          pairingAdvice: "Enjoy as a mid-morning refresher",
           description: "Wholesome seasonal fruit companion",
           foodGroup: "Fruits",
         },
@@ -192,22 +231,35 @@ export function analyzeMeal(
     underrepresentedNutrients.push({
       nutrientId: "nutrient.iron",
       nutrientName: "Iron",
+      illustrationId: "iron",
       role: "Critical for haemoglobin production and systemic cellular oxygen delivery.",
       reason:
         "Consider complementing this meal with iron-dense legumes, seeds, or leafy greens.",
       suggestedFoods: [
         {
           name: "Lentils / Chickpeas (Chole / Dal)",
+          foodName: "Lentils / Chickpeas (Chole / Dal)",
+          illustrationId: "dal",
+          nutrientContribution: "Hearty plant-based non-haem iron, folate, and protein",
+          pairingAdvice: "Combine with a squeeze of fresh lemon for enhanced iron uptake",
           description: "Hearty plant-based non-haem iron",
           foodGroup: "Pulses",
         },
         {
           name: "Spinach / Moringa Leaves",
+          foodName: "Spinach / Moringa Leaves",
+          illustrationId: "spinach",
+          nutrientContribution: "Packed with minerals, chlorophyll, and folate",
+          pairingAdvice: "Lightly cook with garlic and pair with vitamin C-rich foods",
           description: "Packed with minerals and folate",
           foodGroup: "Vegetables",
         },
         {
           name: "Pumpkin Seeds",
+          foodName: "Pumpkin Seeds",
+          illustrationId: "pumpkin-seeds",
+          nutrientContribution: "Crunchy zinc, magnesium, and non-haem iron booster",
+          pairingAdvice: "Sprinkle raw or toasted over breakfast or salads",
           description: "Crunchy zinc and iron booster",
           foodGroup: "Nuts & Seeds",
         },
@@ -220,22 +272,35 @@ export function analyzeMeal(
     underrepresentedNutrients.push({
       nutrientId: "nutrient.healthy-fats",
       nutrientName: "Healthy Lipids",
+      illustrationId: "healthy-fats",
       role: "Essential for brain structure, hormone production, and the uptake of fat-soluble vitamins (A, D, E, K).",
       reason:
         "A hint of healthy culinary fats helps maximize nutrient bioavailability.",
       suggestedFoods: [
         {
           name: "Walnuts / Almonds",
+          foodName: "Walnuts / Almonds",
+          illustrationId: "almonds",
+          nutrientContribution: "Plant omega fatty acids, Vitamin E, and magnesium",
+          pairingAdvice: "Enjoy a soaked handful with morning breakfast",
           description: "Plant omega fats and vitamin E",
           foodGroup: "Nuts & Seeds",
         },
         {
           name: "Coconut Chutney",
+          foodName: "Coconut Chutney",
+          illustrationId: "coconut-chutney",
+          nutrientContribution: "Medium-chain fatty acids supporting fat-soluble vitamin uptake",
+          pairingAdvice: "Pair with steamed idlis, dosas, or grain bowls",
           description: "Medium-chain fatty acids",
           foodGroup: "Nuts & Seeds",
         },
         {
           name: "Moderate Traditional Ghee",
+          foodName: "Moderate Traditional Ghee",
+          illustrationId: "ghee",
+          nutrientContribution: "Traditional culinary medium for fat-soluble vitamins",
+          pairingAdvice: "Add a light touch to hot khichdi, dal, or warm rotis",
           description: "Traditional culinary medium for fat-soluble vitamins",
           foodGroup: "Dairy",
         },
@@ -350,17 +415,9 @@ export function analyzeMeal(
 
   // 7. Uncertainty and context notes
   const uncertaintyNotes: string[] = [];
-  const hasNumbers = /\d/.test(normalizedDesc);
-
-  if (!hasNumbers) {
-    uncertaintyNotes.push(
-      "Portion quantities estimated on standard reference servings. Including counts (e.g. '2 chapatis') refines detail."
-    );
-  } else {
-    uncertaintyNotes.push(
-      "Explicit portion counts detected and mapped to reference weights."
-    );
-  }
+  uncertaintyNotes.push(
+    "Qualitative nutritional observation based on recognized whole-food ingredients."
+  );
 
   if (detectedFoodIds.size >= 3) {
     uncertaintyNotes.push(

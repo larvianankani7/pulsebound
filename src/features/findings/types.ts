@@ -1,17 +1,34 @@
 export type MealOccasion = "breakfast" | "lunch" | "dinner";
 
 export type ContributionLevel =
-  "High" | "Moderate" | "Mild" | "Low/Underrepresented";
+  | "High"
+  | "Moderate"
+  | "Mild"
+  | "Low/Underrepresented";
 
 export interface NutrientInfo {
   id: string;
   name: string;
   category:
-    "macronutrient" | "vitamin" | "mineral" | "phytonutrient" | "hydration";
+    | "macronutrient"
+    | "vitamin"
+    | "mineral"
+    | "other"
+    | "phytonutrient"
+    | "hydration";
   shortRole: string;
-  fullBenefit: string;
+  introduction: string;
+  biologicalRoles: string[];
+  generalBenefits: string[];
+  foodSources: string[];
+  mealExamples: string[];
+  relatedInteraction?: string;
+  educationalFact?: string;
+  illustrationId: string;
+  // Backward compatibility fields
+  fullBenefit?: string;
   absorptionNote?: string;
-  iconName: string;
+  iconName?: string;
   primaryColor?: string;
 }
 
@@ -28,27 +45,48 @@ export interface FoodItem {
     | "nuts-seeds"
     | "proteins";
   nutrientsProvided: string[]; // nutrient IDs
-  defaultPortionDesc: string;
   complementaryTo?: string[]; // nutrient IDs it helps complement
 }
 
 export interface DetectedIngredient {
   foodId: string;
   name: string;
-  quantityText?: string;
   foodGroup: string;
+}
+
+export interface ComplementaryFoodSuggestion {
+  name: string;
+  foodName?: string;
+  illustrationId: string;
+  nutrientContribution: string;
+  pairingAdvice: string;
+  // Optional backward compatibility
+  description?: string;
+  foodGroup?: string;
 }
 
 export interface UnderrepresentedNutrient {
   nutrientId: string;
   nutrientName: string;
-  reason: string;
+  illustrationId: string;
   role: string;
-  suggestedFoods: {
-    name: string;
-    description: string;
-    foodGroup: string;
-  }[];
+  reason: string;
+  suggestedFoods: ComplementaryFoodSuggestion[];
+}
+
+export interface QualitativeScoreItem {
+  category: string;
+  qualitativeLevel: "Less represented" | "Moderately represented" | "Well represented";
+  contributingFoods: string[];
+  contextNote: string;
+}
+
+export interface OccasionEvaluation {
+  occasion: MealOccasion;
+  summary: string;
+  graphReasoning: string;
+  balanceTips: string[];
+  qualitativeScores: QualitativeScoreItem[];
 }
 
 export interface ProfileCategoryScore {
@@ -77,4 +115,5 @@ export interface MealAnalysisResult {
   profileScores: ProfileCategoryScore[];
   uncertaintyNotes: string[];
   identifiedCount: number;
+  occasionEvaluation?: OccasionEvaluation;
 }
