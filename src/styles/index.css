@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", "Times New Roman", Georgia, serif;
+  --font-tagline: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --color-lavender-50: #faf5ff;
+  --color-lavender-100: #f3e8ff;
+  --color-lavender-200: #e9d5ff;
+  --color-lavender-300: #d8b4fe;
+  --color-lavender-400: #c084fc;
+  --color-lavender-500: #a855f7;
+  --color-lavender-600: #9333ea;
+  --color-lavender-900: #1a102f;
+  --color-lavender-950: #0d0818;
+}
+
+:root {
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #07050a;
+  color: #f3e8ff;
+  overflow-x: hidden;
+}
+
+/* Moving gradient wave for SYLVARA brand heading */
+@keyframes gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-wave {
+  background-size: 250% auto;
+  animation: gradient-wave 6s ease-in-out infinite;
+}
+
+/* Subtle flowing gradient for tagline */
+@keyframes tagline-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-tagline-flow {
+  background-size: 200% auto;
+  animation: tagline-flow 8s ease-in-out infinite;
+}
+
+/* Vignette radial overlay (cinematic framing with enhanced corner and edge darkening) */
+.vignette-overlay {
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 35%,
+    rgba(7, 5, 10, 0.35) 70%,
+    rgba(5, 3, 8, 0.72) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-wave,
+  .animate-tagline-flow {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,10 @@
+dist
+node_modules
+public/videos
+*.mp4
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.svg
