@@ -92,7 +92,10 @@ export const NutrientOrbitNode: React.FC<NutrientOrbitNodeProps> = ({
 
   return (
     <motion.div
-      style={style}
+      style={{
+        ...style,
+        zIndex: isTooltipOpen ? 50 : (style?.zIndex ?? 30),
+      }}
       className={`relative flex flex-col items-center group cursor-pointer ${className}`}
       animate={
         shouldReduceMotion

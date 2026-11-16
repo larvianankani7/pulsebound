@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { RotateCcw, Sparkles } from "lucide-react";
 import { BackgroundMedia } from "../main-menu/components/BackgroundMedia";
@@ -29,14 +29,27 @@ export function FindingsPage() {
     useState<NutrientInfo | null>(null);
 
   const shouldReduceMotion = useReducedMotion();
+  const discoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (discoverTimerRef.current) {
+        clearTimeout(discoverTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleDiscover = (text: string) => {
     setIsLoading(true);
     setCurrentMealText(text);
     setSelectedNutrient(null);
 
+    if (discoverTimerRef.current) {
+      clearTimeout(discoverTimerRef.current);
+    }
+
     // Brief smooth transition delay for educational discovery feel
-    setTimeout(() => {
+    discoverTimerRef.current = setTimeout(() => {
       const result = analyzeMeal(text, selectedOccasion);
       setAnalysisResult(result);
       setIsLoading(false);
