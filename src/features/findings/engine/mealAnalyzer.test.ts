@@ -275,3 +275,288 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
     });
   });
 });
+
+describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
+  describe("Requirement 1: Preserve User Meal Identity & Remove Archetypes", () => {
+    it("preserves exact user meal title in uppercase without archetype substitution", () => {
+      const res1 = analyzeMeal("Poha");
+      expect(res1.mealTitle).toBe("POHA");
+      expect(res1.mealTitle).not.toMatch(/Classic Thali Harmony|Indian Breakfast Platter/i);
+
+      const res2 = analyzeMeal("Moong dal chilla");
+      expect(res2.mealTitle).toBe("MOONG DAL CHILLA");
+      expect(res2.mealTitle).not.toMatch(/Classic Thali Harmony|Platter/i);
+
+      const res3 = analyzeMeal("  roti, paneer and spinach sabzi  ");
+      expect(res3.mealTitle).toBe("ROTI, PANEER AND SPINACH SABZI");
+    });
+  });
+
+  describe("Requirement 2: Six Core Test Cases", () => {
+    it("Case 1: 'Poha' - includes Carbs and Iron, suggests Protein and Vitamin C", () => {
+      const result = analyzeMeal("Poha", "breakfast");
+
+      // Title
+      expect(result.mealTitle).toBe("POHA");
+
+      // Detected ingredients
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.poha");
+
+      // Nutrients: must include Carbohydrates & Iron
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.iron");
+      expect(nutrientIds).toContain("nutrient.fibre");
+
+      // Underrepresented nutrients: must suggest Complete Protein and Vitamin C
+      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      expect(underrepIds).toContain("nutrient.protein");
+      expect(underrepIds).toContain("nutrient.vitamin-c");
+
+      const proteinSuggestions = result.underrepresentedNutrients.find(
+        (u) => u.nutrientId === "nutrient.protein"
+      );
+      expect(proteinSuggestions).toBeDefined();
+      const proteinFoodNames = proteinSuggestions!.suggestedFoods.map((s) => s.name);
+      expect(proteinFoodNames.some((n) => /egg/i.test(n))).toBe(true);
+      expect(proteinFoodNames.some((n) => /paneer/i.test(n))).toBe(true);
+      expect(proteinFoodNames.some((n) => /sprouted moong/i.test(n))).toBe(true);
+
+      const vitCSuggestions = result.underrepresentedNutrients.find(
+        (u) => u.nutrientId === "nutrient.vitamin-c"
+      );
+      expect(vitCSuggestions).toBeDefined();
+      const vitCFoodNames = vitCSuggestions!.suggestedFoods.map((s) => s.name);
+      expect(vitCFoodNames.some((n) => /lemon|lime/i.test(n))).toBe(true);
+    });
+
+    it("Case 2: 'Poha with peanuts, peas and lemon' - includes Fats, Fibre, Vit C, Vit A; filters existing foods", () => {
+      const result = analyzeMeal("Poha with peanuts, peas and lemon", "breakfast");
+
+      // Title
+      expect(result.mealTitle).toBe("POHA WITH PEANUTS, PEAS AND LEMON");
+
+      // Detected ingredients: multi-ingredient detection
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.poha");
+      expect(foodIds).toContain("food.peanuts");
+      expect(foodIds).toContain("food.green-peas");
+      expect(foodIds).toContain("food.lemon");
+
+      // Nutrients: includes Healthy Fats, Fibre, Vitamin C, Vitamin A
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.healthy-fats");
+      expect(nutrientIds).toContain("nutrient.fibre");
+      expect(nutrientIds).toContain("nutrient.vitamin-c");
+      expect(nutrientIds).toContain("nutrient.vitamin-a");
+
+      // ADAPTIVE FILTERING:
+      // Peanuts are in the meal -> Healthy Fats is NOT missing, peanuts NOT recommended!
+      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      expect(underrepIds).not.toContain("nutrient.healthy-fats");
+      expect(underrepIds).not.toContain("nutrient.vitamin-c");
+
+      // No suggested food should be peanuts, peas, or lemon
+      for (const underrep of result.underrepresentedNutrients) {
+        for (const food of underrep.suggestedFoods) {
+          expect(food.name.toLowerCase()).not.toContain("peanut");
+          expect(food.name.toLowerCase()).not.toContain("lemon");
+          expect(food.name.toLowerCase()).not.toContain("lime");
+          expect(food.name.toLowerCase()).not.toContain("pea");
+        }
+      }
+    });
+
+    it("Case 3: 'Moong dal chilla' - includes Protein, Carbohydrates, Fibre, Iron, Folate", () => {
+      const result = analyzeMeal("Moong dal chilla", "breakfast");
+
+      // Title
+      expect(result.mealTitle).toBe("MOONG DAL CHILLA");
+
+      // Detected ingredient
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.moong-dal-chilla");
+
+      // Nutrients: Protein, Complex Carbs, Fibre, Iron, Folate
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.protein");
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.fibre");
+      expect(nutrientIds).toContain("nutrient.iron");
+      expect(nutrientIds).toContain("nutrient.folate");
+
+      // Protein and Carbs are detected -> not underrepresented
+      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      expect(underrepIds).not.toContain("nutrient.protein");
+      expect(underrepIds).not.toContain("nutrient.fibre");
+    });
+
+    it("Case 4: 'Roti, paneer and spinach sabzi' - includes Calcium, Iron, Protein, Carbs, Vit A; filters paneer & spinach", () => {
+      const result = analyzeMeal("Roti, paneer and spinach sabzi", "lunch");
+
+      // Title
+      expect(result.mealTitle).toBe("ROTI, PANEER AND SPINACH SABZI");
+
+      // Detected ingredients
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.roti");
+      expect(foodIds).toContain("food.paneer");
+      expect(foodIds).toContain("food.spinach");
+
+      // Nutrients: Calcium, Iron, Protein, Carbs, Vitamin A
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.calcium");
+      expect(nutrientIds).toContain("nutrient.iron");
+      expect(nutrientIds).toContain("nutrient.protein");
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.vitamin-a");
+
+      // ADAPTIVE FILTERING:
+      // Paneer is in the meal -> Calcium is NOT underrepresented! Paneer is NOT recommended!
+      // Spinach is in the meal -> Iron is NOT underrepresented! Spinach is NOT recommended!
+      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      expect(underrepIds).not.toContain("nutrient.calcium");
+      expect(underrepIds).not.toContain("nutrient.iron");
+      expect(underrepIds).not.toContain("nutrient.protein");
+
+      for (const underrep of result.underrepresentedNutrients) {
+        for (const food of underrep.suggestedFoods) {
+          expect(food.name.toLowerCase()).not.toContain("paneer");
+          expect(food.name.toLowerCase()).not.toContain("spinach");
+          expect(food.name.toLowerCase()).not.toContain("palak");
+        }
+      }
+    });
+
+    it("Case 5: 'Idli with sambar and coconut chutney' - preserves title, includes Carbs, Protein, Fats, Fibre", () => {
+      const result = analyzeMeal("Idli with sambar and coconut chutney", "breakfast");
+
+      expect(result.mealTitle).toBe("IDLI WITH SAMBAR AND COCONUT CHUTNEY");
+
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.idli");
+      expect(foodIds).toContain("food.sambar");
+      expect(foodIds).toContain("food.coconut-chutney");
+
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.protein");
+      expect(nutrientIds).toContain("nutrient.healthy-fats");
+      expect(nutrientIds).toContain("nutrient.fibre");
+    });
+
+    it("Case 6: 'Oats with banana and milk' - preserves title, includes Fibre, Carbs, Potassium, Calcium, Protein", () => {
+      const result = analyzeMeal("Oats with banana and milk", "breakfast");
+
+      expect(result.mealTitle).toBe("OATS WITH BANANA AND MILK");
+
+      const foodIds = result.detectedIngredients.map((i) => i.foodId);
+      expect(foodIds).toContain("food.oats");
+      expect(foodIds).toContain("food.banana");
+      expect(foodIds).toContain("food.milk");
+
+      const nutrientIds = result.detectedNutrients.map((n) => n.id);
+      expect(nutrientIds).toContain("nutrient.fibre");
+      expect(nutrientIds).toContain("nutrient.complex-carbs");
+      expect(nutrientIds).toContain("nutrient.potassium");
+      expect(nutrientIds).toContain("nutrient.calcium");
+      expect(nutrientIds).toContain("nutrient.protein");
+    });
+  });
+
+  describe("Requirement 3: Unknown Meals Handling", () => {
+    it("cleanly handles unknown meal 'Quinoa bowl with avocado' without generic archetypes", () => {
+      const result = analyzeMeal("Quinoa bowl with avocado", "lunch");
+
+      // Title preserved
+      expect(result.mealTitle).toBe("QUINOA BOWL WITH AVOCADO");
+      expect(result.mealTitle).not.toMatch(/Classic Thali Harmony/i);
+
+      // Flag and count
+      expect(result.isUnknownMeal).toBe(true);
+      expect(result.identifiedCount).toBe(0);
+      expect(result.detectedIngredients).toHaveLength(0);
+      expect(result.detectedNutrients).toHaveLength(0);
+
+      // Informative uncertainty note
+      expect(result.uncertaintyNotes.some((note) => /not clearly identified|could not be recognized/i.test(note))).toBe(true);
+
+      // Occasion evaluation explains missing recognition
+      expect(result.occasionSuitability.graphReasoning).toMatch(/recognized whole-food ingredients/i);
+    });
+  });
+
+  describe("Requirement 4: Occasion Contextual Evaluation & Switching", () => {
+    it("adapts contextual evaluation for Breakfast, Lunch, and Dinner without altering detected ingredients", () => {
+      const breakfast = analyzeMeal("Poha", "breakfast");
+      const lunch = analyzeMeal("Poha", "lunch");
+      const dinner = analyzeMeal("Poha", "dinner");
+
+      // Underlying ingredients and nutrients do NOT change
+      expect(breakfast.detectedIngredients).toEqual(lunch.detectedIngredients);
+      expect(lunch.detectedIngredients).toEqual(dinner.detectedIngredients);
+      expect(breakfast.detectedNutrients).toEqual(lunch.detectedNutrients);
+
+      // Occasion evaluations are contextual
+      expect(breakfast.occasionSuitability.occasion).toBe("breakfast");
+      expect(lunch.occasionSuitability.occasion).toBe("lunch");
+      expect(dinner.occasionSuitability.occasion).toBe("dinner");
+
+      // Contextual summaries and reasoning reflect the occasion
+      expect(breakfast.occasionSuitability.summary).toMatch(/breakfast|morning/i);
+      expect(lunch.occasionSuitability.summary).toMatch(/lunch|midday/i);
+      expect(dinner.occasionSuitability.summary).toMatch(/dinner|evening/i);
+
+      expect(breakfast.occasionSuitability.graphReasoning).not.toBe(
+        lunch.occasionSuitability.graphReasoning
+      );
+      expect(lunch.occasionSuitability.graphReasoning).not.toBe(
+        dinner.occasionSuitability.graphReasoning
+      );
+
+      // Qualitative score levels remain consistent with meal composition
+      for (let i = 0; i < breakfast.occasionSuitability.qualitativeScores.length; i++) {
+        expect(breakfast.occasionSuitability.qualitativeScores[i].qualitativeLevel).toBe(
+          lunch.occasionSuitability.qualitativeScores[i].qualitativeLevel
+        );
+      }
+    });
+
+    it("uses only valid qualitative levels in occasion qualitativeScores", () => {
+      const validLevels = ["Less represented", "Moderately represented", "Well represented"];
+      const result = analyzeMeal("Moong dal chilla with green peas", "lunch");
+
+      for (const score of result.occasionSuitability.qualitativeScores) {
+        expect(validLevels).toContain(score.qualitativeLevel);
+      }
+    });
+  });
+
+  describe("Requirement 5: Strict Zero-Portion Restriction", () => {
+    it("ensures zero grams, calories, or portion counts across all fields", () => {
+      const testCases = [
+        "Poha",
+        "Poha with peanuts, peas and lemon",
+        "Moong dal chilla",
+        "Roti, paneer and spinach sabzi",
+        "Idli with sambar and coconut chutney",
+        "Oats with banana and milk",
+      ];
+
+      for (const meal of testCases) {
+        const result = analyzeMeal(meal, "lunch");
+
+        // No quantityText on ingredients
+        for (const ing of result.detectedIngredients) {
+          expect((ing as unknown as Record<string, unknown>).quantityText).toBeUndefined();
+        }
+
+        // Check serialized output for portion units
+        const json = JSON.stringify(result);
+        expect(json).not.toMatch(/\b\d+\s*(?:g|gram|grams|mg|kcal|calorie|calories|serving|servings|bowl|bowls)\b/i);
+      }
+    });
+  });
+});

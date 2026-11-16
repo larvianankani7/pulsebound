@@ -106,14 +106,16 @@ export interface ProfileCategoryScore {
 export interface MealAnalysisResult {
   rawDescription: string;
   occasion: MealOccasion;
-  archetypeId: string;
+  archetypeId?: string;
   mealTitle: string;
-  visualTheme: string;
+  visualTheme?: string;
   detectedIngredients: DetectedIngredient[];
   detectedNutrients: NutrientInfo[];
   underrepresentedNutrients: UnderrepresentedNutrient[];
   profileScores: ProfileCategoryScore[];
   uncertaintyNotes: string[];
   identifiedCount: number;
+  occasionSuitability: OccasionEvaluation;
   occasionEvaluation?: OccasionEvaluation;
+  isUnknownMeal?: boolean;
 }

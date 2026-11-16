@@ -121,7 +121,7 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
       "Light tempering of cumin and mustard seeds in cold-pressed oil over dal",
     ],
     relatedInteraction:
-      "Just 5–10 grams of healthy fats consumed with colorful vegetables increases the bioavailability of carotenoids and fat-soluble vitamins by over 300%.",
+      "A modest presence of healthy culinary fats consumed with colorful vegetables increases the bioavailability of carotenoids and fat-soluble vitamins by over 300%.",
     educationalFact:
       "The human brain is approximately 60% fat by dry weight; omega-3 and healthy mono-unsaturated lipids directly fortify neural synapses and brain plasticity.",
     illustrationId: "healthy-fats",

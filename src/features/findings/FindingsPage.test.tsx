@@ -109,7 +109,11 @@ describe("SYLVARA Findings Page", () => {
     );
 
     // Meal Title & Identified Ingredients
-    expect(screen.getByText(/Classic Thali Harmony/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /2 chapatis, dal, spinach sabzi, curd and a small bowl of rice/i,
+      })
+    ).toBeInTheDocument();
     expect(screen.getByText(/Dal \/ Lentils/i)).toBeInTheDocument();
     expect(screen.getByText(/Roti \/ Chapatis/i)).toBeInTheDocument();
     expect(screen.getByText(/Spinach \/ Leafy Greens/i)).toBeInTheDocument();
