@@ -611,8 +611,8 @@ export function evaluateOccasionSuitability(
   }
 
   // Build occasion-specific summaries, graph reasoning, and balance tips
-  let summary = "";
-  let graphReasoning = "";
+  let summary: string;
+  let graphReasoning: string;
   const balanceTips: string[] = [];
 
   const missingNames = underrepresentedNutrients.map((u) => u.nutrientName);
