@@ -130,3 +130,5 @@ export function LearningsPage() {
     </div>
   );
 }
+
+export default LearningsPage;
