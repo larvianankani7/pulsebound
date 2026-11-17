@@ -30,22 +30,22 @@ export function BadgeUnlock({ badge, onContinue }: BadgeUnlockProps) {
         }
         animate={{ scale: 1, opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="relative flex flex-col items-center justify-center p-6 sm:p-10 rounded-3xl border-2 border-amber-400/40 bg-gradient-to-b from-[#2a1347]/95 via-[#18092d]/98 to-[#090214]/98 text-center text-[#f3e8ff] shadow-[0_0_90px_rgba(251,191,36,0.35)] max-w-lg w-full mx-4 max-h-[88vh] overflow-y-auto"
+        className="relative flex flex-col items-center justify-center p-6 sm:p-10 rounded-3xl border-2 border-amber-400/40 bg-gradient-to-b from-[#260206]/95 via-[#140103]/98 to-[#050001]/98 text-center text-[#f3eeee] shadow-[0_0_90px_rgba(251,191,36,0.35)] max-w-lg w-full mx-4 max-h-[88vh] overflow-y-auto"
       >
-        {/* Soft Golden & Lavender Radiance Halo */}
+        {/* Soft Golden & Crimson Radiance Halo */}
         <div
           className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-amber-500/20 blur-3xl pointer-events-none"
           aria-hidden="true"
         />
         <div
-          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-purple-600/20 blur-3xl pointer-events-none"
+          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-red-700/20 blur-3xl pointer-events-none"
           aria-hidden="true"
         />
 
         {/* Eyebrow Label */}
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-400/35 bg-[#2f1b0a]/80 text-amber-300 text-xs font-['Cinzel',serif] uppercase tracking-[0.25em] font-bold mb-6 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>BADGE UNLOCKED</span>
+          <span>TACTICAL BADGE UNLOCKED</span>
         </div>
 
         {/* Large Centred Badge Illustration */}
@@ -58,7 +58,7 @@ export function BadgeUnlock({ badge, onContinue }: BadgeUnlockProps) {
           <BadgeIllustration id={badge.iconId} size={130} />
         </motion.div>
 
-        {/* Badge Name with Radiant Golden/Lavender Wave */}
+        {/* Badge Name with Radiant Golden Wave */}
         <h2
           data-testid="unlocked-badge-name"
           className="font-['Cinzel',serif] text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-wider text-center leading-tight bg-gradient-to-r from-[#fef08a] via-[#fef9c3] to-[#eab308] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(251,191,36,0.5)] mb-2"
@@ -67,11 +67,11 @@ export function BadgeUnlock({ badge, onContinue }: BadgeUnlockProps) {
         </h2>
 
         {/* Level and Achievement Message */}
-        <div className="text-xs sm:text-sm text-purple-200/90 font-sans max-w-xs mb-8 space-y-1">
-          <p className="font-semibold text-[#d8b4fe]">
+        <div className="text-xs sm:text-sm text-red-200/90 font-sans max-w-xs mb-8 space-y-1">
+          <p className="font-semibold text-[#fda4af]">
             You completed Level {formattedLevel} — {badge.conditionName}.
           </p>
-          <p className="text-[11px] text-purple-300/70">{badge.description}</p>
+          <p className="text-[11px] text-red-300/70">{badge.description}</p>
         </div>
 
         {/* Continue Action */}
@@ -92,3 +92,5 @@ export function BadgeUnlock({ badge, onContinue }: BadgeUnlockProps) {
     </div>
   );
 }
+
+export default BadgeUnlock;

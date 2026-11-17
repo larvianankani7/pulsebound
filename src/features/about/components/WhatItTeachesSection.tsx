@@ -1,21 +1,20 @@
 import {
-  Apple,
   HeartPulse,
-  Leaf,
-  Pill,
-  Sparkles,
-  ShieldAlert,
+  Dumbbell,
+  Moon,
+  Droplets,
+  Activity,
   Info,
 } from "lucide-react";
 
 export function WhatItTeachesSection() {
   return (
     <section
-      className="border-b border-[#c084fc]/15 py-10"
+      className="border-b border-red-900/30 py-10"
       aria-labelledby="what-it-teaches-title"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c084fc]/30 bg-[#1f1038] text-[#c084fc]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-600/40 bg-red-950/60 text-red-400">
           <HeartPulse className="h-5 w-5" />
         </div>
         <h3
@@ -26,100 +25,109 @@ export function WhatItTeachesSection() {
         </h3>
       </div>
 
-      <p className="text-sm sm:text-base text-[#e2d9f3]/85 leading-relaxed font-sans mb-8">
-        SYLVARA translates scientific botany, food chemistry, and public health
-        awareness into five interconnected educational pillars:
+      <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-sans mb-8">
+        PULSEBOUND translates exercise physiology, human biomechanics, and
+        recovery science into five interconnected educational pillars:
       </p>
 
       <div className="space-y-6">
-        {/* Module A: Food & Nutrition */}
-        <div className="rounded-2xl border border-purple-500/25 bg-[#140b25]/85 p-5 sm:p-6 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1a0e30]">
+        {/* Pillar A: Cardiovascular & Energy Systems */}
+        <div className="rounded-2xl border border-red-900/35 bg-[#140205]/75 p-5 sm:p-6 transition-all duration-300 hover:border-red-500/50 hover:bg-[#200308]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#271247] text-[#c084fc]">
-              <Apple className="h-4 w-4" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-950 text-red-400">
+              <HeartPulse className="h-4 w-4" />
             </div>
             <h4 className="font-['Cinzel',serif] text-base sm:text-lg font-bold text-white tracking-wide">
-              A. Food Groups & Dietary Synergy
+              A. Cardiovascular Conditioning & Energy Systems
             </h4>
           </div>
-          <p className="text-xs sm:text-sm text-[#d8b4fe]/85 leading-relaxed font-sans mb-4">
-            Teaches how whole food ingredients harmonise within a meal. Rather
-            than obsessing over isolated metrics, learners observe dietary
-            balance and recognize which food groups may be underrepresented.
+          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans mb-4">
+            Demystifies heart rate zones and aerobic capacity. Operatives
+            discover how sustained Zone 2 aerobic work drives mitochondrial
+            biogenesis and capillary density, while high-intensity intervals
+            expand maximal oxygen uptake (VO2 Max) and cardiac stroke volume.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-            <div className="rounded-lg border border-purple-500/20 bg-[#1f1038]/60 p-2.5">
-              <span className="font-semibold text-white block">Vitamin C</span>
-              <span className="text-[#c084fc] text-[11px]">
-                Amla, Citrus, Guava
+            <div className="rounded-lg border border-red-900/40 bg-[#1c0408]/60 p-2.5">
+              <span className="font-semibold text-white block">
+                Zone 2 Aerobic
+              </span>
+              <span className="text-red-400 text-[11px]">
+                Mitochondrial Density
               </span>
             </div>
-            <div className="rounded-lg border border-purple-500/20 bg-[#1f1038]/60 p-2.5">
-              <span className="font-semibold text-white block">Protein</span>
-              <span className="text-[#c084fc] text-[11px]">
-                Lentils, Beans, Eggs
+            <div className="rounded-lg border border-red-900/40 bg-[#1c0408]/60 p-2.5">
+              <span className="font-semibold text-white block">
+                VO2 Max Pacing
+              </span>
+              <span className="text-red-400 text-[11px]">
+                Peak Stroke Volume
               </span>
             </div>
-            <div className="rounded-lg border border-purple-500/20 bg-[#1f1038]/60 p-2.5">
-              <span className="font-semibold text-white block">Calcium</span>
-              <span className="text-[#c084fc] text-[11px]">
-                Milk, Curd, Fortified Options
+            <div className="rounded-lg border border-red-900/40 bg-[#1c0408]/60 p-2.5">
+              <span className="font-semibold text-white block">
+                Lactate Clearance
+              </span>
+              <span className="text-red-400 text-[11px]">
+                Metabolic Buffering
               </span>
             </div>
-            <div className="rounded-lg border border-purple-500/20 bg-[#1f1038]/60 p-2.5">
-              <span className="font-semibold text-white block">Iron</span>
-              <span className="text-[#c084fc] text-[11px]">
-                Leafy Greens, Lentils, Seeds
+            <div className="rounded-lg border border-red-900/40 bg-[#1c0408]/60 p-2.5">
+              <span className="font-semibold text-white block">
+                Resting Heart Rate
+              </span>
+              <span className="text-red-400 text-[11px]">
+                Parasympathetic Tone
               </span>
             </div>
           </div>
         </div>
 
-        {/* Module B: Nutrients & Their Functions */}
-        <div className="rounded-2xl border border-purple-500/25 bg-[#140b25]/85 p-5 sm:p-6 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1a0e30]">
+        {/* Pillar B: Musculoskeletal & Strength */}
+        <div className="rounded-2xl border border-red-900/35 bg-[#140205]/75 p-5 sm:p-6 transition-all duration-300 hover:border-red-500/50 hover:bg-[#200308]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#271247] text-[#c084fc]">
-              <Sparkles className="h-4 w-4" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-950 text-red-400">
+              <Dumbbell className="h-4 w-4" />
             </div>
             <h4 className="font-['Cinzel',serif] text-base sm:text-lg font-bold text-white tracking-wide">
-              B. Nutrients & Their Human Functions
+              B. Musculoskeletal Architecture & Functional Strength
             </h4>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
             {[
               {
-                name: "Vitamins",
-                role: "Catalysts for cellular metabolism, enzymatic reactions, and immune resilience.",
+                name: "Progressive Overload",
+                role: "Systematically manipulating volume, load, and tempo to prompt myofibrillar adaptation.",
               },
               {
-                name: "Minerals",
-                role: "Essential elements (e.g. Iron, Zinc, Calcium) supporting skeletal strength and oxygen transport.",
+                name: "Tendon Collagen Remodeling",
+                role: "Slow eccentric loading patterns that stimulate avascular connective tissue remodeling.",
               },
               {
-                name: "Proteins",
-                role: "Amino acid building blocks vital for tissue repair, enzymes, and muscle maintenance.",
+                name: "Kinetic Chain Bracing",
+                role: "Intra-abdominal pressure and core stability safeguarding spinal mechanics during load.",
               },
               {
-                name: "Carbohydrates",
-                role: "Primary fuel source for the brain and muscles, optimized through complex unrefined sources.",
+                name: "Movement Planes",
+                role: "Balancing sagittal, frontal, and transverse motions to prevent unilateral muscle imbalances.",
               },
               {
-                name: "Healthy Fats",
-                role: "Supports hormone synthesis, cell membrane integrity, and fat-soluble vitamin absorption.",
+                name: "Motor Unit Recruitment",
+                role: "Neurological synchronization of high-threshold motor units under compound resistance.",
               },
               {
-                name: "Dietary Fibre & Water",
-                role: "Maintains microbiome diversity, digestive rhythm, and systemic thermoregulation.",
+                name: "Bone Mineral Density",
+                role: "Axial skeleton loading triggering osteoblastic bone remodeling across the lifespan.",
               },
             ].map((n, idx) => (
               <div
                 key={idx}
-                className="rounded-xl border border-purple-500/15 bg-[#1c0f33]/70 p-3"
+                className="rounded-xl border border-red-900/35 bg-[#1c0408]/70 p-3"
               >
                 <span className="font-semibold text-white block mb-0.5">
                   {n.name}
                 </span>
-                <span className="text-[#d8b4fe]/75 leading-relaxed">
+                <span className="text-neutral-300 leading-relaxed">
                   {n.role}
                 </span>
               </div>
@@ -127,116 +135,117 @@ export function WhatItTeachesSection() {
           </div>
         </div>
 
-        {/* Module C: Plants and Their Uses */}
-        <div className="rounded-2xl border border-purple-500/25 bg-[#140b25]/85 p-5 sm:p-6 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1a0e30]">
+        {/* Pillar C: Neuro-Recovery & Sleep */}
+        <div className="rounded-2xl border border-red-900/35 bg-[#140205]/75 p-5 sm:p-6 transition-all duration-300 hover:border-red-500/50 hover:bg-[#200308]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#271247] text-[#c084fc]">
-              <Leaf className="h-4 w-4" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-950 text-red-400">
+              <Moon className="h-4 w-4" />
             </div>
             <h4 className="font-['Cinzel',serif] text-base sm:text-lg font-bold text-white tracking-wide">
-              C. Plants, Herbs & Botanical Understanding
+              C. Neuro-Recovery, Sleep Architecture & Adaptation
             </h4>
           </div>
-          <p className="text-xs sm:text-sm text-[#d8b4fe]/85 leading-relaxed font-sans mb-3">
-            Explores common kitchen plants, herbs, and culinary spices. Connects
-            historical ethnobotanical wisdom with modern biochemical study,
-            carefully demarcating tradition from clinical therapy.
+          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans mb-3">
+            Explores the neurological mechanisms of human recovery. Teaches the
+            distinct restorative roles of slow-wave sleep (growth hormone
+            secretion) and REM sleep (motor skill consolidation), alongside
+            autonomic nervous system balancing.
           </p>
           <div className="flex flex-wrap gap-2 text-xs">
             {[
-              "Turmeric (Curcumin)",
-              "Holy Basil (Tulsi)",
-              "Ginger (Gingerol)",
-              "Spearmint (Menthol)",
-              "Aloe Vera",
+              "Slow-Wave Delta Sleep",
+              "Adenosine Clearance",
+              "Heart Rate Variability (HRV)",
+              "Circadian Cortisol Curve",
+              "Active Rest vs. CNS Fatigue",
             ].map((p) => (
               <span
                 key={p}
-                className="rounded-full border border-purple-400/30 bg-[#21113b] px-3 py-1 font-medium text-[#e9d5ff]"
+                className="rounded-full border border-red-700/40 bg-red-950/80 px-3 py-1 font-medium text-red-200"
               >
                 {p}
               </span>
             ))}
           </div>
-          <div className="mt-3 rounded-lg border border-purple-500/20 bg-[#10071c]/60 p-2.5 text-xs text-[#d8b4fe]/80 flex items-center gap-2">
-            <Info className="h-4 w-4 text-[#c084fc] shrink-0" />
+          <div className="mt-3 rounded-lg border border-red-900/40 bg-[#120205]/80 p-2.5 text-xs text-neutral-300 flex items-center gap-2">
+            <Info className="h-4 w-4 text-red-400 shrink-0" />
             <span>
-              Traditional plant lore is explored as cultural heritage; it is
-              never presented as an automatic substitute for certified medical
-              care.
+              Physical conditioning triggers the stimulus for growth, but
+              genuine adaptation and cellular recovery only happen during
+              quality sleep and structured rest intervals.
             </span>
           </div>
         </div>
 
-        {/* Module D: Medicines and Health Awareness */}
-        <div className="rounded-2xl border border-purple-500/25 bg-[#140b25]/85 p-5 sm:p-6 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1a0e30]">
+        {/* Pillar D: Cellular Hydration & Metabolic Fuel */}
+        <div className="rounded-2xl border border-red-900/35 bg-[#140205]/75 p-5 sm:p-6 transition-all duration-300 hover:border-red-500/50 hover:bg-[#200308]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#271247] text-[#c084fc]">
-              <Pill className="h-4 w-4" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-950 text-red-400">
+              <Droplets className="h-4 w-4" />
             </div>
             <h4 className="font-['Cinzel',serif] text-base sm:text-lg font-bold text-white tracking-wide">
-              D. Medicine Literacy & Public Health Safety
+              D. Cellular Hydration & Metabolic Fuel
             </h4>
           </div>
-          <ul className="space-y-2 text-xs sm:text-sm text-[#d8b4fe]/80 font-sans">
+          <ul className="space-y-2 text-xs sm:text-sm text-neutral-300 font-sans">
             <li className="flex items-start gap-2">
-              <span className="text-[#c084fc] font-bold">•</span>
+              <span className="text-red-400 font-bold">•</span>
               <span>
-                <strong>Active Ingredients & Dosages:</strong> How
-                pharmaceutical active compounds are isolated, standardized, and
-                clinically titrated under strict medical oversight.
+                <strong>Electrolyte Osmolarity:</strong> How sodium, potassium,
+                and magnesium ions regulate intracellular hydration and
+                neuromuscular firing beyond simple plain water intake.
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#c084fc] font-bold">•</span>
+              <span className="text-red-400 font-bold">•</span>
               <span>
-                <strong>Dangers of Self-Medication:</strong> Why consuming
-                random remedies without clinical diagnosis carries severe risks
-                of toxic interactions and delayed care.
+                <strong>Glycogen Re-Synthesis:</strong> Timing carbohydrates and
+                protein post-exercise to optimize muscle protein synthesis and
+                enzymatic recovery pathways.
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#c084fc] font-bold">•</span>
+              <span className="text-red-400 font-bold">•</span>
               <span>
-                <strong>Antibiotic Stewardship:</strong> Explaining that
-                antibiotics target bacteria and are completely ineffective
-                against viral colds and flu, highlighting the global crisis of
-                antimicrobial resistance.
+                <strong>Portion-Free Whole Food Synergy:</strong> Moving past
+                toxic calorie tracking to focus on micronutrient density,
+                colorful polyphenols, and gut microbiome balance.
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#c084fc] font-bold">•</span>
+              <span className="text-red-400 font-bold">•</span>
               <span>
-                <strong>&ldquo;Natural&rdquo; Does Not Mean Risk-Free:</strong>{" "}
-                Many potent toxins exist in nature; plant extracts can cause
-                organ stress or adverse drug interactions if misused.
+                <strong>Energy Availability:</strong> Understanding that chronic
+                energy deficits impair endocrine function, bone density, and
+                immune resilience.
               </span>
             </li>
           </ul>
         </div>
 
-        {/* Module E: Mindful Food Awareness */}
-        <div className="rounded-2xl border border-purple-500/25 bg-[#140b25]/85 p-5 sm:p-6 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1a0e30]">
+        {/* Pillar E: Functional Mobility & Joint Health */}
+        <div className="rounded-2xl border border-red-900/35 bg-[#140205]/75 p-5 sm:p-6 transition-all duration-300 hover:border-red-500/50 hover:bg-[#200308]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#271247] text-[#c084fc]">
-              <ShieldAlert className="h-4 w-4" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-950 text-red-400">
+              <Activity className="h-4 w-4" />
             </div>
             <h4 className="font-['Cinzel',serif] text-base sm:text-lg font-bold text-white tracking-wide">
-              E. Food Awareness & Responsible Choices
+              E. Functional Mobility, Joint Longevity & Movement Quality
             </h4>
           </div>
-          <p className="text-xs sm:text-sm text-[#d8b4fe]/85 leading-relaxed font-sans mb-3">
-            Encourages mindful meal composition and ingredient diversity while
-            recognizing that individual metabolic needs, culinary traditions,
-            and lifestyles differ. Food is celebrated as nourishment, joy, and
-            storytelling.
+          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans mb-3">
+            Teaches the critical distinction between passive flexibility and
+            active mobility. Operatives learn how controlled articular rotations
+            stimulate synovial joint fluid, protect spinal segments, and
+            maintain pain-free movement across decades of training.
           </p>
-          <div className="rounded-xl border border-purple-500/20 bg-[#10071c]/70 p-3.5 text-xs text-purple-200">
+          <div className="rounded-xl border border-red-900/40 bg-[#120205]/80 p-3.5 text-xs text-red-200">
             <strong className="text-white">Strict Advisory Notice:</strong>{" "}
-            SYLVARA is designed purely as an educational medium. It does not
-            diagnose deficiency syndromes, prescribe remedies, calculate medical
-            macros, or supersede licensed healthcare advice. Always consult
-            certified medical practitioners for health questions.
+            PULSEBOUND is designed purely as an educational medium for health
+            and movement literacy. It does not diagnose musculoskeletal
+            conditions, prescribe physical therapy regimens, or supersede
+            licensed medical advice. Always consult certified physicians or
+            physical therapists for injury diagnosis and treatment.
           </div>
         </div>
       </div>

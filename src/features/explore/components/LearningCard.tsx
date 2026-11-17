@@ -45,21 +45,21 @@ export function LearningCard({
         }
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto rounded-3xl border-2 border-[#c084fc]/35 bg-gradient-to-b from-[#1c0c36]/98 via-[#120624]/98 to-[#090214]/98 p-5 sm:p-8 text-[#f3e8ff] shadow-[0_0_80px_rgba(168,85,247,0.35)]"
+        className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto rounded-3xl border-2 border-red-600/40 bg-gradient-to-b from-[#1c0206]/98 via-[#100103]/98 to-[#050001]/98 p-5 sm:p-8 text-[#f3eeee] shadow-[0_0_80px_rgba(227,38,54,0.35)]"
       >
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 pb-5 border-b border-purple-500/25 mb-6 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 pb-5 border-b border-red-900/30 mb-6 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="relative p-2.5 rounded-2xl bg-gradient-to-br from-[#2c1352] to-[#16062b] border border-[#d8b4fe]/40 shadow-[0_0_20px_rgba(192,132,252,0.3)] shrink-0">
+            <div className="relative p-2.5 rounded-2xl bg-gradient-to-br from-[#300308] to-[#140103] border border-red-500/40 shadow-[0_0_20px_rgba(227,38,54,0.35)] shrink-0">
               <ConditionIllustration id={conditionId} size={48} />
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-purple-400/30 bg-[#250d44]/70 text-[#d8b4fe] text-[10px] font-['Cinzel',serif] uppercase tracking-[0.2em] font-semibold mb-1">
-                <Sparkles className="w-3 h-3 text-[#c084fc]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-red-700/40 bg-[#280308]/80 text-[#fda4af] text-[10px] font-['Cinzel',serif] uppercase tracking-[0.2em] font-semibold mb-1">
+                <Sparkles className="w-3 h-3 text-red-400" />
                 <span>LEVEL {formattedLevel} LEARNING CARD</span>
               </div>
-              <h2 className="font-['Cinzel',serif] text-2xl sm:text-3xl font-extrabold uppercase tracking-wide bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent">
+              <h2 className="font-['Cinzel',serif] text-2xl sm:text-3xl font-extrabold uppercase tracking-wide bg-gradient-to-r from-white via-red-100 to-rose-300 bg-clip-text text-transparent">
                 {content.conditionName}
               </h2>
             </div>
@@ -67,7 +67,7 @@ export function LearningCard({
 
           {/* Quick Communicability Badge */}
           <div className="shrink-0 flex flex-col items-center sm:items-end">
-            <span className="text-[10px] uppercase font-mono text-purple-300/70 mb-1">
+            <span className="text-[10px] uppercase font-mono text-red-300/70 mb-1">
               Communicable?
             </span>
             <span
@@ -87,18 +87,18 @@ export function LearningCard({
 
         {/* Structured Educational Sections Grid */}
         <div className="space-y-6 text-xs sm:text-sm">
-          {/* Row 1: What is it & How it happens */}
+          {/* Row 1: What is it & How can it happen */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* A. What is it? */}
-            <section className="p-4 rounded-2xl bg-[#1a0c30]/60 border border-purple-500/20">
-              <div className="flex items-center gap-2 text-[#d8b4fe] font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
-                <Info className="w-4 h-4 text-[#c084fc]" />
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+              <div className="flex items-center gap-2 text-[#fda4af] font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
+                <Info className="w-4 h-4 text-red-400" />
                 <span>A. What is it?</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.whatIsIt.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-purple-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -106,15 +106,15 @@ export function LearningCard({
             </section>
 
             {/* B. How can it happen? */}
-            <section className="p-4 rounded-2xl bg-[#1a0c30]/60 border border-purple-500/20">
-              <div className="flex items-center gap-2 text-[#d8b4fe] font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
-                <Activity className="w-4 h-4 text-[#c084fc]" />
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+              <div className="flex items-center gap-2 text-[#fda4af] font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
+                <Activity className="w-4 h-4 text-red-400" />
                 <span>B. How can it happen?</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.howItHappens.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-purple-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -122,34 +122,34 @@ export function LearningCard({
             </section>
           </div>
 
-          {/* Row 2: Food & Nutrition & Precautions */}
+          {/* Row 2: Food & Biological Nutrition & Practical Precautions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* D. Food & Nutrition */}
-            <section className="p-4 rounded-2xl bg-[#160829]/70 border border-purple-500/20">
+            {/* D. Food & Biological Nutrition */}
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
               <div className="flex items-center gap-2 text-emerald-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
                 <Utensils className="w-4 h-4 text-emerald-400" />
                 <span>D. Food & Biological Nutrition</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.nutrition.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-emerald-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
               </ul>
             </section>
 
-            {/* E. Precautions */}
-            <section className="p-4 rounded-2xl bg-[#160829]/70 border border-purple-500/20">
-              <div className="flex items-center gap-2 text-cyan-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
-                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+            {/* E. Practical Precautions */}
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+              <div className="flex items-center gap-2 text-amber-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
                 <span>E. Practical Precautions</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.precautions.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-cyan-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -157,34 +157,34 @@ export function LearningCard({
             </section>
           </div>
 
-          {/* Row 3: Supportive Care vs Medical Treatment */}
+          {/* Row 3: Supportive Care Measures & Medical Care */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* F. Supportive Care */}
-            <section className="p-4 rounded-2xl bg-[#1e0e36]/60 border border-purple-500/20">
-              <div className="flex items-center gap-2 text-purple-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
-                <HeartPulse className="w-4 h-4 text-purple-400" />
+            {/* F. Supportive Care Measures */}
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+              <div className="flex items-center gap-2 text-rose-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
+                <HeartPulse className="w-4 h-4 text-rose-400" />
                 <span>F. Supportive Care Measures</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.supportiveCare.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-purple-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
               </ul>
             </section>
 
-            {/* G. Medical Treatment & Medicines */}
-            <section className="p-4 rounded-2xl bg-[#1a0f38]/60 border border-purple-500/20">
-              <div className="flex items-center gap-2 text-amber-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
-                <Pill className="w-4 h-4 text-amber-400" />
+            {/* G. Medical Care & Medicine Safety */}
+            <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+              <div className="flex items-center gap-2 text-cyan-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
+                <Pill className="w-4 h-4 text-cyan-400" />
                 <span>G. Medical Care & Medicine Safety</span>
               </div>
-              <ul className="space-y-1.5 text-purple-200/90 text-xs">
+              <ul className="space-y-1.5 text-red-100/90 text-xs">
                 {content.medicalTreatment.map((p, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-amber-400 mt-0.5">•</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -192,9 +192,9 @@ export function LearningCard({
             </section>
           </div>
 
-          {/* Row 4: When to Seek Medical Help (Red Flags) */}
-          <section className="p-4 sm:p-5 rounded-2xl bg-[#2b0c1c]/50 border-2 border-rose-500/35">
-            <div className="flex items-center gap-2 text-rose-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2.5">
+          {/* H. When to Seek Urgent Medical Help (Clinical Red Flags) */}
+          <section className="p-4 rounded-2xl bg-rose-950/30 border border-rose-600/30">
+            <div className="flex items-center gap-2 text-rose-300 font-['Cinzel',serif] font-bold text-xs uppercase mb-2">
               <ShieldAlert className="w-4 h-4 text-rose-400" />
               <span>
                 H. When to Seek Urgent Medical Help (Clinical Red Flags)
@@ -213,23 +213,23 @@ export function LearningCard({
             </div>
           </section>
 
-          {/* Plant Evidence & Folklore Distinction Notes */}
+          {/* Evidence Notes */}
           {content.plantEvidenceNotes &&
             content.plantEvidenceNotes.length > 0 && (
-              <section className="p-4 rounded-2xl bg-[#130626]/70 border border-purple-500/20">
-                <span className="font-['Cinzel',serif] text-xs font-bold text-purple-300 uppercase tracking-wider block mb-2">
-                  Food & Botanical Evidence Appraisal:
+              <section className="p-4 rounded-2xl bg-[#180205]/70 border border-red-900/30">
+                <span className="font-['Cinzel',serif] text-xs font-bold text-red-300 uppercase tracking-wider block mb-2">
+                  Scientific Evidence & Physiological Notes:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {content.plantEvidenceNotes.map((note, i) => (
                     <div
                       key={i}
-                      className="text-xs p-3 rounded-xl bg-[#1f0b3d]/50 border border-purple-400/20"
+                      className="text-xs p-3 rounded-xl bg-[#220308]/60 border border-red-800/30"
                     >
                       <div className="font-semibold text-white mb-0.5">
                         {note.itemName}
                       </div>
-                      <div className="text-[11px] text-purple-300/90 mb-1">
+                      <div className="text-[11px] text-red-300/90 mb-1">
                         <strong>Role:</strong> {note.role}
                       </div>
                       <div className="text-[11px] text-emerald-300/90 mb-1">
@@ -244,28 +244,28 @@ export function LearningCard({
               </section>
             )}
 
-          {/* Sources and Public Health References */}
-          <footer className="pt-3 border-t border-purple-500/20 flex flex-wrap items-center justify-between gap-2 text-[11px] text-purple-300/70">
+          {/* Sources */}
+          <footer className="pt-3 border-t border-red-900/30 flex flex-wrap items-center justify-between gap-2 text-[11px] text-red-300/70">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#c084fc]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-red-400" />
               <span>
                 Evidence Sources:{" "}
                 {content.sources.map((s) => s.name).join(" • ")}
               </span>
             </div>
-            <span className="text-[10px] text-purple-400/60 font-mono">
-              SYLVARA Educational Health System
+            <span className="text-[10px] text-red-400/60 font-mono">
+              PULSEBOUND Bio-Kinetic Intelligence
             </span>
           </footer>
         </div>
 
         {/* Footer Action: CONTINUE to Badge sequence */}
-        <div className="mt-6 pt-5 border-t border-purple-500/25 flex justify-end">
+        <div className="mt-6 pt-5 border-t border-red-900/30 flex justify-end">
           <button
             type="button"
             onClick={onContinue}
             data-testid="learning-card-continue-button"
-            className="group flex items-center gap-3 px-8 py-3 rounded-full border border-[#d8b4fe] bg-gradient-to-r from-[#9333ea] via-[#a855f7] to-[#c084fc] text-white font-['Cinzel',serif] font-bold text-sm tracking-widest uppercase shadow-[0_0_25px_rgba(192,132,252,0.5)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe]"
+            className="group flex items-center gap-3 px-8 py-3 rounded-full border border-red-400 bg-gradient-to-r from-red-800 via-rose-600 to-red-600 text-white font-['Cinzel',serif] font-bold text-sm tracking-widest uppercase shadow-[0_0_25px_rgba(227,38,54,0.5)] hover:shadow-[0_0_35px_rgba(227,38,54,0.7)] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
           >
             <span>CONTINUE TO BADGE</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -275,3 +275,5 @@ export function LearningCard({
     </div>
   );
 }
+
+export default LearningCard;

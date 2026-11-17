@@ -73,12 +73,12 @@ export function ExplorePage() {
     EXPLORE_BADGES[currentLevelData.badgeId] ?? EXPLORE_BADGES["badge_1"];
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#07050a] text-[#f3e8ff] select-none">
-      {/* 1. Atmospheric Reused Video Background */}
-      <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} />
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#050505] text-[#f3eeee] select-none">
+      {/* 1. Atmospheric Video Background */}
+      <BackgroundMedia videoSrc="/videos/pulsebound-bg.mp4" startTime={0} />
 
-      {/* 2. Atmospheric Reused Music Controller */}
-      <MusicControl videoId="UrngDTXkOEk" />
+      {/* 2. Atmospheric Music Controller */}
+      <MusicControl audioSrc="/audio/pulsebound-theme.mp3" />
 
       {/* 3. Garden Specific 2D Atmosphere & Particles */}
       <GardenEnvironment />
@@ -109,9 +109,9 @@ export function ExplorePage() {
         </div>
 
         {/* Footer subtle brand tag */}
-        <footer className="mt-8 text-center text-[10px] text-purple-400/40 font-mono tracking-widest uppercase">
-          SYLVARA Explore • Level {currentLevelData.levelNumber} of 25 •
-          Educational Garden Challenge
+        <footer className="mt-8 text-center text-[10px] text-neutral-500 font-mono tracking-widest uppercase">
+          PULSEBOUND Sector Trials • Level {currentLevelData.levelNumber} of 25
+          • Bio-Kinetic Health Challenge
         </footer>
       </main>
 

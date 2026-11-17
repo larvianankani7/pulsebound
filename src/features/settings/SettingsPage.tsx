@@ -25,12 +25,12 @@ export const SettingsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#07050a] text-[#f3e8ff] select-none">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#050505] text-[#f3eeee] select-none">
       {/* Atmospheric Video Background */}
-      <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} />
+      <BackgroundMedia videoSrc="/videos/pulsebound-bg.mp4" startTime={0} />
 
       {/* Atmospheric Music Controller */}
-      <MusicControl videoId="UrngDTXkOEk" />
+      <MusicControl audioSrc="/audio/pulsebound-theme.mp3" />
 
       {/* Main Settings Container */}
       <main className="relative z-10 mx-auto min-h-screen w-full max-w-7xl px-4 py-8 sm:px-8 md:px-10">

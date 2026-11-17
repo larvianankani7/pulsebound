@@ -4,15 +4,21 @@
   --font-display: "Cinzel", "Times New Roman", Georgia, serif;
   --font-tagline: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --color-lavender-50: #faf5ff;
-  --color-lavender-100: #f3e8ff;
-  --color-lavender-200: #e9d5ff;
-  --color-lavender-300: #d8b4fe;
-  --color-lavender-400: #c084fc;
-  --color-lavender-500: #a855f7;
-  --color-lavender-600: #9333ea;
-  --color-lavender-900: #1a102f;
-  --color-lavender-950: #0d0818;
+
+  --color-crimson-50: #fff1f2;
+  --color-crimson-100: #ffe4e6;
+  --color-crimson-200: #fecdd3;
+  --color-crimson-300: #fda4af;
+  --color-crimson-400: #fb7185;
+  --color-crimson-500: #f43f5e;
+  --color-crimson-600: #e11d48;
+  --color-crimson-700: #be123c;
+  --color-crimson-800: #9f1239;
+  --color-crimson-900: #4a0008;
+  --color-crimson-950: #2b0005;
+
+  --color-obsidian-900: #0b0809;
+  --color-obsidian-950: #050505;
 }
 
 :root {
@@ -32,12 +38,12 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #07050a;
-  color: #f3e8ff;
+  background-color: #050505;
+  color: #f3eeee;
   overflow-x: hidden;
 }
 
-/* Moving gradient wave for SYLVARA brand heading */
+/* Flowing gradient wave for PULSEBOUND brand title */
 @keyframes gradient-wave {
   0% {
     background-position: 0% 50%;
@@ -73,13 +79,32 @@ body {
   animation: tagline-flow 8s ease-in-out infinite;
 }
 
-/* Vignette radial overlay (cinematic framing with enhanced corner and edge darkening) */
+/* Pulse glow animation for bio-core and interactive nodes */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(193, 18, 43, 0.35);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(227, 38, 54, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Vignette radial overlay for cinematic red-dark framing */
 .vignette-overlay {
   background: radial-gradient(
     circle at 50% 50%,
-    transparent 35%,
-    rgba(7, 5, 10, 0.35) 70%,
-    rgba(5, 3, 8, 0.72) 100%
+    transparent 30%,
+    rgba(11, 8, 9, 0.45) 65%,
+    rgba(5, 5, 5, 0.88) 100%
   );
 }
 
@@ -100,30 +125,30 @@ html[data-text-size="large"] {
 html[data-reduced-motion="true"] *,
 @media (prefers-reduced-motion: reduce) {
   .animate-gradient-wave,
-  .animate-tagline-flow {
+  .animate-tagline-flow,
+  .animate-pulse-glow {
     animation: none !important;
   }
 }
 
 /* Accessibility - High Contrast Mode */
 html[data-high-contrast="true"] {
-  --color-lavender-200: #ffffff;
-  --color-lavender-300: #ffffff;
-  --color-lavender-400: #e9d5ff;
+  --color-crimson-200: #ffffff;
+  --color-crimson-300: #ffffff;
+  --color-crimson-400: #ffe4e6;
 }
 
 html[data-high-contrast="true"] .border-white\/10 {
-  border-color: rgba(255, 255, 255, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
 }
 
-html[data-high-contrast="true"] .border-purple-500\/20,
-html[data-high-contrast="true"] .border-purple-500\/30 {
-  border-color: rgba(192, 132, 252, 0.6) !important;
+html[data-high-contrast="true"] .border-red-900\/30,
+html[data-high-contrast="true"] .border-red-800\/40 {
+  border-color: rgba(227, 38, 54, 0.8) !important;
 }
 
-html[data-high-contrast="true"] .text-purple-200\/60,
-html[data-high-contrast="true"] .text-purple-200\/70,
-html[data-high-contrast="true"] .text-purple-300\/60,
-html[data-high-contrast="true"] .text-purple-300\/70 {
-  color: #f3e8ff !important;
+html[data-high-contrast="true"] .text-red-200\/60,
+html[data-high-contrast="true"] .text-red-200\/70,
+html[data-high-contrast="true"] .text-neutral-400 {
+  color: #f3eeee !important;
 }

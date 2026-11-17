@@ -1,11 +1,32 @@
 import { useSettingsStore } from "../../settings/store/useSettingsStore";
 
 /**
- * Web Audio API based sound synthesizer for an elegant, soft, and premium interaction effect.
- * Designed specifically for a mysterious, sophisticated fantasy game interface.
- * Zero external audio files required — completely low-latency, reliable, and consistent.
+ * Audio playback helper for bundled sound effects with Web Audio synthetic fallback.
+ * Checks useSettingsStore for effective SFX volume and mute state.
  */
-export function playMenuClickSound(): void {
+function playAudioFile(src: string, fallbackSynth?: () => void): void {
+  try {
+    const sfxVol = useSettingsStore.getState().getEffectiveSfxVolume();
+    if (sfxVol <= 0) return;
+
+    if (typeof Audio !== "undefined") {
+      const audio = new Audio(src);
+      audio.volume = Math.max(0, Math.min(1, sfxVol));
+      audio.play().catch(() => {
+        if (fallbackSynth) fallbackSynth();
+      });
+    } else if (fallbackSynth) {
+      fallbackSynth();
+    }
+  } catch {
+    if (fallbackSynth) fallbackSynth();
+  }
+}
+
+/**
+ * Synthetic Web Audio click fallback.
+ */
+function synthClickSound(freq = 440, duration = 0.12): void {
   try {
     const sfxVol = useSettingsStore.getState().getEffectiveSfxVolume();
     if (sfxVol <= 0) return;
@@ -14,62 +35,55 @@ export function playMenuClickSound(): void {
       window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext })
         .webkitAudioContext;
-
     if (!AudioContextClass) return;
 
     const ctx = new AudioContextClass();
-    if (ctx.state === "suspended") {
-      void ctx.resume();
-    }
+    if (ctx.state === "suspended") void ctx.resume();
 
     const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
 
-    // Master filter: low-pass filter to eliminate harsh digital edges and give an organic, warm tone
-    const filter = ctx.createBiquadFilter();
-    filter.type = "lowpass";
-    filter.frequency.setValueAtTime(1400, now);
-    filter.Q.setValueAtTime(1.8, now);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(freq, now);
+    osc.frequency.exponentialRampToValueAtTime(freq * 0.75, now + duration);
 
-    // Master gain node with smooth envelope scaled by sfxVol
-    const masterGain = ctx.createGain();
-    masterGain.gain.setValueAtTime(0.0001, now);
-    // Soft, rounded attack (3ms) to avoid any harsh popping
-    masterGain.gain.linearRampToValueAtTime(0.065 * sfxVol, now + 0.003);
-    // Natural resonant exponential decay
-    masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.08 * sfxVol, now + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
-    // Primary fundamental tone: warm resonance at 432Hz
-    const osc1 = ctx.createOscillator();
-    osc1.type = "sine";
-    osc1.frequency.setValueAtTime(432, now);
-    osc1.frequency.exponentialRampToValueAtTime(415, now + 0.16);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
 
-    // Secondary subtle crystalline overtone: soft octave for depth
-    const osc2 = ctx.createOscillator();
-    const gain2 = ctx.createGain();
-    osc2.type = "sine";
-    osc2.frequency.setValueAtTime(864, now);
-    gain2.gain.setValueAtTime(0.018, now);
-    gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+    osc.start(now);
+    osc.stop(now + duration);
 
-    // Connect audio graph
-    osc1.connect(filter);
-    osc2.connect(gain2);
-    gain2.connect(filter);
-    filter.connect(masterGain);
-    masterGain.connect(ctx.destination);
-
-    // Start oscillators
-    osc1.start(now);
-    osc1.stop(now + 0.17);
-    osc2.start(now);
-    osc2.stop(now + 0.13);
-
-    // Clean up audio context once sound is finished
-    setTimeout(() => {
-      void ctx.close();
-    }, 220);
+    setTimeout(
+      () => {
+        void ctx.close();
+      },
+      (duration + 0.1) * 1000
+    );
   } catch {
-    // Gracefully ignore audio restrictions if unpermitted in browser
+    // Audio context unavailable
   }
+}
+
+export function playMenuClickSound(): void {
+  playAudioFile("/audio/sfx/click.mp3", () => synthClickSound(480, 0.12));
+}
+
+export function playSelectSound(): void {
+  playAudioFile("/audio/sfx/select.mp3", () => synthClickSound(620, 0.16));
+}
+
+export function playCompleteSound(): void {
+  playAudioFile("/audio/sfx/complete.mp3", () => {
+    synthClickSound(523.25, 0.15);
+    setTimeout(() => synthClickSound(659.25, 0.25), 120);
+  });
+}
+
+export function playErrorSound(): void {
+  synthClickSound(180, 0.22);
 }

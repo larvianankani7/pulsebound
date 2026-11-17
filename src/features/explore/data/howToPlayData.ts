@@ -16,76 +16,76 @@ export interface HowToPlaySectionData {
 
 export const HOW_TO_PLAY_GUIDE: HowToPlaySectionData[] = [
   {
-    id: "what-is-sylvara",
-    title: "What is SYLVARA?",
-    subtitle: "A Botanical Health Discovery & Nutritional Education Realm",
+    id: "what-is-pulsebound",
+    title: "What is PULSEBOUND?",
+    subtitle: "A Bio-Kinetic Health Discovery & Fitness Education Game",
     iconName: "sparkles",
     paragraphs: [
-      "SYLVARA is an evidence-based botanical and nutritional exploration experience. It connects traditional culinary ingredients and medicinal plants with verified public health consensus.",
-      "Explore biological functions, recognize when safe preventative comfort applies, and learn when professional clinical care is essential.",
+      "PULSEBOUND is an evidence-based bio-kinetic health and fitness learning game. It connects exercise physiology, biomechanics, sleep architecture, and hydration with verified scientific consensus.",
+      "Explore biological functions, master physical recovery protocols, and understand how daily movement and lifestyle decisions sculpt your physical vessel.",
     ],
   },
   {
     id: "explore-gameplay",
     title: "Explore Gameplay",
-    subtitle: "25 Sequential Botanical Challenge Scenarios",
+    subtitle: "25 Sequential Bio-Kinetic Challenge Scenarios",
     iconName: "compass",
     steps: [
       {
         number: 1,
         title: "Read the Health Scenario",
         description:
-          "Inspect your friend's condition and target health objective at the top of the garden canvas.",
+          "Inspect your operative's physiological condition and target mission objective at the top of the canvas.",
       },
       {
         number: 2,
         title: "Inspect Garden Items (Hover)",
         description:
-          "Hover your mouse (or tap on mobile) over any botanical node to reveal its nutrients, benefits, and evidence notes in the viewport tooltip.",
+          "Hover your mouse (or tap on mobile) over any tactical node to reveal its biomechanical properties, benefits, and evidence notes in the viewport tooltip.",
       },
       {
         number: 3,
         title: "Select Botanical Choices (Click)",
         description:
-          "Click the appropriate plants or actions. Selected nodes glow with a prominent lavender ring and orbital particle indicator.",
+          "Click the appropriate protocols or actions. Selected nodes glow with a prominent crimson ring and orbital pulse indicator.",
       },
       {
         number: 4,
         title: "Use Hints When Needed",
         description:
-          "Stuck? Click 'Hint' to view the required item count and evidence-based guidance for that condition.",
+          "Stuck? Click 'Hint' to view the required protocol count and evidence-based guidance for that physiological objective.",
       },
       {
         number: 5,
         title: "Submit Selections (Enter)",
         description:
-          "Click 'Enter' to validate your answer. If incorrect, you receive constructive feedback and can retry with zero penalty.",
+          "Click 'Enter' to validate your answer. If incorrect, you receive constructive tactical feedback and can retry with zero penalty.",
       },
       {
         number: 6,
         title: "Unlock Learning Card & Badge",
         description:
-          "Successful solutions unlock the in-depth Learning Card and grant your handcrafted Explore Badge, unlocking the next level.",
+          "Successful solutions unlock the in-depth Learning Card and grant your handcrafted Operative Badge, unlocking the next level.",
       },
     ],
   },
   {
     id: "learnings-archive",
     title: "Learnings Archive",
-    subtitle: "Permanent Evidence-Based Medical Knowledge",
+    subtitle: "Permanent Evidence-Based Physiological Knowledge",
     iconName: "book",
     bulletPoints: [
       {
         label: "Unlocked via Explore:",
-        text: "Completing each Explore level unlocks its comprehensive scientific learning module in the Learnings section.",
+        text: "Completing each Explore trial unlocks its comprehensive scientific learning module in the Learnings section.",
       },
       {
         label: "Detailed Clinical Breakdown:",
-        text: "Click any earned learning card to view symptoms, causes, communicability, dietary nutrition, precautions, supportive care, and clinical context.",
+        text: "Click any earned learning card to view mechanisms, recovery dynamics, nutrition, supportive care, and biomechanical context.",
       },
       {
         label: "Red-Flag Guidance:",
-        text: "Every module highlights when to seek immediate medical hospital care.",
+        text: "Every module highlights when to seek qualified medical advice and avoid overexertion.",
       },
       {
         label: "Always Revisit:",
@@ -101,7 +101,7 @@ export const HOW_TO_PLAY_GUIDE: HowToPlaySectionData[] = [
     bulletPoints: [
       {
         label: "Unlocked Strictly by Badges:",
-        text: "Earning an Explore badge unlocks its corresponding 3-question quiz in the Quizzes section.",
+        text: "Earning an operative badge unlocks its corresponding 3-question quiz in the Quizzes section.",
       },
       {
         label: "One Question at a Time:",
@@ -124,7 +124,7 @@ export const HOW_TO_PLAY_GUIDE: HowToPlaySectionData[] = [
   {
     id: "rewards-progression",
     title: "Rewards & Progression",
-    subtitle: "Your Botanical Milestone Tracking",
+    subtitle: "Your Bio-Kinetic Milestone Tracking",
     iconName: "trophy",
     bulletPoints: [
       {
@@ -157,7 +157,7 @@ export const HOW_TO_PLAY_GUIDE: HowToPlaySectionData[] = [
       },
       {
         label: "Left Click / Tap:",
-        text: "Selects garden nodes, opens cards, starts quizzes, and triggers buttons.",
+        text: "Selects tactical nodes, opens cards, starts quizzes, and triggers buttons.",
       },
       {
         label: "Keyboard Navigation:",

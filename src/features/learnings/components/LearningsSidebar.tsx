@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { BookOpen, Award } from "lucide-react";
 import { type LearningsSection } from "../types";
 import { playMenuClickSound } from "../../main-menu/utils/soundEffects";
@@ -30,15 +29,15 @@ export function LearningsSidebar({
       aria-label="Learnings Navigation"
       className="w-full md:w-64 flex-shrink-0"
     >
-      <div className="rounded-2xl border border-purple-500/20 bg-[#0e0819]/80 backdrop-blur-xl p-3 sm:p-4 shadow-[0_0_30px_rgba(168,85,247,0.1)] flex flex-row md:flex-col gap-2">
+      <div className="rounded-2xl border border-red-900/30 bg-[#0e0204]/80 backdrop-blur-xl p-3 sm:p-4 shadow-[0_0_30px_rgba(227,38,54,0.15)] flex flex-row md:flex-col gap-2">
         {/* Section 1: Learnings Button */}
         <button
           type="button"
           onClick={() => handleSelect("learnings")}
           className={`relative group flex-1 md:flex-initial flex items-center justify-between rounded-xl px-4 py-3.5 text-left transition-all duration-300 ${
             activeSection === "learnings"
-              ? "bg-gradient-to-r from-purple-900/60 to-purple-800/40 text-purple-100 border border-purple-500/50 shadow-[0_0_24px_rgba(168,85,247,0.3)]"
-              : "bg-black/30 text-purple-300/70 hover:bg-purple-950/40 hover:text-purple-200 border border-purple-500/10 hover:border-purple-500/25"
+              ? "bg-gradient-to-r from-red-950/70 to-red-900/50 text-red-100 border border-red-600/50 shadow-[0_0_24px_rgba(227,38,54,0.3)]"
+              : "bg-black/30 text-red-300/70 hover:bg-red-950/40 hover:text-red-200 border border-red-900/20 hover:border-red-700/30"
           }`}
           aria-current={activeSection === "learnings" ? "page" : undefined}
         >
@@ -46,8 +45,8 @@ export function LearningsSidebar({
             <div
               className={`p-2 rounded-lg transition-colors ${
                 activeSection === "learnings"
-                  ? "bg-purple-500/30 text-purple-200"
-                  : "bg-purple-950/40 text-purple-400 group-hover:text-purple-300"
+                  ? "bg-red-600/30 text-red-200"
+                  : "bg-red-950/40 text-red-400 group-hover:text-red-300"
               }`}
             >
               <BookOpen className="w-5 h-5" />
@@ -56,21 +55,14 @@ export function LearningsSidebar({
               <div className="font-semibold text-sm tracking-wide">
                 Learnings
               </div>
-              <div className="text-[11px] text-purple-300/60 hidden sm:block">
-                Explore Discoveries
+              <div className="text-[11px] text-red-300/60 hidden sm:block">
+                Codex Discoveries
               </div>
             </div>
           </div>
-          <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-purple-900/40 text-purple-300 border border-purple-500/20">
+          <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-red-950/80 text-red-300 border border-red-800/30">
             {earnedLearningsCount}/{totalLearningsCount}
           </span>
-          {activeSection === "learnings" && (
-            <motion.div
-              layoutId="sidebar-active-indicator"
-              className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-purple-400 to-fuchsia-400 rounded-r"
-              transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            />
-          )}
         </button>
 
         {/* Section 2: Quizzes Button */}
@@ -79,8 +71,8 @@ export function LearningsSidebar({
           onClick={() => handleSelect("quizzes")}
           className={`relative group flex-1 md:flex-initial flex items-center justify-between rounded-xl px-4 py-3.5 text-left transition-all duration-300 ${
             activeSection === "quizzes"
-              ? "bg-gradient-to-r from-purple-900/60 to-purple-800/40 text-purple-100 border border-purple-500/50 shadow-[0_0_24px_rgba(168,85,247,0.3)]"
-              : "bg-black/30 text-purple-300/70 hover:bg-purple-950/40 hover:text-purple-200 border border-purple-500/10 hover:border-purple-500/25"
+              ? "bg-gradient-to-r from-amber-950/70 to-amber-900/50 text-amber-100 border border-amber-600/50 shadow-[0_0_24px_rgba(251,191,36,0.3)]"
+              : "bg-black/30 text-amber-300/70 hover:bg-amber-950/40 hover:text-amber-200 border border-amber-900/20 hover:border-amber-700/30"
           }`}
           aria-current={activeSection === "quizzes" ? "page" : undefined}
         >
@@ -88,31 +80,26 @@ export function LearningsSidebar({
             <div
               className={`p-2 rounded-lg transition-colors ${
                 activeSection === "quizzes"
-                  ? "bg-purple-500/30 text-purple-200"
-                  : "bg-purple-950/40 text-purple-400 group-hover:text-purple-300"
+                  ? "bg-amber-600/30 text-amber-200"
+                  : "bg-amber-950/40 text-amber-400 group-hover:text-amber-300"
               }`}
             >
               <Award className="w-5 h-5" />
             </div>
             <div>
               <div className="font-semibold text-sm tracking-wide">Quizzes</div>
-              <div className="text-[11px] text-purple-300/60 hidden sm:block">
-                Badge Challenges
+              <div className="text-[11px] text-amber-300/60 hidden sm:block">
+                Knowledge Trials
               </div>
             </div>
           </div>
-          <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-purple-900/40 text-purple-300 border border-purple-500/20">
+          <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-amber-950/80 text-amber-300 border border-amber-800/30">
             {unlockedQuizzesCount}/{totalQuizzesCount}
           </span>
-          {activeSection === "quizzes" && (
-            <motion.div
-              layoutId="sidebar-active-indicator"
-              className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-purple-400 to-fuchsia-400 rounded-r"
-              transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            />
-          )}
         </button>
       </div>
     </aside>
   );
 }
+
+export default LearningsSidebar;

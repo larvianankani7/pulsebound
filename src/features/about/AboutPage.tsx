@@ -16,12 +16,12 @@ export function AboutPage() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#07050a] text-[#f3e8ff]">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#050505] text-[#f3eeee]">
       {/* 1. Reused Visual Atmospheric Background Video */}
-      <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} />
+      <BackgroundMedia videoSrc="/videos/pulsebound-bg.mp4" startTime={0} />
 
       {/* 2. Reused Atmospheric Background Music Controller */}
-      <MusicControl videoId="UrngDTXkOEk" />
+      <MusicControl audioSrc="/audio/pulsebound-theme.mp3" />
 
       {/* 3. Scrollable Main Content Showcase */}
       <main className="relative z-10 mx-auto min-h-screen w-full max-w-5xl px-4 py-12 sm:px-8 md:px-12 lg:px-16">
@@ -35,7 +35,7 @@ export function AboutPage() {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-3xl border border-[#c084fc]/25 bg-[#0e0819]/80 backdrop-blur-2xl p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(168,85,247,0.18)]"
+          className="rounded-3xl border border-red-900/40 bg-[#0b0809]/85 backdrop-blur-2xl p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(227,38,54,0.18)]"
         >
           {/* Section 1: Inspiration */}
           <InspirationSection />
@@ -55,7 +55,7 @@ export function AboutPage() {
           {/* Section 6: What I Learned */}
           <WhatILearnedSection />
 
-          {/* Section 7: What's Next for SYLVARA */}
+          {/* Section 7: What's Next for PULSEBOUND */}
           <RoadmapSection />
 
           {/* Section 8: What It Teaches */}

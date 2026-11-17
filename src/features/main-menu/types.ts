@@ -3,6 +3,7 @@ export interface NavigationItem {
   name: string;
   path: string;
   translationKey: string;
+  subtitle?: string;
 }
 
 export interface MusicPlayerState {

@@ -29,7 +29,7 @@ export function FinalCompletion({
         }
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative flex flex-col items-center justify-center text-center max-w-2xl w-full p-6 sm:p-10 rounded-3xl border-2 border-amber-400/50 bg-gradient-to-b from-[#2e134f]/98 via-[#1a0730]/98 to-[#090212]/98 shadow-[0_0_120px_rgba(251,191,36,0.4)] max-h-[88vh] overflow-y-auto my-auto"
+        className="relative flex flex-col items-center justify-center text-center max-w-2xl w-full p-6 sm:p-10 rounded-3xl border-2 border-amber-400/50 bg-gradient-to-b from-[#2a0409]/98 via-[#180205]/98 to-[#060002]/98 shadow-[0_0_120px_rgba(251,191,36,0.4)] max-h-[88vh] overflow-y-auto my-auto text-[#f3eeee]"
       >
         {/* Luminous Halo */}
         <div
@@ -56,55 +56,65 @@ export function FinalCompletion({
           THE GARDEN OF WISDOM
         </h1>
 
-        <p className="text-sm sm:text-base text-purple-200/90 font-sans max-w-lg mb-6 leading-relaxed">
-          You have completed all {TOTAL_LEVELS} levels of SYLVARA Explore. You
-          have explored the intricate relationship between foods, biological
-          nutrients, disease prevention, and evidence-based medicine.
+        <p className="text-sm sm:text-base text-red-200/90 font-sans max-w-lg mb-6 leading-relaxed">
+          You have completed all {TOTAL_LEVELS} levels of PULSEBOUND. You have
+          mastered foundational human physiology, exercise principles, circadian
+          rhythms, and evidence-based recovery protocols.
         </p>
 
-        {/* Stats Row */}
+        {/* Final Stats Overview */}
         <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-8">
-          <div className="flex flex-col items-center p-4 rounded-2xl bg-[#1d0b38]/70 border border-amber-400/30">
-            <Award className="w-5 h-5 text-amber-400 mb-1" />
-            <span className="font-mono text-2xl font-bold text-white">
-              {totalBadges}
+          <div className="p-4 rounded-2xl border border-amber-400/30 bg-[#251204]/70 flex flex-col items-center">
+            <Award className="w-6 h-6 text-amber-400 mb-1" />
+            <span className="text-2xl font-mono font-bold text-white">
+              {totalBadges} / {TOTAL_LEVELS}
             </span>
-            <span className="text-[11px] font-['Cinzel',serif] uppercase tracking-wider text-amber-300/80">
-              Badges Earned
+            <span className="text-[10px] uppercase font-['Cinzel',serif] tracking-wider text-amber-300/80">
+              Badges Collected
             </span>
           </div>
 
-          <div className="flex flex-col items-center p-4 rounded-2xl bg-[#1d0b38]/70 border border-emerald-400/30">
-            <BookOpen className="w-5 h-5 text-emerald-400 mb-1" />
-            <span className="font-mono text-2xl font-bold text-white">
-              {learningScore}
+          <div className="p-4 rounded-2xl border border-red-700/30 bg-[#1e0206]/70 flex flex-col items-center">
+            <BookOpen className="w-6 h-6 text-red-400 mb-1" />
+            <span className="text-2xl font-mono font-bold text-white">
+              {learningScore} PTS
             </span>
-            <span className="text-[11px] font-['Cinzel',serif] uppercase tracking-wider text-emerald-300/80">
-              Learnings Unlocked
+            <span className="text-[10px] uppercase font-['Cinzel',serif] tracking-wider text-red-300/80">
+              Mastery Score
             </span>
           </div>
         </div>
 
-        {/* Navigation Actions */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md justify-center">
+        {/* Navigation Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-900/40 bg-[#160205] text-[#fda4af] hover:text-white hover:border-red-500 transition-all text-xs font-['Cinzel',serif] font-bold uppercase tracking-wider"
+          >
+            <Home className="w-4 h-4" />
+            <span>Main Menu</span>
+          </Link>
+
+          <Link
+            to="/learnings"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-700/50 bg-[#250308] text-[#fecdd3] hover:text-white hover:border-red-400 transition-all text-xs font-['Cinzel',serif] font-bold uppercase tracking-wider"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Codex of Vitality</span>
+          </Link>
+
           <button
             type="button"
             onClick={() => onReplayLevel(1)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-purple-400/30 bg-[#1e0d3b] text-[#d8b4fe] hover:text-white hover:border-[#c084fc] font-['Cinzel',serif] text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-500 text-black text-xs font-['Cinzel',serif] font-extrabold uppercase tracking-widest shadow-[0_0_25px_rgba(251,191,36,0.5)] cursor-pointer"
           >
-            <RotateCcw className="w-4 h-4 text-[#c084fc]" />
-            <span>Revisit Garden Levels</span>
+            <RotateCcw className="w-4 h-4 text-black" />
+            <span>Replay Sector 01</span>
           </button>
-
-          <Link
-            to="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-amber-400/50 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-black font-['Cinzel',serif] text-xs font-extrabold uppercase tracking-wider shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:shadow-[0_0_35px_rgba(251,191,36,0.6)] transition-all"
-          >
-            <Home className="w-4 h-4 text-black" />
-            <span>Return to Main Menu</span>
-          </Link>
         </div>
       </motion.div>
     </div>
   );
 }
+
+export default FinalCompletion;

@@ -1,575 +1,548 @@
-# SYLVARA
-> **"Every meal uncovers a tale, and every tale opens a new world."**
+# PULSEBOUND
 
-SYLVARA is an interactive, gamified educational web application designed to transform how learners explore food, micronutrients, botanical lore, and public health awareness. Built with a modern dark-lavender aesthetic, tactile micro-animations, and an atmospheric soundscape, SYLVARA replaces anxiety-inducing calorie counting and sterile charts with visual discovery, scenario-based garden exploration, educational dossiers, and badge-linked quizzes.
+> **"Forge the flesh. Master the pulse. Unlock your vitality."**
+
+[![IdeaLab Hacks](https://img.shields.io/badge/IdeaLab%20Hacks-Submission-8b0015.svg?style=for-the-badge)](https://idealab-hacks.devpost.com/)
+[![React 19](https://img.shields.io/badge/React-19.0-050505.svg?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript 5.8](https://img.shields.io/badge/TypeScript-5.8-0b0809.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-4a0008.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![Tests Passing](https://img.shields.io/badge/Tests-224%20Passing-c1122b.svg?style=for-the-badge)](https://vitest.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-e32636.svg?style=for-the-badge)](LICENSE)
+
+A dark, cinematic bio-kinetic game fusing exercise physiology, functional biomechanics, sleep architecture, and tactical health decision-making into an immersive progression-based journey.
 
 ---
 
 ## Table of Contents
 
-- [1. Project Identity](#1-project-identity)
-- [2. Project Description](#2-project-description)
-- [3. Purpose & Problem Statement](#3-purpose--problem-statement)
-- [4. What SYLVARA Does](#4-what-sylvara-does)
-  - [4.1 Main Menu](#41-main-menu)
-  - [4.2 Findings (Meal & Nutrient Discovery)](#42-findings-meal--nutrient-discovery)
-  - [4.3 Explore (25-Level Radial Garden Game)](#43-explore-25-level-radial-garden-game)
-  - [4.4 Learnings & Quizzes](#44-learnings--quizzes)
-  - [4.5 Settings](#45-settings)
-  - [4.6 About](#46-about)
-- [5. What It Teaches](#5-what-it-teaches)
-- [6. Learning Progression & Rewards](#6-learning-progression--rewards)
-- [7. Key Features](#7-key-features)
-- [8. Application Architecture](#8-application-architecture)
-  - [8.1 Architecture Flowchart](#81-architecture-flowchart)
+- [1. Project Overview](#1-project-overview)
+- [2. Problem Statement](#2-problem-statement)
+- [3. Inspiration](#3-inspiration)
+- [4. IdeaLab Hacks Hackathon Alignment](#4-idealab-hacks-hackathon-alignment)
+- [5. What PULSEBOUND Does (Feature Guide)](#5-what-pulsebound-does-feature-guide)
+  - [5.1 Main Menu & Biometric Core HUD](#51-main-menu--biometric-core-hud)
+  - [5.2 Vitality Matrix (Findings)](#52-vitality-matrix-findings)
+  - [5.3 Sector Trials (Explore)](#53-sector-trials-explore)
+  - [5.4 Codex of Vitality (Learnings)](#54-codex-of-vitality-learnings)
+  - [5.5 Tactical Settings & Diagnostics](#55-tactical-settings--diagnostics)
+  - [5.6 About & Mission Briefing](#56-about--mission-briefing)
+- [6. Gameplay & Progression Loop](#6-gameplay--progression-loop)
+- [7. Visual Identity & Design Philosophy](#7-visual-identity--design-philosophy)
+- [8. Media & Sound Design](#8-media--sound-design)
 - [9. Technology Stack](#9-technology-stack)
-- [10. Project Directory Structure](#10-project-directory-structure)
-- [11. Installation & Setup](#11-installation--setup)
-- [12. Available Commands](#12-available-commands)
-- [13. Data, Privacy & Storage Architecture](#13-data-privacy--storage-architecture)
-- [14. Limitations & Responsible Use](#14-limitations--responsible-use)
-- [15. Credits & Acknowledgements](#15-credits--acknowledgements)
-- [16. Future Scope](#16-future-scope)
-- [17. License](#17-license)
+- [10. Architecture & System Design](#10-architecture--system-design)
+- [11. 100% Frontend-Only & Offline Capabilities](#11-100-frontend-only--offline-capabilities)
+- [12. Installation & Local Development](#12-installation--local-development)
+- [13. Testing & Verification Results](#13-testing--verification-results)
+- [14. Project Structure](#14-project-structure)
+- [15. Health & Educational Safety Disclaimers](#15-health--educational-safety-disclaimers)
+- [16. Engineering Challenges & Learnings](#16-engineering-challenges--learnings)
+- [17. Future Scope](#17-future-scope)
+- [18. Credits & Acknowledgements](#18-credits--acknowledgements)
+- [19. License](#19-license)
 
 ---
 
-## 1. Project Identity
+## 1. Project Overview
 
-- **Project Name:** SYLVARA
-- **Official Tagline:** _"Every meal uncovers a tale, and every tale opens a new world."_
-- **Domain:** Interactive Gamified Nutrition & Botanical Education / Digital Health Awareness
-- **Visual Identity:** Cinematic dark theme (`#07050a`), deep-violet and lavender gradients (`#c084fc`, `#a855f7`), translucent glassmorphism surfaces, subtle glowing borders, and serif typography (`Cinzel` & `Cormorant Garamond`).
+**PULSEBOUND** is a gamified bio-kinetic education experience created for the **IdeaLab Hacks** hackathon. Built from the ground up to challenge traditional health and fitness software tropes, the application places players into the role of a biological **Operative** tuning and mastering their somatic vessel.
 
----
+Conventional health applications frequently overwhelm learners with sterile clinical charts, anxiety-inducing calorie counters, or passive walls of text. PULSEBOUND reframes human physiology into an engaging tactical journey. Operatives investigate physiological distress signals, balance aerobic energy pathways, optimize musculoskeletal adaptations, understand sleep architecture, and test their retention in high-stakes diagnostic trials.
 
-## 2. Project Description
+PULSEBOUND is designed for fitness enthusiasts, students, athletes, and curious learners who want to understand _how_ their bodies adapt to physical stress and _why_ specific recovery habits support lifelong vitality.
 
-SYLVARA is a frontend-only, offline-first digital learning experience that invites users into an enchanting universe where meals, medicinal herbs, and biological nutrients tell interconnected stories. Instead of treating nutrition as an exercise in calorie restriction or clinical guilt, SYLVARA reframes food as cultural heritage, cellular nourishment, and preventative health awareness.
-
-Through its illustrated 2D garden and interactive discovery tools, users can analyze staple meals to reveal their nutrient synergies, solve 25 progressive clinical-botanical scenarios in an interactive garden, unlock deep educational dossiers, and test their comprehension in single-attempt badge quizzes.
-
-> [!NOTE]
-> SYLVARA is strictly an educational awareness companion. It is **not** a medical diagnosis tool, treatment platform, clinical prescription engine, or calorie-counting app.
+> [!IMPORTANT]
+> **Educational Gaming Companion:** PULSEBOUND is strictly an educational game and somatic discovery experience. It is **not** a clinical diagnostic tool, medical prescription software, or therapeutic medical device.
 
 ---
 
-## 3. Purpose & Problem Statement
+## 2. Problem Statement
 
-### The Problem
+Modern health education and fitness technology face significant pedagogical barriers:
 
-Traditional nutrition education and digital diet apps suffer from persistent structural shortcomings:
+1. **Hyper-Quantification & Dietary Fatigue:** Traditional fitness platforms compulsively emphasize calorie counting, gram tracking, and restrictive numerical quotas. This focus often creates anxiety, shame, and unsustainable behavioral patterns rather than fostering genuine physiological comprehension.
+2. **Dense, Inaccessible Exercise Science:** Valuable research on mitochondrial respiration, tendon collagen remodeling, non-REM slow-wave sleep, and electrolyte osmolarity is locked behind academic jargon that alienates everyday people.
+3. **Passive, Unengaging Delivery:** Health articles and clinical pamphlets rely on static lectures, which produce low retention and fail to motivate sustained lifestyle changes.
+4. **Disconnection Between Action and Adaptation:** Learners frequently view workouts as disconnected chores rather than realizing that training provides the cellular stimulus while sleep and nutrition supply the adaptive recovery.
 
-1. **Hyper-Quantification & Anxiety:** Most mainstream tools focus compulsively on calorie counting, macro ratios, and numerical targets, which research links to dietary fatigue and disordered eating patterns.
-2. **Clinical Inaccessibility:** Medical and biochemical literature on vitamins, minerals, and phytochemicals is frequently buried under intimidating scientific jargon that alienates everyday learners.
-3. **Disconnection from Nature:** Modern consumers often know little about the raw plants, culinary herbs, and whole foods that yield essential nutrients, severing the link between agricultural ecology and personal wellbeing.
-4. **Misinformation & Risky Self-Medication:** The rise of unverified online health trends has increased indiscriminate supplement use, confusion around herbal remedies, and rampant antibiotic misuse for viral conditions.
+### The PULSEBOUND Approach
 
-### The SYLVARA Approach
+PULSEBOUND solves these issues through **active, scenario-based gamification**:
 
-SYLVARA bridges gastronomy, botanical science, and public health through playful exploration:
-
-- **Story over Stats:** Replaces numerical targets with qualitative dietary harmony and food group synergy.
-- **Interactive Garden Metaphor:** Connects active biochemicals (e.g., curcumin in turmeric, eugenol in holy basil) directly to living plants in an illustrated radial environment.
-- **Responsible Health Awareness:** Distinguishes traditional plant lore from evidence-based medicine and certified pharmacology, actively teaching antibiotic stewardship and safe health practices.
-- **Gamified Mastery:** Rewards curious investigation with unlockable learning cards and progressive knowledge badges.
+- **Tactical Decisions Over Static Articles:** Operatives diagnose real-world scenarios (e.g., central nervous system fatigue during heavy loading, hyponatremia during endurance events) and receive immediate physiological rationales.
+- **Portion-Free Whole-Food Modeling:** The Vitality Matrix models qualitative nutrient synergies, anti-inflammatory mechanisms, and metabolic pathways without counting calories or grams.
+- **Progressive Mastery Loop:** Operatives earn handcrafted badges across 25 progressive sectors, unlocking corresponding clinical dossiers and single-attempt diagnostic quizzes.
 
 ---
 
-## 4. What SYLVARA Does
+## 3. Inspiration
 
-The application consists of six fully realized, interconnected main pages accessible from the root router:
+The inspiration behind PULSEBOUND stems from the concept of the **human pulse as the fundamental metric of vitality**. The pulse reflects every physiological demand: cardiovascular stroke volume, sympathetic fight-or-flight arousal, parasympathetic recovery tone, and cellular oxygen transport.
+
+By merging the pulse with an atmospheric, dark blood-red and obsidian aesthetic, PULSEBOUND evokes the tension and focus of high-performance human physiology. The application treats the human body not as a passive patient to be diagnosed, but as an extraordinary bio-mechanical vessel to be forged, conditioned, and understood.
+
+---
+
+## 4. IdeaLab Hacks Hackathon Alignment
+
+**Hackathon:** [IdeaLab Hacks on Devpost](https://idealab-hacks.devpost.com/)  
+**Track:** Open-Ended Innovation  
+**Chosen Direction:** **Fitness + Health + Health Education + Gamification**
+
+PULSEBOUND was engineered to directly target all four official judging criteria:
+
+| Judging Criterion             | Weight | How PULSEBOUND Addresses It                                                                                                                                                                                                                                         |
+| ----------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Creativity & Originality**  | 25%    | Replaces cliché pastel fitness dashboards with a dark, blood-red bio-kinetic aesthetic. Features an animated pulsing Biometric Core, dynamic ECG waveforms, radial orbital sector radars, and an Operative narrative identity.                                      |
+| **Execution & Functionality** | 25%    | 100% frontend-only client architecture with zero external servers. Runs offline via IndexedDB (Dexie.js), HTML5 local soundtrack playback, Web Audio synthesizers, and 224 unit tests passing with zero failures.                                                   |
+| **Usefulness & Experience**   | 25%    | Teaches actionable exercise science (Zone 2 mitochondrial base, VO2 Max pacing, eccentric tendon loading, slow-wave sleep delta waves, cellular hydration osmolarity) while excluding anxiety-inducing calorie counting. Features full WCAG accessibility controls. |
+| **Clarity & Learning**        | 25%    | Uses an active learning loop: tactical scenario analysis → evidence-based rationale → earned badge → unlocked clinical dossier → single-attempt mastery quiz.                                                                                                       |
+
+---
+
+## 5. What PULSEBOUND Does (Feature Guide)
+
+PULSEBOUND comprises six fully implemented, interconnected operational sections:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                          MAIN MENU                          │
-├─────────────┬─────────────┬─────────────┬─────────────┬─────┴───────┐
-│  FINDINGS   │   EXPLORE   │  LEARNINGS  │  SETTINGS   │    ABOUT    │
-└─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│                        MAIN MENU & BIOMETRIC HUD                       │
+├─────────────┬─────────────┬─────────────┬─────────────┬────────────────┤
+│  FINDINGS   │   EXPLORE   │  LEARNINGS  │  SETTINGS   │     ABOUT      │
+│  (Vitality  │   (Sector   │   (Codex    │  (Tactical  │   (Mission     │
+│   Matrix)   │   Trials)   │  & Quizzes) │ Diagnostics)│   Briefing)    │
+└─────────────┴─────────────┴─────────────┴─────────────┴────────────────┘
 ```
 
-### 4.1 Main Menu
+### 5.1 Main Menu & Biometric Core HUD
 
-The atmospheric gateway to SYLVARA:
+The operational gateway to PULSEBOUND:
 
-- **Cinematic Atmosphere:** Fullscreen looping background video (`menu-bg.mp4`) overlaid with radial vignettes.
-- **Ambient Soundtrack:** Integrated YouTube audio controller streaming _"Crosses"_ by José González at a gentle, slowed playback rate (0.8x) with global mute and volume controls.
-- **Centerpiece Visual:** Illustrated floating Buddha bowl symbolizing dietary balance and culinary diversity.
+- **Cinematic Atmosphere:** Fullscreen hardware-accelerated video background (`pulsebound-bg.mp4`) with smooth radial blur, dark overlays, and crimson vignettes.
+- **Local Soundtrack Controller:** Integrated HTML5 player for the local theme (`pulsebound-theme.mp3`) with play/pause, volume slider dropdown, and mute toggle.
+- **Animated Biometric Core:** Interactive 3D SVG concentric reactor core featuring rotating telemetry rings, an animated pulsing heart, and live ECG telemetry readouts (72 BPM Homeostasis).
+- **Operative Status Badge:** Real-time HUD telemetry displaying the Operative's custom codename, active sector level, and earned badge total.
 - **Five Primary Portals:** Direct access to _Findings_, _Explore_, _Learnings_, _Settings_, and _About_ with synthesized tactile audio feedback on hover and selection.
 
-### 4.2 Findings (Meal & Nutrient Discovery)
+### 5.2 Vitality Matrix (Findings)
 
-An intuitive meal exploration tool:
+An interactive bio-synergy simulator designed for qualitative nutritional discovery:
 
-- **Natural Language Meal Entry:** Users enter everyday meals (e.g., _"Poha"_, _"Dal Tadka with Roti"_, _"Moong Dal Chilla"_, _"Palak Paneer"_, _"Mediterranean Salad"_).
-- **Intelligent Ingredient Parser:** Normalizes meal queries and matches verified ingredients against a curated database of global and Indian culinary staples (`foodsData.ts`).
-- **Circular Nutrient Wheel:** Visualizes the meal's verified micronutrients and active compounds across color-coded categories (Vitamins, Minerals, Macronutrients, Phytochemicals).
-- **Nutrient Drill-Down Dossiers:** Clicking any node on the wheel or in the supported list opens an evidence-based detail card revealing cellular roles, food sources, and botanical synergies.
-- **Nutritional Balance & Gaps:** Gently surfaces underrepresented components (e.g., suggesting a citrus squeeze to boost iron absorption from lentils) and recommends complementary whole foods without ever calculating calories or grams.
-- **Nutritional Profile Graph:** Displays a qualitative multidimensional overview of the meal's dietary harmony.
+- **Meal & Food Input:** Operatives input meals (e.g., whole grains, lean proteins, colorful vegetables) to trigger real-time biochemical breakdown.
+- **12 Qualitative Bio-Markers:** Evaluates nutrient density, anti-inflammatory potential, glycogen re-synthesis factors, and cellular recovery support.
+- **Interactive Radial Nutrient Wheel:** Dynamic circular SVG visualization mapping all detected micronutrients in orbital relation to the meal title. Clicking any node opens a deep-dive card detailing physiological mechanisms, bio-available sources, and cellular pathways.
+- **Portion-Free & Guilt-Free:** Strictly omits gram counting, portion weighing, and caloric tracking to foster healthy, shame-free relationships with nutritional fuel.
+- **Educational Notice:** Clearly reinforces that nutritional synergy models are educational guides, not clinical prescriptions or deficiency tests.
 
-### 4.3 Explore (25-Level Radial Garden Game)
+### 5.3 Sector Trials (Explore)
 
-A 25-level scenario-driven botanical puzzle game:
+A 25-level orbital simulation game challenging operatives with progressive physiological scenarios:
 
-- **Scenario-Based Objectives:** Each level presents an authentic health or environmental scenario (e.g., Level 1: Common Cold & Respiratory Congestion; Level 5: Fatigue & Iron Absorption; Level 12: Bone Density Support; Level 25: Master Botanical Synthesis).
-- **Radial Garden Arena:** Interactive botanical and dietary specimens arranged in a dynamic radial geometry with viewport-aware hover tooltips and tactile selection mechanics.
-- **Validation Engine:** Evaluates selected remedies against the scenario's requirements. Correct solutions trigger level completion; incorrect submissions provide constructive guidance with retries.
-- **Progressive Difficulty Tiers:** Levels are grouped into progressive difficulty tiers (_Apprentice_, _Herbalist_, _Alchemist_, _Botanical Sage_) with celebratory transition screens.
-- **In-Game Assistance:** Contextual hint modals and an integrated _How to Play_ guide accessible at any moment.
+- **25 Orbital Simulation Sectors:** Arranged across five distinct physiological domains:
 
-### 4.4 Learnings & Quizzes
+| Sectors   | Physiological Domain                               | Core Scientific Topics                                                                                                            |
+| --------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **01–05** | Cardiovascular Conditioning & Mitochondrial Health | Zone 2 aerobic pacing, mitochondrial biogenesis, VO2 Max intervals, cardiac stroke volume, resting heart rate adaptations.        |
+| **06–10** | Musculoskeletal Architecture & Strength            | Progressive overload, mechanical tension, tendon collagen remodeling, kinetic chain bracing, sagittal vs. frontal plane balance.  |
+| **11–15** | Neuro-Recovery & Sleep Architecture                | Non-REM slow-wave sleep, delta waves, growth hormone release, REM motor memory consolidation, adenosine clearance, HRV balancing. |
+| **16–20** | Metabolic Synergy & Hydration Mechanics            | Electrolyte osmolarity (sodium/potassium/magnesium), cellular hydration, glycogen re-synthesis, post-exercise nutrient timing.    |
+| **21–25** | Functional Mobility & Joint Integrity              | Active mobility vs. passive flexibility, end-range strength, synovial joint lubrication, spinal decompression, injury prevention. |
 
-A dedicated educational repository earned through gameplay:
+- **Tactical Scenario Cards:** Presents real-world physiological conditions (e.g., acute central nervous system fatigue, dehydration symptoms, post-exercise soreness).
+- **Interactive Decision Nodes:** Operatives inspect surrounding nodes via hover tooltips and select scientifically supported protocols.
+- **Immediate Evidence-Based Rationale:** Provides clear explanations for why selected interventions succeed or fail.
+- **Progression & Badge Unlocks:** Correct solutions award XP, unlock the next sector, and award a permanent handcrafted badge.
 
-- **Earned Learnings Section:** Unlocks permanent educational lesson cards upon completing Explore levels. Each card expands into a structured clinical dossier covering topic definitions, contributing factors, active nutrients/compounds, evidence-based benefits, supportive care, and when to seek certified medical attention.
-- **Badge-Linked Quizzes Section:** Displays 25 quizzes unlocked exclusively by earning the corresponding badge in Explore.
-- **Three-Question Runner:** Each quiz features exactly three multiple-choice questions assessing comprehension, safe practices, and nutrient knowledge.
-- **Strict One-Attempt Rule:** Quizzes enforce a single attempt per unlock, encouraging focused attention and mindful learning.
-- **Instant Detailed Review:** Learners receive immediate rationales and takeaways for every question, followed by a permanent score summary.
+### 5.4 Codex of Vitality (Learnings)
 
-### 4.5 Settings
+A persistent knowledge archive and diagnostic testing suite:
 
-A unified settings dashboard featuring 7 dedicated sections:
+- **25 Unlocked Educational Dossiers:** Each completed sector unlocks its corresponding clinical dossier (`learn_1` through `learn_25`), covering physiological mechanisms, recovery dynamics, nutrition synergies, and clinical red-flag warnings.
+- **25 Single-Attempt Diagnostic Quizzes:** Each earned badge unlocks a 3-question mastery challenge (`quiz_1` through `quiz_25`). Questions test practical application and retention with detailed takeaways.
+- **Score Tracking & Ranks:** Real-time scoring tracking total points and category completion across all five physiological domains.
 
-- **Profile:** Custom username editing and selection across 6 illustrated avatar archetypes (_The Seeker_, _The Herbalist_, _The Alchemist_, _The Botanist_, _The Sage_, _The Druid_), plus live milestone statistics from Explore and Learnings.
-- **Controls:** An illustrated guide demonstrating the core interaction philosophy: _"Hover helps users discover more. Clicking helps users explore detailed information."_ Includes an interactive live sandbox featuring _Sacred Tulsi (Holy Basil)_.
-- **Language:** Instant interface translation across 4 languages (**English**, **हिन्दी**, **日本語**, **简体中文**) without requiring a page refresh.
-- **Audio & Volume:** Independent volume sliders (0–100%) and mute toggles for atmospheric background music and tactile Web Audio sound synthesis, plus a test tone trigger.
-- **How to Play:** Comprehensive 6-part gameplay guide perfectly synchronized with Explore's in-game guide.
-- **Accessibility:** Reduced motion toggle (disabling particle waves and rotations), typography scaling (Compact, Standard, Enlarged), and high contrast mode.
-- **Data & Progress:** Transparent local storage overview (IndexedDB + LocalStorage) and an isolated Explore reset option that relocks game progression while preserving all player preferences.
+### 5.5 Tactical Settings & Diagnostics
 
-### 4.6 About
+System controls and local persistence management:
 
-A comprehensive developer showcase and educational manifesto detailing:
+- **Independent Audio Controls:** Separate volume and mute controls for the background soundtrack and synthesized tactical SFX.
+- **Operative Profile:** Editable operative display name and archetype selection synchronized across all stores.
+- **Accessibility Controls:** Instant toggles for reduced motion, high-contrast mode, and text size scaling (`small`, `default`, `large`).
+- **Local Storage Telemetry:** Live diagnostics displaying Dexie IndexedDB status, active level records, earned badge counts, and quiz statistics.
+- **Progress Reset Safeguard:** Multi-step modal confirmation allowing operatives to securely reset their progress with zero data leaks.
 
-- The origin story and inspiration behind SYLVARA.
-- Core design philosophy and accomplishments.
-- Technical challenges overcome during development.
-- Key lessons learned in client-side architecture.
-- Future developmental roadmap.
-- Complete creator and music credits.
+### 5.6 About & Mission Briefing
 
----
+The comprehensive project dossier:
 
-## 5. What It Teaches
-
-SYLVARA translates scientific botany, food chemistry, and public health awareness into five interconnected educational pillars:
-
-### Pillar A: Food Groups & Dietary Synergy
-
-- Understanding how whole foods harmonize in a complete meal.
-- Learning about dietary balance and identifying underrepresented food groups without restrictive caloric metrics.
-- Exploring complementary combinations (e.g., Vitamin C pairing with plant-based Non-Heme Iron to enhance bioavailability).
-
-### Pillar B: Essential Nutrients & Biological Functions
-
-- **Vitamins:** Enzymatic cofactors, antioxidant defense (Vitamin C, Vitamin A, Vitamin E), and immune regulation (Vitamin D).
-- **Minerals:** Structural and metabolic elements (Calcium, Magnesium, Zinc, Iron, Potassium).
-- **Proteins & Amino Acids:** Cellular repair, muscular maintenance, and enzymatic synthesis.
-- **Complex Carbohydrates & Dietary Fibre:** Prebiotic microbiome support, digestive rhythm, and steady glycemic release.
-- **Healthy Lipids:** Polyunsaturated and monounsaturated fatty acids supporting cell membrane integrity and fat-soluble vitamin uptake.
-
-### Pillar C: Botanical Knowledge & Phytochemicals
-
-- Demystifying culinary herbs and medicinal plants:
-  - **Turmeric (_Curcuma longa_):** Active curcuminoids and anti-inflammatory properties; enhanced absorption via piperine in black pepper.
-  - **Holy Basil / Tulsi (_Ocimum sanctum_):** Eugenol and adaptogenic flavonoids easing respiratory stress.
-  - **Ginger (_Zingiber officinale_):** Gingerols supporting gastrointestinal motility and nausea relief.
-  - **Spearmint / Peppermint (_Mentha_):** Menthol aiding smooth muscle relaxation.
-- Appreciating cultural culinary traditions while grounding claims in peer-reviewed science.
-
-### Pillar D: Medicine Literacy & Public Health Safety
-
-- **Active Ingredients vs. Crude Herbs:** Understanding how pharmaceutical drugs are standardized, titrated, and rigorously tested under clinical protocols.
-- **Dangers of Self-Medication:** Recognizing the severe risks of consuming unverified remedies or delaying clinical intervention.
-- **Antibiotic Stewardship:** Clarifying that antibiotics target bacterial pathogens and are completely ineffective against viral colds and influenza; highlighting the global challenge of antimicrobial resistance (AMR).
-- **"Natural" Does Not Mean Harmless:** Dispelling the myth that botanical compounds cannot cause toxicity, organ strain, or dangerous drug-herb interactions.
-
-### Pillar E: Mindful Food Awareness & Responsible Choices
-
-- Encouraging conscious ingredient selection and culinary enjoyment.
-- Celebrating meals as cultural storytelling and preventative vitality.
-- Clearly teaching when symptoms require prompt, certified clinical diagnosis.
+- **Mission & Problem Statement:** Context regarding the IdeaLab Hacks submission and health literacy objectives.
+- **Live Architecture Blueprint:** Interactive Mermaid system diagram illustrating component hierarchies and data streams.
+- **Curriculum Overview:** Detailed breakdown of the five educational pillars.
+- **Future Roadmap:** Distinguishes completed systems from future directions.
+- **Safety & Educational Disclaimers:** Explicit clinical notices establishing boundaries between education and medical care.
 
 ---
 
-## 6. Learning Progression & Rewards
-
-SYLVARA features a cohesive, dual-loop progression system that tightly couples puzzle-solving in **Explore** with permanent knowledge mastery in **Learnings**:
-
-```
-┌─────────────────┐       Level Pass        ┌─────────────────┐
-│     EXPLORE     │ ──────────────────────> │  LEARNING CARD  │
-│    25 Levels    │                         │  Unlocks Lesson │
-└────────┬────────┘                         └─────────────────┘
-         │
-         │ Earns Badge
-         v
-┌─────────────────┐       Unlocks Quiz      ┌─────────────────┐
-│  EARNED BADGE   │ ──────────────────────> │ 3-QUESTION QUIZ │
-│   25 Unique     │                         │ 1 Attempt Only  │
-└─────────────────┘                         └────────┬────────┘
-                                                     │
-                                                     │ Scored
-                                                     v
-                                            ┌─────────────────┐
-                                            │ PERMANENT SCORE │
-                                            │ Mastered Rating │
-                                            └─────────────────┘
-```
-
-### Progression Mechanics
-
-1. **Explore Level Progression:** Users advance through 25 sequential levels across difficulty tiers. Level completion unlocks both the next level and an in-depth **Learning Card**.
-2. **Badge Unlocks:** Successfully solving a level awards its corresponding thematic badge (e.g., _Respiratory Shield_, _Vitality Ember_, _Bone Fortress_).
-3. **Quiz Unlocking:** Each of the 25 quizzes in the Learnings section remains strictly locked until its corresponding badge is earned in Explore.
-4. **The One-Attempt Rule:** Each quiz can only be attempted once per unlock, emphasizing thoughtful deliberation rather than trial-and-error guessing.
-5. **Standardized Scoring System:** Every quiz consists of exactly 3 questions. Results are permanently stored according to the following criteria:
-
-|   Score   | Result Category            | Meaning & Pedagogical Feedback                                                 |
-| :-------: | :------------------------- | :----------------------------------------------------------------------------- |
-| **0 / 3** | **Better Luck Next Time!** | Core concepts need further review; detailed rationales are provided for study. |
-| **1 / 3** | **Learning**               | Foundation established; learner grasped one key concept.                       |
-| **2 / 3** | **Well Explored**          | Strong comprehension of primary botanical mechanisms and safe practices.       |
-| **3 / 3** | **Mastered**               | Flawless understanding of nutrients, synergies, and clinical precautions.      |
-
-### Explore Reset Behaviour
-
-In the Settings page under _Data & Progress_, players can trigger **Reset Explore Progress**. This operation:
-
-- Relocks Explore levels 2–25 and resets level progression back to Level 1.
-- Clears earned badges, learning cards, and dependent quiz attempt records.
-- **Preserves Player Preferences:** Username, chosen avatar, language selection, music/SFX volume, mute toggles, and accessibility configurations remain completely untouched.
-
----
-
-## 7. Key Features
-
-- **Scenario-Based Radial Gameplay:** 25 handcrafted botanical scenarios rendered in a responsive radial layout with dynamic hover previews and selection validation.
-- **Deep Educational Dossiers:** 25 structured lessons detailing causes, active phytochemicals, evidence-based benefits, supportive care, and clinical medical contexts.
-- **Badge-Linked Single-Attempt Quizzes:** 25 three-question quizzes assessing comprehension with immediate feedback and permanent mastery scoring.
-- **Non-Restrictive Meal Explorer:** Natural language meal analysis identifying verified nutrients, underrepresented elements, and complementary foods without counting calories.
-- **Bilingual & Multilingual Architecture:** Complete interface translation supporting English, Hindi, Japanese, and Simplified Chinese.
-- **Dynamic Route-Level Code Splitting:** Lazy-loaded page bundles ensuring fast initial loads and lightweight memory usage.
-- **Client-Side Offline Persistence:** Dual-engine storage utilizing Dexie (IndexedDB) for game records and LocalStorage for user preferences.
-- **Atmospheric Shared Audio System:** Ambient YouTube soundtrack integration paired with custom low-latency Web Audio API sound synthesis.
-- **Granular Accessibility Controls:** Built-in settings for reduced motion, 3-tier text scaling, and high-contrast styling.
-- **Verified Scientific Curriculum:** Balanced educational content distinguishing traditional ethnobotany from certified pharmacological practice.
-
----
-
-## 8. Application Architecture
-
-SYLVARA is designed as a **100% frontend-only modular monolith**. It requires no backend server, no cloud database, and no server-side authentication.
-
-### Modular Boundaries
-
-- **`src/app/`**: Root application shell, router configuration, and lazy-loaded Suspense boundaries.
-- **`src/features/main-menu/`**: Atmospheric landing page, video background wrapper, and shared audio controller.
-- **`src/features/findings/`**: Meal parsing engine, nutrient resolution dictionaries, and interactive wheel visualization.
-- **`src/features/explore/`**: 25-level game state machine, radial layout math, garden item tooltips, and Dexie persistence bridge.
-- **`src/features/learnings/`**: Educational dossiers, quiz runner state machine, and attempt record persistence.
-- **`src/features/settings/`**: User profile, language router, audio bridges, accessibility DOM adapters, and progress reset logic.
-- **`src/features/about/`**: Project story, architectural diagrams, curriculum outlines, and credits.
-- **`src/content/`**: Immutable verified food compositions, nutrient functional profiles, and meal archetypes.
-- **`src/database/`**: Dexie database schema and IndexedDB table configurations.
-- **`src/i18n/`**: Localization resources (`en`, `hi`, `ja`, `zh`) and i18next runtime initialization.
-
-### 8.1 Architecture Flowchart
+## 6. Gameplay & Progression Loop
 
 ```mermaid
 flowchart TD
-    User(["User"]) --> Router["React Router 7 Navigation"]
+    Start["Operative Enters Main Menu"] --> Explore["Sector Trials (Explore Hub)"]
 
-    subgraph Pages ["Application Pages (Lazy Loaded)"]
-        MainMenu["Main Menu (/)"]
-        Findings["Findings (/findings)"]
-        Explore["Explore (/explore)"]
-        Learnings["Learnings (/learnings)"]
-        Settings["Settings (/settings)"]
-        About["About (/about)"]
-    end
+    Explore --> Node["Select Active Sector Node (1–25)"]
+    Node --> Scenario["Analyze Tactical Scenario & Distress Signals"]
 
-    Router --> MainMenu
-    Router --> Findings
-    Router --> Explore
-    Router --> Learnings
-    Router --> Settings
-    Router --> About
+    Scenario --> Decision["Select Interventions / Recovery Protocols"]
+    Decision --> Submit{"Validate Selection"}
 
-    subgraph Engines ["Domain Engines & Content"]
-        MealEngine["Meal Analyzer Engine"]
-        VerifiedContent[("Foods, Nutrients & Plants Data")]
-        GardenEngine["Radial Garden Engine (25 Levels)"]
-        QuizEngine["Quiz Runner (1-Attempt Rules)"]
-    end
+    Submit -- Incorrect --> Feedback["Receive Tactical Feedback & Clues"] --> Scenario
+    Submit -- Correct --> Victory["Earn XP & Handcrafted Sector Badge"]
 
-    Findings --> MealEngine
-    MealEngine --> VerifiedContent
-    Explore --> GardenEngine
-    GardenEngine --> VerifiedContent
-    Learnings --> QuizEngine
+    Victory --> Unlock["Unlock Next Sector (Progressive 1–25)"]
+    Victory --> Codex["Unlock Clinical Dossier in Codex of Vitality"]
 
-    subgraph StateAndStorage ["Reactive State & Offline Storage"]
-        ExploreStore["useExploreStore (Zustand)"]
-        LearningsStore["useLearningsStore (Zustand)"]
-        SettingsStore["useSettingsStore (Zustand)"]
-        DexieDB[("IndexedDB (Dexie)")]
-        LocalStorage[("Browser LocalStorage")]
-    end
+    Codex --> Quiz["Take Single-Attempt Diagnostic Quiz (3 Questions)"]
+    Quiz --> Score["Earn Mastery Points & Rank Promotion"]
 
-    GardenEngine <--> ExploreStore
-    QuizEngine <--> LearningsStore
-    Settings <--> SettingsStore
-
-    ExploreStore -->|Save Levels & Badges| DexieDB
-    LearningsStore -->|Save Quiz Attempts| DexieDB
-    SettingsStore -->|Save Preferences| LocalStorage
-
-    subgraph ProgressionLoop ["Progression & Unlocking Flows"]
-        ExploreStore -.->|Earned Level Unlock| Learnings
-        ExploreStore -.->|Earned Badge Unlock| QuizEngine
-        SettingsStore -.->|Reset Explore Progress| ExploreStore
-        SettingsStore -.->|Reset Quiz Attempts| LearningsStore
-    end
-
-    subgraph Services ["Global Client Services"]
-        i18nService["i18next (EN, HI, JA, ZH)"]
-        AudioService["Shared Audio (YouTube BGM + Web Audio SFX)"]
-        A11yService["Accessibility DOM Attributes"]
-    end
-
-    SettingsStore -->|Language Switch| i18nService
-    SettingsStore -->|Volume & Mute| AudioService
-    SettingsStore -->|Text Size & Contrast| A11yService
-    MainMenu --> AudioService
-    Explore --> AudioService
+    Unlock --> Node
 ```
+
+Operatives begin at Sector 01 (Beginner) and progressively advance through all 25 sectors. Every victory rewards both in-game progression and real-world health knowledge.
+
+---
+
+## 7. Visual Identity & Design Philosophy
+
+PULSEBOUND features a dark, tactical, blood-red and obsidian color palette engineered to evoke human vitality and focus:
+
+| Color Role             | Hex Code  | Purpose in UI                                        |
+| ---------------------- | --------- | ---------------------------------------------------- |
+| **Obsidian Black**     | `#050505` | Main viewport canvas, body background                |
+| **Abyssal Charcoal**   | `#0B0809` | Glass card surfaces, container backgrounds           |
+| **Deep Blood**         | `#4A0008` | Structural element borders, dividers                 |
+| **Tactical Crimson**   | `#8B0015` | Secondary highlights, badge frames, orbital lines    |
+| **Bio-Red Accent**     | `#C1122B` | Primary action buttons, active sector nodes          |
+| **Vitality Highlight** | `#E32636` | Dynamic hover rings, ECG line peaks, glowing borders |
+| **Operative White**    | `#F3EEEE` | High-contrast heading typography                     |
+| **Muted Telemetry**    | `#A99FA1` | Supporting subtitles, telemetry descriptions         |
+
+### Preserved Design Language & Micro-Interactions
+
+- **Glassmorphism:** Layered panels using `backdrop-blur-xl`, subtle translucent dark backgrounds (`bg-[#140205]/75`), and crimson edge glows.
+- **ECG & Biometric Core:** Pulsing heartbeat animations synchronized to human resting heart rate intervals (72 BPM).
+- **Radial Orbital Layouts:** Mathematical 2D orbital radars that arrange sector nodes and nutrients in non-overlapping circular coordinates.
+- **Motion Transitions:** Hardware-accelerated 60fps spring animations powered by Motion (Framer Motion v12).
+
+---
+
+## 8. Media & Sound Design
+
+### Bundled Background Video
+
+- **Asset Path:** `public/videos/pulsebound-bg.mp4` (4,229,003 bytes)
+- **Source:** _Geometric Shapes Night Sky Wallpaper_ (abstract red geometric lines over black background).
+- **Behavior:** Hardware-accelerated `<video>` element with `autoPlay`, `loop`, `muted`, `playsInline`, `object-fit: cover`, CSS Gaussian blur (`2.5px`), dark `#050505/45` overlay, and a multi-layered radial vignette to ensure high-contrast typography.
+
+### Bundled Background Soundtrack
+
+- **Asset Path:** `public/audio/pulsebound-theme.mp3` (1,919,260 bytes)
+- **Composition:** An atmospheric electronic tactical synth track based on `pulsebreaker.mp3`.
+- **Implementation:** Pure local HTML5 `<audio>` player managed in `MusicControl.tsx`. Fully synchronized with `useSettingsStore` for global volume adjustments, mute states, and play/pause controls without external iframe streaming dependencies.
+
+### Bundled Tactical Sound Effects
+
+- **Click Sound:** `public/audio/sfx/click.mp3` (tactile button engagement)
+- **Select Sound:** `public/audio/sfx/select.mp3` (sector node selection)
+- **Complete Sound:** `public/audio/sfx/complete.mp3` (mission victory fanfare)
+- **Web Audio API Synth Fallback:** Integrated Web Audio API synthesizer generates clean sine-wave tones with exponential gain decay (frequencies 120Hz to 840Hz) if HTML5 audio encounters browser autoplay restrictions.
 
 ---
 
 ## 9. Technology Stack
 
-Audit of the exact, production-verified dependencies in `package.json`:
+Every technology listed below is genuinely imported and actively utilized in the application:
 
-### Core Framework & Routing
-
-- **[React](https://react.dev/) (`v19`):** Component tree, hooks, and modern Suspense architecture.
-- **[React DOM](https://react.dev/):** Virtual DOM mounting and browser rendering.
-- **[React Router DOM](https://reactrouter.com/) (`v7`):** Client-side routing with lazy-loaded route chunks.
-- **[TypeScript](https://www.typescriptlang.org/):** Strict static typing across all data schemas and state actions.
-- **[Vite](https://vite.dev/) (`v8`):** High-performance bundler and development server.
-
-### Styling & Animation
-
-- **[Tailwind CSS](https://tailwindcss.com/) (`v4`):** Utility-first styling with modern `@tailwindcss/vite` integration.
-- **[Motion](https://motion.dev/) (Motion for React):** Spring physics animations, layout transitions, and reduced-motion compliance.
-- **[Lucide React](https://lucide.dev/):** Clean, lightweight iconography across all pages and UI components.
-
-### State Management & Persistence
-
-- **[Zustand](https://zustand.docs.pmnd.rs/):** Lightweight reactive store modules (`useExploreStore`, `useLearningsStore`, `useSettingsStore`).
-- **[Dexie](https://dexie.org/) (`v4`):** Minimalist IndexedDB wrapper managing structured offline game records and quiz scores.
-- **LocalStorage:** Synchronous browser key-value storage for player preferences and audio volumes.
-
-### Validation & Internationalization
-
-- **[Zod](https://zod.dev/):** Schema declaration and runtime validation for exploration and quiz structures.
-- **[i18next](https://www.i18next.com/) & [react-i18next](https://react.i18next.com/):** Multi-language runtime supporting English, Hindi, Japanese, and Simplified Chinese.
-
-### Testing & Code Quality
-
-- **[Vitest](https://vitest.dev/):** Vite-native unit and component test runner.
-- **[@testing-library/react](https://testing-library.com/):** User-centric component rendering and accessibility testing.
-- **[@playwright/test](https://playwright.dev/):** End-to-end integration testing framework.
-- **[ESLint](https://eslint.org/) (`v9`/`v10`):** Automated TypeScript and React hooks linting.
-- **[Prettier](https://prettier.io/):** Consistent, automated code formatting.
+| Technology                  | Version / Spec | Role in PULSEBOUND                                                                    |
+| --------------------------- | -------------- | ------------------------------------------------------------------------------------- |
+| **React**                   | 19.0.0         | Core UI rendering engine utilizing React 19 concurrent features and hooks.            |
+| **TypeScript**              | 5.8.2          | Strict type safety across all components, stores, schemas, and test suites.           |
+| **Vite**                    | 8.3.8          | Ultra-fast development server, HMR, and Rollup production asset bundler.              |
+| **Tailwind CSS**            | 4.0.0          | Utility-first CSS framework configured with custom `@theme` crimson tokens.           |
+| **Zustand**                 | 5.0.3          | Centralized, lightweight, decoupled reactive state management.                        |
+| **Dexie.js**                | 4.0.11         | IndexedDB wrapper enabling transactional, offline-first browser database persistence. |
+| **Motion**                  | 12.4.7         | Hardware-accelerated 60fps springs, exit animations, and layout transitions.          |
+| **Lucide React**            | 1.16.0         | Tactical vector iconography used across all HUD interfaces.                           |
+| **i18next / React-i18next** | 24.2.2         | Internationalization pipeline supporting localized operative terminology.             |
+| **Vitest**                  | 5.1.0          | Fast Vite-native unit test runner for component and store assertions.                 |
+| **React Testing Library**   | 16.2.0         | User-centric DOM testing and accessible role verification.                            |
+| **JSDOM**                   | 26.0.0         | Simulated browser environment for Vitest test execution.                              |
+| **Prettier**                | 3.5.1          | Opinionated code formatter enforcing clean, standardized code style.                  |
+| **ESLint**                  | 9.20.1         | Static code analysis enforcing clean code practices and React Hook rules.             |
 
 ---
 
-## 10. Project Directory Structure
+## 10. Architecture & System Design
 
+```mermaid
+flowchart TD
+    subgraph Browser ["Client Browser Environment (100% Offline / Zero-Backend)"]
+        subgraph ViewLayer ["React 19 View Layer"]
+            Menu["Main Menu & Biometric Core"]
+            Findings["Vitality Matrix (Findings)"]
+            Explore["Sector Trials (Explore)"]
+            Learnings["Codex of Vitality (Learnings)"]
+            Settings["Tactical Settings & Diagnostics"]
+            About["About & Mission Briefing"]
+        end
+
+        subgraph StateLayer ["Zustand Reactive State Stores"]
+            SettingsStore["useSettingsStore\n• Volume & Mute\n• Username & Avatar\n• A11y & Language"]
+            ExploreStore["useExploreStore\n• Current Level (1–25)\n• Earned Badges\n• Selection State"]
+            LearningsStore["useLearningsStore\n• Unlocked Dossiers\n• Quiz Attempts & Scores"]
+        end
+
+        subgraph StorageLayer ["Persistence Layer"]
+            DexieDB[("Dexie.js IndexedDB\n• Database: SYLVARA\n• Table: userProgress\n• Key: explore_progress\n• Key: sylvara_learnings_progress")]
+            LocalStore[("LocalStorage Fallback\n• Volume & Theme Keys\n• Operative Codename")]
+        end
+
+        subgraph AudioEngine ["Audio Architecture"]
+            HTML5Audio["HTML5 Audio Element\n• pulsebound-theme.mp3"]
+            WebAudio["Web Audio API Synthesizer\n• Oscillators (120Hz–840Hz)\n• Gain Envelopes"]
+        end
+    end
+
+    ViewLayer --> StateLayer
+    StateLayer --> StorageLayer
+    SettingsStore --> AudioEngine
 ```
-Slyvara/
-├── docs/                                  # Architectural specifications and design records
-│   ├── ARCHITECTURE.md                    # Core architecture principles
-│   ├── DECISIONS.md                       # Architectural decision log
-│   └── superpowers/plans/                 # Feature-specific design & verification plans
-├── public/                                # Static media assets served at root
-│   ├── images/
-│   │   └── buddha-bowl.webp               # Centerpiece Buddha bowl visual asset
-│   └── videos/
-│       └── menu-bg.mp4                    # Looping atmospheric background video
-├── src/
-│   ├── app/                               # Application shell
-│   │   ├── App.tsx                        # Root layout container
-│   │   └── router.tsx                     # Lazy route definitions with Suspense
-│   ├── content/                           # Verified educational datasets
-│   │   ├── foods/foodsData.ts             # Curated whole foods & nutrient mappings
-│   │   ├── meals/mealArchetypes.ts        # Common culinary meal combinations
-│   │   └── nutrients/nutrientsData.ts     # Micronutrient and phytochemical definitions
-│   ├── database/
-│   │   └── db.ts                          # Dexie IndexedDB database instance
-│   ├── features/                          # Domain-driven feature modules
-│   │   ├── about/                         # About page & architectural showcase
-│   │   ├── explore/                       # 25-level radial garden game
-│   │   │   ├── components/                # Garden, radial layout, tooltips, dialogs
-│   │   │   ├── data/                      # Levels, badges, garden items, lessons
-│   │   │   ├── store/                     # useExploreStore & IndexedDB storage
-│   │   │   └── utils/                     # Radial math & Web Audio synthesis
-│   │   ├── findings/                      # Meal analysis & nutrient wheel
-│   │   │   ├── components/                # Wheel, input form, dossiers, illustrations
-│   │   │   └── engine/                    # mealAnalyzer logic & text normalizer
-│   │   ├── learnings/                     # Earned lessons catalog & quiz runner
-│   │   │   ├── components/                # Lesson cards, quiz modal, review screens
-│   │   │   ├── data/                      # 25 three-question quiz definitions
-│   │   │   ├── store/                     # useLearningsStore & persistence
-│   │   │   └── utils/                     # Scoring categories & percentage math
-│   │   ├── main-menu/                     # Landing view, video background & music
-│   │   │   ├── components/                # Navigation buttons, audio controller
-│   │   │   └── utils/                     # Menu sound effects generator
-│   │   └── settings/                      # Unified settings dashboard
-│   │       ├── components/                # Profile, controls, audio, language, a11y
-│   │       └── store/                     # useSettingsStore & DOM attribute bridge
-│   ├── i18n/                              # Internationalization configuration
-│   │   ├── index.ts                       # i18next runtime initialization
-│   │   └── locales/                       # Translation dictionaries (en, hi, ja, zh)
-│   ├── shared/components/                 # Shared UI elements
-│   │   └── PageLoadingFallback.tsx        # Suspense loading component
-│   ├── stores/                            # Legacy store compatibility
-│   │   └── useAppStore.ts                 # Compatibility bridge
-│   ├── styles/
-│   │   └── index.css                      # Tailwind imports & global accessibility rules
-│   └── tests/                             # Test environment configuration
-│       ├── setup.ts                       # Vitest matchers & jsdom mocks
-│       └── smoke.test.ts                  # Root sanity verification test
-├── eslint.config.js                       # ESLint configuration
-├── index.html                             # HTML entry point with fonts & metadata
-├── package.json                           # Verified dependencies and scripts
-├── playwright.config.ts                   # Playwright E2E configuration
-├── tsconfig.json                          # TypeScript project references
-└── vite.config.ts                         # Vite & Vitest configuration
-```
+
+### Store Responsibilities
+
+- **`useSettingsStore`** (`src/features/settings/store/useSettingsStore.ts`): Manages operative codename, avatar ID, audio volume levels, mute states, text sizing, high-contrast mode, and reduced-motion preferences.
+- **`useExploreStore`** (`src/features/explore/store/useExploreStore.ts`): Controls the active sector, orbital node selections, hint status, victory modal states, badge awards, and level transitions.
+- **`useLearningsStore`** (`src/features/learnings/store/useLearningsStore.ts`): Manages active learning dossiers, quiz runner flows (intro → questions → feedback → results → review), and persistent attempt histories.
+
+### Database Layer (`src/database/db.ts`)
+
+- Utilizes **Dexie.js** to manage an IndexedDB database with a transactional `userProgress` table.
+- Stores progress under stable IDs (`explore_progress`, `sylvara_learnings_progress`).
+- Features graceful fallbacks to `localStorage` if IndexedDB is blocked or disabled in private browsing windows.
 
 ---
 
-## 11. Installation & Setup
+## 11. 100% Frontend-Only & Offline Capabilities
+
+PULSEBOUND is strictly a **client-side, offline-capable application**:
+
+- **No Backend Server:** Zero dependency on Node.js/Express, Python/FastAPI, or server-side microservices.
+- **No Cloud Services:** Zero external calls to Supabase, Firebase, AWS, Google Cloud, or third-party database APIs.
+- **No Cloud Authentication:** Operative profiles and progress are managed entirely inside the user's browser.
+- **Locally Bundled Media:** All videos (`pulsebound-bg.mp4`), soundtracks (`pulsebound-theme.mp3`), and sound effects are bundled locally in `public/`.
+- **Complete Offline Functionality:** Once the application static assets are loaded, the entire game—including all 25 sector missions, the Vitality Matrix simulator, 25 clinical dossiers, and 25 diagnostic quizzes—runs without an internet connection.
+
+---
+
+## 12. Installation & Local Development
 
 ### Prerequisites
 
-- **Node.js:** Modern LTS release (`v20.x` or higher recommended).
-- **npm:** Package manager bundled with Node.js (`v10.x` or higher).
+- **Node.js**: `v18.0.0` or higher (`v20+` recommended)
+- **npm**: `v9.0.0` or higher
 
-### Step-by-Step Installation
+### 1. Clone the Repository
 
-1. **Clone the repository:**
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
 
-   ```bash
-   git clone <YOUR_REPOSITORY_URL>
-   cd Slyvara
-   ```
+### 2. Install Dependencies
 
-2. **Install project dependencies:**
+```bash
+npm install
+```
 
-   ```bash
-   npm install
-   ```
+### 3. Start Development Server
 
-3. **Start the local development server:**
+```bash
+npm run dev
+```
 
-   ```bash
-   npm run dev
-   ```
+Open your browser to `http://localhost:5173/` (or the local port output by Vite).
 
-4. **Open in browser:**
-   Navigate to the local URL displayed in the terminal (typically `http://localhost:5173/`).
+### 4. Run the Automated Unit Test Suite
 
----
+```bash
+# Run all tests once
+npm run test:run
 
-## 12. Available Commands
+# Run tests in interactive watch mode
+npm test
+```
 
-Every command defined in `package.json` is verified and production-ready:
+### 5. Build for Production
 
-| Command                | Action                 | Purpose                                                                   |
-| ---------------------- | ---------------------- | ------------------------------------------------------------------------- |
-| `npm run dev`          | `vite`                 | Starts local development server with Hot Module Replacement (HMR).        |
-| `npm run build`        | `tsc -b && vite build` | Type-checks via TypeScript and compiles optimized production assets.      |
-| `npm run preview`      | `vite preview`         | Serves the production build locally for pre-deployment inspection.        |
-| `npm run test`         | `vitest`               | Starts Vitest in interactive watch mode.                                  |
-| `npm run test:run`     | `vitest run`           | Executes all 30 test suites (228 tests) once with full summary reporting. |
-| `npm run test:ui`      | `vitest --ui`          | Launches Vitest graphical browser interface for visual test debugging.    |
-| `npm run test:e2e`     | `playwright test`      | Runs Playwright end-to-end browser integration tests.                     |
-| `npm run lint`         | `eslint .`             | Runs ESLint across all TypeScript and React files.                        |
-| `npm run format`       | `prettier --write .`   | Automatically formats all source code, styles, and markdown.              |
-| `npm run format:check` | `prettier --check .`   | Verifies that all files conform to Prettier code style rules.             |
+```bash
+npm run build
+```
 
----
+Vite and TypeScript will compile and bundle minified static assets into the `dist/` directory.
 
-## 13. Data, Privacy & Storage Architecture
+### 6. Preview the Production Build
 
-SYLVARA is built upon a strict **zero-telemetry, offline-first** principle:
+```bash
+npm run preview
+```
 
-- **No Remote Tracking:** The application operates without backend servers, analytics trackers, user profiling, or third-party tracking cookies.
-- **IndexedDB via Dexie:** Stores complex game records locally:
-  - Explore level unlock state, completed level arrays, and earned badge IDs.
-  - Completed learning card IDs and cumulative learning scores.
-  - Detailed quiz attempt records (score, selected option indices, timestamp, result category).
-- **Browser LocalStorage:** Stores simple client preferences:
-  - Player username and avatar archetype.
-  - Active language preference (`en`, `hi`, `ja`, `zh`).
-  - Background music volume and mute toggle state.
-  - Sound effect volume and mute toggle state.
-  - Accessibility settings (reduced motion, text size, high contrast).
-- **External Network Assets:** The only external network requests made by the application are:
-  - Google Fonts (`Cinzel`, `Cormorant Garamond`, `Plus Jakarta Sans`) linked in `index.html`.
-  - YouTube IFrame Player API for ambient background music streaming (`UrngDTXkOEk`).
+### 7. Run Code Quality & Formatting Checks
+
+```bash
+# Check code style with Prettier
+npm run format:check
+
+# Auto-format files
+npm run format
+
+# Run ESLint static analysis
+npm run lint
+```
 
 ---
 
-## 14. Limitations & Responsible Use
+## 13. Testing & Verification Results
 
-To maintain transparency and ethical educational boundaries:
+All tests have been executed and verified in the local environment:
 
-1. **Educational Awareness Only:** SYLVARA does not provide medical diagnoses, clinical treatment plans, or personalized medical nutrition therapy.
-2. **Nutritional Variability:** Whole foods and meals vary substantially in nutrient density based on agricultural soil conditions, variety, culinary preparation, and cooking temperature. Content is illustrative rather than absolute.
-3. **Traditional Lore vs. Certified Therapy:** Traditional uses of botanicals (e.g., turmeric, tulsi, ginger) are presented as cultural heritage. They must never replace prescribed pharmaceuticals or clinical interventions.
-4. **Local Device Storage:** Because progress is stored locally in the user's browser, clearing browser cache/storage or switching devices will not automatically synchronize game records.
-5. **Healthcare Decisions:** Users facing acute or chronic health symptoms must always consult certified medical doctors and registered dietitians.
+```
+Test Files  30 passed (30)
+Tests       224 passed (224)
+Duration    12.90s
+```
 
----
+### Test Suite Breakdown
 
-## 15. Credits & Acknowledgements
+| Feature Domain                  | Test Suites   | Tests         | Result        | Focus Areas                                                                                                    |
+| ------------------------------- | ------------- | ------------- | ------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Explore / Sector Trials**     | 5 suites      | 32 tests      | **PASS**      | Radial layouts, scenario validations, hint modals, badge unlocking, store persistence, level progression.      |
+| **Findings / Vitality Matrix**  | 7 suites      | 100 tests     | **PASS**      | Meal parsing, 12 bio-markers, radial nutrient wheel rendering, portion-free compliance, zero calorie checks.   |
+| **Learnings / Codex & Quizzes** | 8 suites      | 28 tests      | **PASS**      | Clinical dossier unlocking, quiz runner flows, single-attempt locking, scoring tabulation, badge requirements. |
+| **Main Menu & HUD**             | 1 suite       | 5 tests       | **PASS**      | Brand heading, single-line tagline, 5 navigation buttons, music controls, sound effects.                       |
+| **Tactical Settings**           | 7 suites      | 34 tests      | **PASS**      | Audio volume modulation, accessibility toggles, profile persistence, reset safeguards, i18n synchronization.   |
+| **About & Foundations**         | 2 suites      | 25 tests      | **PASS**      | Architecture diagram rendering, smoke tests, curriculum sections, safety disclaimers.                          |
+| **Total**                       | **30 suites** | **224 tests** | **100% PASS** | **Zero failures, zero regressions.**                                                                           |
 
-### Creator
+### Production Build Verification
 
-- **Creator & Lead Developer:** **Larvia Nankani**
-- **Vision:** Blending culinary storytelling, botanical wonder, and evidence-based nutrition literacy into a serene digital experience.
-
-### Media & Musical Attribution
-
-- **Background Music:** _"Crosses"_ by **José González**
-  - Featured with gratitude as an ambient soundtrack under educational non-commercial fair use.
-- **Video & Visual Assets:** Looping atmospheric video and culinary visuals curated for non-commercial educational immersion.
-
-### Open-Source Acknowledgements
-
-SYLVARA stands on the shoulders of the open-source community, particularly the teams behind React, Vite, Tailwind CSS, Motion, Lucide, Zustand, Dexie, Zod, and i18next.
-
----
-
-## 16. Future Scope
-
-Planned directions outlined in the SYLVARA architectural roadmap:
-
-- **Phase 1: Content Expansion:** Broadening ingredient dictionaries to include additional regional African, East Asian, and indigenous South American culinary traditions; adding seasonal harvest calendars.
-- **Phase 2: Interactive Garden Simulation:** Expanding the 2D garden with seasonal visual cycles, companion planting ecology, and culinary balance simulators.
-- **Phase 3: Expanded Safety & Curriculum:** In-depth interactive modules on distinguishing edible plants from toxic look-alikes, expanded antibiotic resistance scenarios, and spoken audio narration.
-- **Phase 4: User Portability:** Encrypted user-initiated JSON export and import for seamless manual progress transfer across devices without cloud accounts.
+- Command: `npm run build` (`tsc -b && vite build`)
+- Result: **Exit Code 0 — Clean Build**
+- Output: Production bundles generated in `dist/` with minified JavaScript chunks and optimized CSS.
 
 ---
 
-## 17. License
+## 14. Project Structure
 
-No public open-source license has currently been specified for this repository. All rights are reserved by the creator, **Larvia Nankani**. Third-party assets, fonts, audio, and open-source packages remain the intellectual property of their respective creators and licensors.
+```
+pulsebound/
+├── public/
+│   ├── audio/
+│   │   ├── pulsebound-theme.mp3        # Local theme soundtrack
+│   │   └── sfx/                        # Tactical sound effects
+│   │       ├── click.mp3
+│   │       ├── select.mp3
+│   │       └── complete.mp3
+│   └── videos/
+│       └── pulsebound-bg.mp4           # Cinematic background video
+├── src/
+│   ├── app/
+│   │   ├── App.tsx                     # Top-level application shell
+│   │   └── router.tsx                  # React Router v7 configuration (6 routes)
+│   ├── database/
+│   │   └── db.ts                       # Dexie.js IndexedDB schema & table definitions
+│   ├── features/
+│   │   ├── about/                      # About & Mission Briefing feature
+│   │   │   ├── components/             # ArchitectureDiagram, WhatItTeaches, etc.
+│   │   │   └── AboutPage.tsx
+│   │   ├── explore/                    # 25-sector radial orbital game system
+│   │   │   ├── components/             # Radial radar, LevelObjective, LearningCard
+│   │   │   ├── data/                   # levels.ts (25 sectors), badges.ts, etc.
+│   │   │   ├── store/                  # useExploreStore.ts, exploreStorage.ts
+│   │   │   └── ExplorePage.tsx
+│   │   ├── findings/                   # Vitality Matrix bio-synergy simulator
+│   │   │   ├── components/             # CentralNutrientWheel, MealProfileSection
+│   │   │   ├── engine/                 # mealAnalyzer.ts (12 bio-markers)
+│   │   │   └── FindingsPage.tsx
+│   │   ├── learnings/                  # Codex of Vitality & diagnostic trials
+│   │   │   ├── components/             # QuizRunnerModal, LearningCardGrid
+│   │   │   ├── data/                   # quizzes.ts (25 quizzes), learningContent.ts
+│   │   │   ├── store/                  # useLearningsStore.ts, learningsStorage.ts
+│   │   │   └── LearningsPage.tsx
+│   │   ├── main-menu/                  # HUD gateway & Biometric Core
+│   │   │   ├── components/             # BiometricCoreVisual, MusicControl, NavButton
+│   │   │   └── MainMenu.tsx
+│   │   └── settings/                   # Audio, profile & database diagnostics
+│   │       ├── components/             # AudioSection, DataProgressSection, etc.
+│   │       ├── store/                  # useSettingsStore.ts
+│   │       └── SettingsPage.tsx
+│   ├── i18n/                           # Internationalization setup and locale files
+│   ├── styles/
+│   │   └── index.css                   # Custom `@theme` tokens, keyframes, and vignettes
+│   ├── tests/
+│   │   ├── setup.ts                    # Vitest jest-dom configuration
+│   │   └── smoke.test.ts               # Basic environment smoke test
+│   └── main.tsx                        # React application entry point
+├── index.html                          # HTML5 shell & font configuration
+├── package.json                        # Dependencies, scripts, and project metadata
+├── tsconfig.json                       # TypeScript compiler options
+└── vite.config.ts                      # Vite & Vitest configuration
+```
+
+---
+
+## 15. Health & Educational Safety Disclaimers
+
+> [!CAUTION]
+>
+> ### Medical Disclaimer
+>
+> PULSEBOUND is an interactive educational software application developed solely for informational, motivational, and educational purposes.
+>
+> - **Not Medical Advice:** PULSEBOUND does not provide clinical medical advice, diagnose diseases, prescribe medications, or outline individual physical therapy regimens.
+> - **Consult Healthcare Professionals:** Always consult a licensed physician, physical therapist, or certified healthcare provider before starting any new exercise program, altering your dietary patterns, or making significant lifestyle changes.
+> - **Listen to Your Body:** Exercise principles presented in the game (such as Zone 2 cardio, progressive overload, and mobility drills) are general educational concepts. Physical training must always be adapted to individual health status, mobility limits, and injury history. Never train through acute joint pain, chest pressure, dizziness, or severe discomfort.
+> - **No Calorie Tracking:** PULSEBOUND intentionally rejects calorie counting, gram weighing, and restrictive eating protocols to avoid promoting disordered eating behaviors and dietary anxiety.
+
+---
+
+## 16. Engineering Challenges & Learnings
+
+1. **Radial Layout Mathematics:** Designing the 25-sector orbital radar and the dynamic nutrient wheel required precise trigonometric calculations (`Math.cos`, `Math.sin`) to dynamically position nodes across varying viewport sizes without visual collisions.
+2. **Deterministic Offline Persistence:** Bridging transient UI state in Zustand with persistent IndexedDB tables via Dexie.js required defensive serialization and graceful `localStorage` fallbacks to ensure uninterrupted progress across private browsing sessions.
+3. **Local Media Synchronization Without External Dependencies:** Replacing cloud-streamed audio with a pure local HTML5 audio controller and Web Audio synthesizer fallbacks eliminated external iframe dependencies while maintaining seamless loop playback and volume modulation.
+4. **Pedagogical Balance:** Communicating complex biochemical processes—such as mitochondrial biogenesis, delta sleep architecture, and tendon biomechanics—demanded rigorous distillation to keep gameplay fast-paced without diluting scientific integrity.
+
+---
+
+## 17. Future Scope
+
+The following directions represent planned future expansions:
+
+- **Phase 1: Biomechanical Pose Estimation:** Client-side WebAssembly computer vision to provide real-time form feedback and joint-angle tracking for compound movement patterns (squats, hinges, presses).
+- **Phase 2: Bio-Telemetry Sensor Integration:** Bluetooth Low Energy (BLE) connectivity for real-time heart rate monitor pairing (chest straps, optical sensors) to measure live Zone 2 cardio intervals during user workouts.
+- **Phase 3: Expanded Simulation Sectors:** Additional sector packs exploring advanced sports physiology, altitude adaptation, and heat acclimation.
+
+---
+
+## 18. Credits & Acknowledgements
+
+- **IdeaLab Hacks:** Organizers and mentors of the IdeaLab Hacks hackathon for providing the open-ended platform to build impactful software.
+- **Background Video Asset:** _Geometric Shapes Night Sky Wallpaper_ (`pulsebound-bg.mp4`), licensed for creative digital art use.
+- **Background Soundtrack:** _PULSEBOUND Vitality Theme_ (`pulsebound-theme.mp3`), an electronic ambient composition based on `pulsebreaker.mp3`.
+- **Iconography:** [Lucide React](https://lucide.dev/) for their tactical and clinical icon set.
+- **Typography:** Google Fonts for _Cinzel_ (branding & titles) and _Plus Jakarta Sans_ (interface telemetry).
+
+---
+
+## 19. License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details. Built for **IdeaLab Hacks 2026**.

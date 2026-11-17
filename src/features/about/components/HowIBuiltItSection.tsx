@@ -19,14 +19,14 @@ export function HowIBuiltItSection() {
       role: "Structured client database, schema verification, and persistent user preferences",
     },
     {
-      category: "i18n & Motion",
-      techs: ["i18next", "react-i18next", "Motion for React"],
-      role: "Bilingual English + Hindi localization and cinematic 60fps UI animations",
+      category: "Audio & Motion",
+      techs: ["HTML5 Web Audio API", "Motion for React"],
+      role: "Zero-latency local audio engine and 60fps hardware-accelerated animations",
     },
     {
       category: "UI & Aesthetics",
-      techs: ["Lucide React", "Cinzel & Cormorant Fonts"],
-      role: "High-contrast visual design, SVG icon accents, and majestic typography",
+      techs: ["Lucide React", "Cinzel, Cormorant & Plus Jakarta Fonts"],
+      role: "High-contrast dark blood-red visual system, SVG telemetry icons, and cinematic typography",
     },
     {
       category: "Testing & Code Quality",
@@ -37,22 +37,22 @@ export function HowIBuiltItSection() {
         "ESLint",
         "Prettier",
       ],
-      role: "Unit testing, component verification, end-to-end browser flows, and style standards",
+      role: "Unit testing, component verification, and comprehensive test coverage",
     },
     {
       category: "Deployment & Hosting",
-      techs: ["Render"],
-      role: "Static frontend edge deployment with zero cloud server overhead",
+      techs: ["Frontend-Only Static Hosting"],
+      role: "Static frontend edge deployment with zero cloud server overhead or external dependencies",
     },
   ];
 
   return (
     <section
-      className="border-b border-[#c084fc]/15 py-10"
+      className="border-b border-red-900/25 py-10"
       aria-labelledby="how-built-title"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c084fc]/30 bg-[#1f1038] text-[#c084fc]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-700/40 bg-[#250308] text-red-400">
           <Cpu className="h-5 w-5" />
         </div>
         <h3
@@ -63,59 +63,52 @@ export function HowIBuiltItSection() {
         </h3>
       </div>
 
-      <p className="text-sm sm:text-base text-[#e2d9f3]/85 leading-relaxed font-sans mb-6">
-        SYLVARA was engineered from the ground up as a{" "}
-        <strong className="text-white font-medium">
-          frontend-first, data-driven modular monolith
-        </strong>
-        . Every calculation, botanical rule, educational quiz, and progress
-        milestone executes locally within the client browser.
+      <p className="text-sm sm:text-base text-red-100/85 leading-relaxed font-sans mb-6">
+        PULSEBOUND was engineered with an unwavering commitment to a 100%
+        frontend-only, local-first architecture. There is zero server
+        infrastructure, zero database subscription, and zero telemetry
+        collection.
       </p>
 
-      {/* Categorized Tech Stack Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      {/* Tech Stack Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {techCategories.map((cat, idx) => (
           <div
             key={idx}
-            className="flex flex-col justify-between rounded-xl border border-purple-500/20 bg-[#150c26]/75 p-4 transition-all duration-300 hover:border-purple-400/50 hover:bg-[#1e1038] hover:shadow-[0_0_15px_rgba(192,132,252,0.15)]"
+            className="rounded-2xl border border-red-900/35 bg-[#160205]/80 p-4 sm:p-5 backdrop-blur-sm"
           >
-            <div>
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#c084fc]">
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <span className="font-['Cinzel',serif] text-xs font-bold uppercase tracking-wider text-red-400">
                 {cat.category}
               </span>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {cat.techs.map((t) => (
+              <div className="flex flex-wrap gap-1">
+                {cat.techs.map((tech, tIdx) => (
                   <span
-                    key={t}
-                    className="inline-block rounded-md border border-[#c084fc]/30 bg-[#24133f]/70 px-2 py-0.5 text-xs font-medium text-white shadow-sm"
+                    key={tIdx}
+                    className="rounded-md border border-red-700/40 bg-red-950/60 px-2 py-0.5 text-[10px] font-mono text-red-200"
                   >
-                    {t}
+                    {tech}
                   </span>
                 ))}
               </div>
             </div>
-            <p className="mt-3 text-xs text-[#d8b4fe]/75 leading-relaxed border-t border-purple-500/10 pt-2 font-sans">
+            <p className="text-xs text-red-200/80 leading-relaxed font-sans">
               {cat.role}
             </p>
           </div>
         ))}
       </div>
 
-      {/* Client-Only Architecture Guarantee Callout */}
-      <div className="flex items-center gap-3 rounded-xl border border-purple-400/25 bg-[#170d2b]/80 p-4 text-xs sm:text-sm text-[#e2d9f3]">
-        <ShieldCheck className="h-5 w-5 text-[#c084fc] shrink-0" />
-        <p>
-          <strong className="text-white font-medium">
-            Zero-Backend Architecture:
-          </strong>{" "}
-          No server APIs, cloud databases, external trackers, or server-side
-          authentication are required. All learning progress and settings remain
-          private to the user&apos;s personal device in IndexedDB.
-        </p>
+      {/* Architecture Diagram */}
+      <div className="mt-8">
+        <h4 className="font-['Cinzel',serif] text-base font-bold text-white tracking-wide mb-3 flex items-center gap-2">
+          <ShieldCheck className="h-4 w-4 text-red-400" />
+          <span>System Data Flow & Component Architecture</span>
+        </h4>
+        <ArchitectureDiagram />
       </div>
-
-      {/* Visual Architecture Diagram */}
-      <ArchitectureDiagram />
     </section>
   );
 }
+
+export default HowIBuiltItSection;

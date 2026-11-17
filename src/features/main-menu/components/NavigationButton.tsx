@@ -7,12 +7,14 @@ interface NavigationButtonProps {
   label: string;
   path: string;
   index: number;
+  subtitle?: string;
 }
 
 export function NavigationButton({
   label,
   path,
   index,
+  subtitle,
 }: NavigationButtonProps) {
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
@@ -20,7 +22,6 @@ export function NavigationButton({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     playMenuClickSound();
-    // Brief visual feedback before navigation
     setTimeout(() => {
       navigate(path);
     }, 120);
@@ -49,25 +50,34 @@ export function NavigationButton({
         type="button"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        className="group relative flex w-full sm:w-80 md:w-96 lg:w-[420px] items-center justify-between px-7 sm:px-8 md:px-9 py-4 sm:py-4.5 md:py-5 min-h-[58px] sm:min-h-[64px] md:min-h-[70px] rounded-2xl border border-[#c084fc]/25 bg-[#120a1f]/65 backdrop-blur-md text-[#e9d5ff] font-['Cinzel',serif] text-base sm:text-lg md:text-xl tracking-[0.16em] uppercase font-semibold transition-all duration-300 ease-out hover:scale-[1.02] hover:border-[#d8b4fe]/85 hover:bg-[#1a0e2d]/80 hover:text-white hover:shadow-[0_0_26px_rgba(192,132,252,0.38)] active:scale-[0.98] active:bg-[#201138] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07050a] cursor-pointer"
+        className="group relative flex w-full sm:w-80 md:w-96 lg:w-[440px] items-center justify-between px-7 sm:px-8 md:px-9 py-4 sm:py-4.5 md:py-5 min-h-[58px] sm:min-h-[64px] md:min-h-[70px] rounded-2xl border border-red-900/35 bg-[#140205]/75 backdrop-blur-md text-[#f3eeee] font-['Cinzel',serif] text-base sm:text-lg md:text-xl tracking-[0.16em] uppercase font-semibold transition-all duration-300 ease-out hover:scale-[1.02] hover:border-red-500/80 hover:bg-[#220409]/90 hover:text-white hover:shadow-[0_0_28px_rgba(227,38,54,0.45)] active:scale-[0.98] active:bg-[#2b050d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505] cursor-pointer"
         aria-label={`Navigate to ${label}`}
       >
         {/* Subtle accent bar on hover */}
         <span
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 rounded-r bg-[#c084fc] transition-all duration-300 group-hover:h-3/5 group-hover:shadow-[0_0_12px_#c084fc]"
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 rounded-r bg-red-600 transition-all duration-300 group-hover:h-3/5 group-hover:shadow-[0_0_14px_#e32636]"
           aria-hidden="true"
         />
 
-        <span className="relative z-10 transition-colors duration-300 group-hover:drop-shadow-[0_0_10px_rgba(233,213,255,0.7)]">
-          {label}
-        </span>
+        <div className="flex flex-col text-left">
+          <span className="relative z-10 transition-colors duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,77,109,0.7)]">
+            {label}
+          </span>
+          {subtitle && (
+            <span className="text-[11px] font-sans font-normal tracking-wider lowercase text-neutral-400 group-hover:text-red-200/80 transition-colors">
+              {subtitle}
+            </span>
+          )}
+        </div>
 
-        {/* Minimal elegant indicator dot */}
+        {/* Glowing indicator dot */}
         <span
-          className="h-2 w-2 rounded-full bg-[#c084fc]/40 transition-all duration-300 group-hover:scale-150 group-hover:bg-[#e9d5ff] group-hover:shadow-[0_0_10px_#c084fc]"
+          className="h-2 w-2 rounded-full bg-red-700/50 transition-all duration-300 group-hover:scale-150 group-hover:bg-red-400 group-hover:shadow-[0_0_12px_#e32636]"
           aria-hidden="true"
         />
       </button>
     </motion.li>
   );
 }
+
+export default NavigationButton;

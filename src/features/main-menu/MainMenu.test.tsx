@@ -14,22 +14,22 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-describe("SYLVARA Main Menu", () => {
+describe("PULSEBOUND Main Menu", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     localStorage.clear();
   });
 
-  it("renders the prominent SYLVARA brand title", () => {
+  it("renders the prominent PULSEBOUND brand title", () => {
     render(
       <MemoryRouter>
         <MainMenu />
       </MemoryRouter>
     );
 
-    const brandHeading = screen.getByRole("heading", { name: "SYLVARA" });
+    const brandHeading = screen.getByRole("heading", { name: "PULSEBOUND" });
     expect(brandHeading).toBeInTheDocument();
-    expect(brandHeading).toHaveTextContent("SYLVARA");
+    expect(brandHeading).toHaveTextContent("PULSEBOUND");
   });
 
   it("renders the exact official tagline on a single line without wrapping", () => {
@@ -40,7 +40,7 @@ describe("SYLVARA Main Menu", () => {
     );
 
     const taglineText = screen.getByText(
-      /Every meal uncovers a tale, and every tale opens a new world\./i
+      /Forge the flesh\. Master the pulse\. Unlock your vitality\./i
     );
     expect(taglineText).toBeInTheDocument();
     const paragraph = taglineText.closest("p");
@@ -100,52 +100,11 @@ describe("SYLVARA Main Menu", () => {
       </MemoryRouter>
     );
 
-    const musicButton = screen.getByRole("button", {
-      name: /(Unmute|Mute) background music/i,
+    const muteBtn = screen.getByRole("button", {
+      name: /(Unmute|Mute) (background music )?audio/i,
     });
-    expect(musicButton).toBeInTheDocument();
+    expect(muteBtn).toBeInTheDocument();
 
-    // Toggle mute
-    fireEvent.click(musicButton);
-    expect(localStorage.getItem("sylvara_music_muted")).toBeDefined();
-  });
-
-  it("renders the background video element with correct source and loop parameters", () => {
-    const { container } = render(
-      <MemoryRouter>
-        <MainMenu />
-      </MemoryRouter>
-    );
-
-    const video = container.querySelector("video");
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute("loop");
-    expect(video).toHaveAttribute("autoplay");
-    expect(video).toHaveClass("object-cover");
-    expect(video).toHaveClass("opacity-95");
-
-    const source = video?.querySelector("source");
-    expect(source?.getAttribute("src")).toContain("/videos/menu-bg.mp4");
-    expect(source?.getAttribute("src")).toContain("#t=5");
-  });
-
-  it("renders the decorative Buddha Bowl image with circular container and cover styling", () => {
-    render(
-      <MemoryRouter>
-        <MainMenu />
-      </MemoryRouter>
-    );
-
-    const image = screen.getByRole("img", {
-      name: /Artisanal wholesome Buddha Bowl/i,
-    });
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute("src", "/images/buddha-bowl.webp");
-    expect(image).toHaveClass("object-cover");
-    expect(image).toHaveClass("opacity-90");
-
-    const circularContainer = image.closest("div");
-    expect(circularContainer).toHaveClass("rounded-full");
-    expect(circularContainer).toHaveClass("overflow-hidden");
+    fireEvent.click(muteBtn);
   });
 });

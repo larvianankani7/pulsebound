@@ -68,12 +68,12 @@ export function FindingsPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#07050a] text-[#f3e8ff]">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#050505] text-[#f3eeee]">
       {/* 1. Atmospheric Background Video */}
-      <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} />
+      <BackgroundMedia videoSrc="/videos/pulsebound-bg.mp4" startTime={0} />
 
       {/* 2. Atmospheric Background Music Controller */}
-      <MusicControl videoId="UrngDTXkOEk" />
+      <MusicControl audioSrc="/audio/pulsebound-theme.mp3" />
 
       {/* 3. Scrollable Findings Discovery Showcase */}
       <main className="relative z-10 mx-auto min-h-screen w-full max-w-5xl px-4 py-12 sm:px-8 md:px-12 lg:px-16">

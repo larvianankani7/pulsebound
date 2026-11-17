@@ -11,9 +11,12 @@ export function MainNavigation() {
             label={item.name}
             path={item.path}
             index={index}
+            subtitle={item.subtitle}
           />
         ))}
       </ul>
     </nav>
   );
 }
+
+export default MainNavigation;

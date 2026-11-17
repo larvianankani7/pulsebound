@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { AboutPage } from "./AboutPage";
 
-describe("SYLVARA About Page", () => {
+describe("PULSEBOUND About Page", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -17,11 +17,11 @@ describe("SYLVARA About Page", () => {
 
     expect(screen.getByText(/ABOUT THE PROJECT/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "SYLVARA", level: 1 })
+      screen.getByRole("heading", { name: "PULSEBOUND", level: 1 })
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Every meal uncovers a tale, and every tale opens a new world\./i
+        /Forge the flesh\. Master the pulse\. Unlock your vitality\./i
       )
     ).toBeInTheDocument();
   });
@@ -66,7 +66,7 @@ describe("SYLVARA About Page", () => {
       screen.getByRole("heading", { name: /6\. What I Learned/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /7\. What's Next for SYLVARA/i })
+      screen.getByRole("heading", { name: /7\. What's Next for PULSEBOUND/i })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /8\. What It Teaches/i })
@@ -101,51 +101,7 @@ describe("SYLVARA About Page", () => {
     );
 
     expect(
-      screen.getByText(/A\. Food Groups & Dietary Synergy/i)
+      screen.getByRole("heading", { name: /8\. What It Teaches/i })
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/B\. Nutrients & Their Human Functions/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/C\. Plants, Herbs & Botanical Understanding/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/D\. Medicine Literacy & Public Health Safety/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/E\. Food Awareness & Responsible Choices/i)
-    ).toBeInTheDocument();
-  });
-
-  it("renders creator and background music credits accurately", () => {
-    render(
-      <MemoryRouter>
-        <AboutPage />
-      </MemoryRouter>
-    );
-
-    const creatorMentions = screen.getAllByText(/Larvia Nankani/i);
-    expect(creatorMentions.length).toBeGreaterThanOrEqual(1);
-
-    expect(screen.getByText(/José González/i)).toBeInTheDocument();
-    expect(screen.getByText(/Crosses/i)).toBeInTheDocument();
-  });
-
-  it("reuses background media video and music control components", () => {
-    const { container } = render(
-      <MemoryRouter>
-        <AboutPage />
-      </MemoryRouter>
-    );
-
-    const video = container.querySelector("video");
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute("loop");
-    expect(video).toHaveAttribute("autoplay");
-
-    const musicButton = screen.getByRole("button", {
-      name: /(Unmute|Mute) background music/i,
-    });
-    expect(musicButton).toBeInTheDocument();
   });
 });

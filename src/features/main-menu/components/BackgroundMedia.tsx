@@ -8,8 +8,8 @@ interface BackgroundMediaProps {
 }
 
 export function BackgroundMedia({
-  videoSrc = "/videos/menu-bg.mp4",
-  startTime = 5,
+  videoSrc = "/videos/pulsebound-bg.mp4",
+  startTime = 0,
   opacity = 0.95,
 }: BackgroundMediaProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -22,7 +22,7 @@ export function BackgroundMedia({
 
     const setInitialTime = () => {
       try {
-        if (video.currentTime < startTime) {
+        if (startTime > 0 && video.currentTime < startTime) {
           video.currentTime = startTime;
         }
         void video.play();
@@ -42,7 +42,6 @@ export function BackgroundMedia({
     };
   }, [startTime]);
 
-  // Restart from 5s on loop cycle
   const handleEnded = () => {
     const video = videoRef.current;
     if (video) {
@@ -53,17 +52,18 @@ export function BackgroundMedia({
 
   return (
     <div
-      className="fixed inset-0 z-0 overflow-hidden select-none pointer-events-none bg-[#07050a] opacity-95"
+      className="fixed inset-0 z-0 overflow-hidden select-none pointer-events-none bg-[#050505] opacity-95"
       aria-hidden="true"
     >
-      {/* Ambient background fallback layer: ethereal dark lavender & black gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c0714] via-[#07050a] to-[#120824]" />
+      {/* Ambient background fallback layer: deep obsidian & blood red glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a0003] via-[#050505] to-[#260007]" />
 
-      {/* Subtle organic purple ambient glow spots */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-purple-900/20 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-purple-950/15 blur-[120px] pointer-events-none" />
+      {/* Atmospheric crimson and ruby glow spots */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-red-950/25 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 left-1/3 w-[550px] h-[550px] rounded-full bg-crimson-900/15 blur-[140px] pointer-events-none" />
+      <div className="absolute top-2/3 right-10 w-[400px] h-[400px] rounded-full bg-red-900/20 blur-[130px] pointer-events-none" />
 
-      {/* Video layer with hardware-accelerated cover sizing, 95% opacity, and 5s start time */}
+      {/* Video layer with cover fit, subtle blur, and scale */}
       <motion.div
         initial={shouldReduceMotion ? { opacity } : { opacity: 0 }}
         animate={{ opacity: isVideoLoaded ? opacity : 0.85 }}
@@ -78,26 +78,27 @@ export function BackgroundMedia({
           playsInline
           onLoadedData={() => setIsVideoLoaded(true)}
           onEnded={handleEnded}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-95"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           style={{
-            filter: "blur(2px)",
-            transform: "scale(1.04)", // Scale slightly to clip blur fringe bleeding at edges
+            filter: "blur(2.5px)",
+            transform: "scale(1.04)",
           }}
           tabIndex={-1}
         >
-          <source src={`${videoSrc}#t=${startTime}`} type="video/mp4" />
           <source src={videoSrc} type="video/mp4" />
         </video>
       </motion.div>
 
-      {/* Darkened tint overlay: deepened slightly to darken the background a lil */}
-      <div className="absolute inset-0 bg-[#07050a]/35 pointer-events-none" />
+      {/* Darkened blood tint overlay */}
+      <div className="absolute inset-0 bg-[#050505]/45 pointer-events-none" />
 
-      {/* Gentle left scrim to preserve text legibility while keeping the video clear */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#07050a]/70 via-[#07050a]/35 to-transparent pointer-events-none" />
+      {/* Left-to-right gradient scrim to guarantee text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/85 via-[#050505]/50 to-transparent pointer-events-none" />
 
-      {/* Vignette overlay (10% subtle edge darkening) */}
+      {/* Cinematic Vignette overlay */}
       <div className="absolute inset-0 vignette-overlay pointer-events-none" />
     </div>
   );
 }
+
+export default BackgroundMedia;
