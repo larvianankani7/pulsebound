@@ -32,10 +32,7 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
 
     it("contains all 17 required nutrients", () => {
       for (const id of requiredNutrientIds) {
-        expect(
-          VERIFIED_NUTRIENTS[id],
-          `Missing nutrient: ${id}`
-        ).toBeDefined();
+        expect(VERIFIED_NUTRIENTS[id], `Missing nutrient: ${id}`).toBeDefined();
         expect(VERIFIED_NUTRIENTS[id].id).toBe(id);
       }
     });
@@ -54,12 +51,25 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
         expect(nutrient.id, `${id} id missing`).toBe(id);
         expect(nutrient.name, `${id} name missing`).toBeTruthy();
         expect(
-          ["macronutrient", "vitamin", "mineral", "other", "phytonutrient", "hydration"],
+          [
+            "macronutrient",
+            "vitamin",
+            "mineral",
+            "other",
+            "phytonutrient",
+            "hydration",
+          ],
           `${id} category invalid`
         ).toContain(nutrient.category);
         expect(nutrient.shortRole, `${id} shortRole missing`).toBeTruthy();
-        expect(nutrient.introduction, `${id} introduction missing`).toBeTruthy();
-        expect(nutrient.illustrationId, `${id} illustrationId missing`).toBeTruthy();
+        expect(
+          nutrient.introduction,
+          `${id} introduction missing`
+        ).toBeTruthy();
+        expect(
+          nutrient.illustrationId,
+          `${id} illustrationId missing`
+        ).toBeTruthy();
 
         // Array properties
         expect(
@@ -99,8 +109,14 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
         ).toBeGreaterThanOrEqual(2);
 
         // Dietary synergies and facts
-        expect(nutrient.relatedInteraction, `${id} relatedInteraction missing`).toBeTruthy();
-        expect(nutrient.educationalFact, `${id} educationalFact missing`).toBeTruthy();
+        expect(
+          nutrient.relatedInteraction,
+          `${id} relatedInteraction missing`
+        ).toBeTruthy();
+        expect(
+          nutrient.educationalFact,
+          `${id} educationalFact missing`
+        ).toBeTruthy();
       }
     });
 
@@ -174,7 +190,9 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
     it("strictly omits all portion-related quantities or gram weights from food definitions", () => {
       for (const food of VERIFIED_FOODS) {
         // defaultPortionDesc should not exist or be undefined
-        expect((food as unknown as Record<string, unknown>).defaultPortionDesc).toBeUndefined();
+        expect(
+          (food as unknown as Record<string, unknown>).defaultPortionDesc
+        ).toBeUndefined();
       }
     });
 
@@ -250,7 +268,9 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
         occasion: "breakfast",
         summary: "Light energetic breakfast profile",
         graphReasoning: "Strong carbohydrate base with moderate fats",
-        balanceTips: ["Add sprouted moong or paneer for prolonged morning focus"],
+        balanceTips: [
+          "Add sprouted moong or paneer for prolonged morning focus",
+        ],
         qualitativeScores: [
           {
             category: "Protein",
@@ -261,7 +281,9 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
         ],
       };
       expect(evaluation.occasion).toBe("breakfast");
-      expect(evaluation.qualitativeScores[0].qualitativeLevel).toBe("Moderately represented");
+      expect(evaluation.qualitativeScores[0].qualitativeLevel).toBe(
+        "Moderately represented"
+      );
     });
   });
 
@@ -270,7 +292,9 @@ describe("Task 1: Food & Nutrient Content Catalog", () => {
       const result = analyzeMeal("Poha with peanuts and green peas");
       expect(result.detectedIngredients.length).toBeGreaterThan(0);
       for (const item of result.detectedIngredients) {
-        expect((item as unknown as Record<string, unknown>).quantityText).toBeUndefined();
+        expect(
+          (item as unknown as Record<string, unknown>).quantityText
+        ).toBeUndefined();
       }
     });
   });
@@ -281,7 +305,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
     it("preserves exact user meal title in uppercase without archetype substitution", () => {
       const res1 = analyzeMeal("Poha");
       expect(res1.mealTitle).toBe("POHA");
-      expect(res1.mealTitle).not.toMatch(/Classic Thali Harmony|Indian Breakfast Platter/i);
+      expect(res1.mealTitle).not.toMatch(
+        /Classic Thali Harmony|Indian Breakfast Platter/i
+      );
 
       const res2 = analyzeMeal("Moong dal chilla");
       expect(res2.mealTitle).toBe("MOONG DAL CHILLA");
@@ -310,7 +336,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       expect(nutrientIds).toContain("nutrient.fibre");
 
       // Underrepresented nutrients: must suggest Complete Protein and Vitamin C
-      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      const underrepIds = result.underrepresentedNutrients.map(
+        (u) => u.nutrientId
+      );
       expect(underrepIds).toContain("nutrient.protein");
       expect(underrepIds).toContain("nutrient.vitamin-c");
 
@@ -318,10 +346,14 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
         (u) => u.nutrientId === "nutrient.protein"
       );
       expect(proteinSuggestions).toBeDefined();
-      const proteinFoodNames = proteinSuggestions!.suggestedFoods.map((s) => s.name);
+      const proteinFoodNames = proteinSuggestions!.suggestedFoods.map(
+        (s) => s.name
+      );
       expect(proteinFoodNames.some((n) => /egg/i.test(n))).toBe(true);
       expect(proteinFoodNames.some((n) => /paneer/i.test(n))).toBe(true);
-      expect(proteinFoodNames.some((n) => /sprouted moong/i.test(n))).toBe(true);
+      expect(proteinFoodNames.some((n) => /sprouted moong/i.test(n))).toBe(
+        true
+      );
 
       const vitCSuggestions = result.underrepresentedNutrients.find(
         (u) => u.nutrientId === "nutrient.vitamin-c"
@@ -332,7 +364,10 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
     });
 
     it("Case 2: 'Poha with peanuts, peas and lemon' - includes Fats, Fibre, Vit C, Vit A; filters existing foods", () => {
-      const result = analyzeMeal("Poha with peanuts, peas and lemon", "breakfast");
+      const result = analyzeMeal(
+        "Poha with peanuts, peas and lemon",
+        "breakfast"
+      );
 
       // Title
       expect(result.mealTitle).toBe("POHA WITH PEANUTS, PEAS AND LEMON");
@@ -354,7 +389,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
 
       // ADAPTIVE FILTERING:
       // Peanuts are in the meal -> Healthy Fats is NOT missing, peanuts NOT recommended!
-      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      const underrepIds = result.underrepresentedNutrients.map(
+        (u) => u.nutrientId
+      );
       expect(underrepIds).not.toContain("nutrient.healthy-fats");
       expect(underrepIds).not.toContain("nutrient.vitamin-c");
 
@@ -388,7 +425,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       expect(nutrientIds).toContain("nutrient.folate");
 
       // Protein and Carbs are detected -> not underrepresented
-      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      const underrepIds = result.underrepresentedNutrients.map(
+        (u) => u.nutrientId
+      );
       expect(underrepIds).not.toContain("nutrient.protein");
       expect(underrepIds).not.toContain("nutrient.fibre");
     });
@@ -416,7 +455,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       // ADAPTIVE FILTERING:
       // Paneer is in the meal -> Calcium is NOT underrepresented! Paneer is NOT recommended!
       // Spinach is in the meal -> Iron is NOT underrepresented! Spinach is NOT recommended!
-      const underrepIds = result.underrepresentedNutrients.map((u) => u.nutrientId);
+      const underrepIds = result.underrepresentedNutrients.map(
+        (u) => u.nutrientId
+      );
       expect(underrepIds).not.toContain("nutrient.calcium");
       expect(underrepIds).not.toContain("nutrient.iron");
       expect(underrepIds).not.toContain("nutrient.protein");
@@ -431,7 +472,10 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
     });
 
     it("Case 5: 'Idli with sambar and coconut chutney' - preserves title, includes Carbs, Protein, Fats, Fibre", () => {
-      const result = analyzeMeal("Idli with sambar and coconut chutney", "breakfast");
+      const result = analyzeMeal(
+        "Idli with sambar and coconut chutney",
+        "breakfast"
+      );
 
       expect(result.mealTitle).toBe("IDLI WITH SAMBAR AND COCONUT CHUTNEY");
 
@@ -481,10 +525,16 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       expect(result.detectedNutrients).toHaveLength(0);
 
       // Informative uncertainty note
-      expect(result.uncertaintyNotes.some((note) => /not clearly identified|could not be recognized/i.test(note))).toBe(true);
+      expect(
+        result.uncertaintyNotes.some((note) =>
+          /not clearly identified|could not be recognized/i.test(note)
+        )
+      ).toBe(true);
 
       // Occasion evaluation explains missing recognition
-      expect(result.occasionSuitability.graphReasoning).toMatch(/recognized whole-food ingredients/i);
+      expect(result.occasionSuitability.graphReasoning).toMatch(
+        /recognized whole-food ingredients/i
+      );
     });
   });
 
@@ -505,7 +555,9 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       expect(dinner.occasionSuitability.occasion).toBe("dinner");
 
       // Contextual summaries and reasoning reflect the occasion
-      expect(breakfast.occasionSuitability.summary).toMatch(/breakfast|morning/i);
+      expect(breakfast.occasionSuitability.summary).toMatch(
+        /breakfast|morning/i
+      );
       expect(lunch.occasionSuitability.summary).toMatch(/lunch|midday/i);
       expect(dinner.occasionSuitability.summary).toMatch(/dinner|evening/i);
 
@@ -517,15 +569,23 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
       );
 
       // Qualitative score levels remain consistent with meal composition
-      for (let i = 0; i < breakfast.occasionSuitability.qualitativeScores.length; i++) {
-        expect(breakfast.occasionSuitability.qualitativeScores[i].qualitativeLevel).toBe(
-          lunch.occasionSuitability.qualitativeScores[i].qualitativeLevel
-        );
+      for (
+        let i = 0;
+        i < breakfast.occasionSuitability.qualitativeScores.length;
+        i++
+      ) {
+        expect(
+          breakfast.occasionSuitability.qualitativeScores[i].qualitativeLevel
+        ).toBe(lunch.occasionSuitability.qualitativeScores[i].qualitativeLevel);
       }
     });
 
     it("uses only valid qualitative levels in occasion qualitativeScores", () => {
-      const validLevels = ["Less represented", "Moderately represented", "Well represented"];
+      const validLevels = [
+        "Less represented",
+        "Moderately represented",
+        "Well represented",
+      ];
       const result = analyzeMeal("Moong dal chilla with green peas", "lunch");
 
       for (const score of result.occasionSuitability.qualitativeScores) {
@@ -550,12 +610,16 @@ describe("Task 3: Deterministic Meal Analysis & Recommendation Engine", () => {
 
         // No quantityText on ingredients
         for (const ing of result.detectedIngredients) {
-          expect((ing as unknown as Record<string, unknown>).quantityText).toBeUndefined();
+          expect(
+            (ing as unknown as Record<string, unknown>).quantityText
+          ).toBeUndefined();
         }
 
         // Check serialized output for portion units
         const json = JSON.stringify(result);
-        expect(json).not.toMatch(/\b\d+\s*(?:g|gram|grams|mg|kcal|calorie|calories|serving|servings|bowl|bowls)\b/i);
+        expect(json).not.toMatch(
+          /\b\d+\s*(?:g|gram|grams|mg|kcal|calorie|calories|serving|servings|bowl|bowls)\b/i
+        );
       }
     });
   });

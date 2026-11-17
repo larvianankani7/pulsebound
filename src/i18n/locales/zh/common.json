@@ -1,0 +1,125 @@
+{
+  "brand": "SYLVARA",
+  "tagline": "每一餐揭示一段故事，每一段故事开启一个全新世界。",
+  "navigation": {
+    "findings": "膳食发现 (Findings)",
+    "explore": "本草探索 (Explore)",
+    "learnings": "新知图鉴 (Learnings)",
+    "settings": "系统设置 (Settings)",
+    "about": "关于项目 (About)",
+    "mainMenu": "主菜单",
+    "back": "返回"
+  },
+  "settings": {
+    "title": "系统设置",
+    "subtitle": "自定义玩家档案、音量、语言和无障碍环境偏好",
+    "sections": {
+      "profile": "个人档案",
+      "controls": "操作指南",
+      "language": "界面语言 (Language)",
+      "audio": "音频与音量",
+      "howToPlay": "玩法指南",
+      "accessibility": "辅助功能",
+      "data": "数据与进度"
+    },
+    "profile": {
+      "title": "探索者档案",
+      "subtitle": "个性化您在植物王国的专属身份",
+      "usernameLabel": "探索者名称",
+      "usernamePlaceholder": "请输入您的名字...",
+      "saveUsername": "保存档案",
+      "usernameSavedToast": "名字已成功保存！",
+      "avatarHeading": "选择您的头像原型",
+      "summaryHeading": "探索里程碑",
+      "currentLevel": "当前关卡",
+      "badgesEarned": "获得徽章",
+      "learningsUnlocked": "已解锁新知",
+      "quizzesCompleted": "已完成测验"
+    },
+    "controls": {
+      "title": "交互与控制指南",
+      "subtitle": "掌握本草植物探索与深度观察技巧",
+      "corePrinciple": "悬停帮助用户发现更多，点击帮助用户深入探索细节。",
+      "hoverTitle": "悬停发现 (Hover)",
+      "hoverDesc": "将光标悬停在植物或食材上，即可即时查看其营养成分、药用特性与关键提示。",
+      "clickTitle": "点击探索 (Click)",
+      "clickDesc": "点击可展开深入的医学与临床知识、选定关卡答案并进入徽章测验挑战。",
+      "keyboardTitle": "键盘与无障碍导航",
+      "keyboardDesc": "全面支持使用 Tab、Enter、Space 和 Escape 键进行无缝浏览与弹窗关闭。",
+      "demoTitle": "交互演示沙盒",
+      "demoSubtitle": "尝试悬停和点击下方标本，体验真实的交互效果",
+      "specimenName": "神圣罗勒 (圣罗勒 / Tulsi)",
+      "specimenCategory": "药用植物草本",
+      "specimenTooltip": "富含丁香酚和抗氧化物，有助于舒缓呼吸道不适与代谢压力。",
+      "drawerTitle": "圣罗勒植物档案",
+      "drawerDesc": "现代植物学研究证实，圣罗勒具有良好的适应原特性，能有效保护粘膜并减轻细胞氧化压力。",
+      "drawerClose": "关闭档案"
+    },
+    "language": {
+      "title": "语言选择",
+      "subtitle": "切换整个应用程序的界面语言",
+      "selectPrompt": "选择您的首选语言",
+      "currentNotice": "界面将立即切换，并在下次启动时自动保持。"
+    },
+    "audio": {
+      "title": "音频与音量控制",
+      "subtitle": "灵活调节背景音乐与交互音效",
+      "musicHeading": "氛围背景音乐 (BGM)",
+      "musicVolume": "音乐音量",
+      "musicMute": "静音背景音乐",
+      "musicUnmute": "开启背景音乐",
+      "musicPlaying": "正在播放",
+      "musicMuted": "已静音",
+      "sfxHeading": "交互音效 (SFX)",
+      "sfxVolume": "音效音量",
+      "sfxMute": "静音音效",
+      "sfxUnmute": "开启音效",
+      "note": "音量设置将即时应用于各页面的背景播放器与 Web Audio 效果。"
+    },
+    "howToPlay": {
+      "title": "综合玩法指南",
+      "subtitle": "游戏规则、关卡进阶与循证学习指南",
+      "badgeNotice": "此指南与本草探索 (Explore) 游戏内指南保持完全同步。"
+    },
+    "accessibility": {
+      "title": "辅助功能偏好",
+      "subtitle": "定制动画效果、文字尺寸与对比度",
+      "reducedMotionTitle": "减少动态效果 (Reduced Motion)",
+      "reducedMotionDesc": "弱化漂浮粒子与动态旋转动画，避免视觉疲劳。",
+      "textSizeTitle": "界面字体大小",
+      "textSizeDesc": "调整界面文字字号以获得最佳阅读体验。",
+      "textSizeSmall": "紧凑 (小)",
+      "textSizeDefault": "标准 (中)",
+      "textSizeLarge": "放大 (大)",
+      "highContrastTitle": "高对比度模式",
+      "highContrastDesc": "增强边框光晕、文本明暗度与内容区域区分度。"
+    },
+    "data": {
+      "title": "本地数据与进度管理",
+      "subtitle": "查看离线存储记录并管理探索历史",
+      "localNotice": "SYLVARA 将您所有的通关记录、徽章和设置存储在浏览器本地 (IndexedDB 与 LocalStorage)，绝无远程跟踪。",
+      "statsHeading": "活跃本地档案",
+      "resetHeading": "重置探索进度",
+      "resetDesc": "将探索关卡、已获徽章及对应测验成绩重置回第 1 关。您的用户名、语言及音量设置绝不会被删除。",
+      "resetBtn": "重置探索进度",
+      "modalTitle": "确认重置探索进度？",
+      "modalWarning": "此操作将重新锁定关卡 2-25 并清除徽章。您的个人设置将完好保留。",
+      "modalConfirm": "是的，重置全部探索进度",
+      "modalCancel": "取消",
+      "resetSuccess": "探索进度已成功重置为初始状态。"
+    }
+  },
+  "common": {
+    "level": "关卡",
+    "badge": "徽章",
+    "score": "得分",
+    "earned": "已获得",
+    "locked": "未解锁",
+    "unlocked": "已解锁",
+    "completed": "已完成",
+    "save": "保存",
+    "close": "关闭",
+    "cancel": "取消",
+    "confirm": "确认"
+  }
+}

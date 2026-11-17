@@ -9,7 +9,11 @@ export function MainMenu() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#07050a] text-[#f3e8ff] select-none">
       {/* 1. Visual atmospheric background video with 5% blur, darkened overlay, 95% opacity, and fallback */}
-      <BackgroundMedia videoSrc="/videos/menu-bg.mp4" startTime={5} opacity={0.95} />
+      <BackgroundMedia
+        videoSrc="/videos/menu-bg.mp4"
+        startTime={5}
+        opacity={0.95}
+      />
 
       {/* 2. Top-right atmospheric background music controller */}
       <MusicControl videoId="UrngDTXkOEk" />

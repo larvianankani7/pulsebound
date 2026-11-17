@@ -83,9 +83,47 @@ body {
   );
 }
 
+/* Accessibility - Text Size Scalings */
+html[data-text-size="small"] {
+  font-size: 14px;
+}
+
+html[data-text-size="default"] {
+  font-size: 16px;
+}
+
+html[data-text-size="large"] {
+  font-size: 18px;
+}
+
+/* Accessibility - Reduced Motion */
+html[data-reduced-motion="true"] *,
 @media (prefers-reduced-motion: reduce) {
   .animate-gradient-wave,
   .animate-tagline-flow {
     animation: none !important;
   }
+}
+
+/* Accessibility - High Contrast Mode */
+html[data-high-contrast="true"] {
+  --color-lavender-200: #ffffff;
+  --color-lavender-300: #ffffff;
+  --color-lavender-400: #e9d5ff;
+}
+
+html[data-high-contrast="true"] .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+html[data-high-contrast="true"] .border-purple-500\/20,
+html[data-high-contrast="true"] .border-purple-500\/30 {
+  border-color: rgba(192, 132, 252, 0.6) !important;
+}
+
+html[data-high-contrast="true"] .text-purple-200\/60,
+html[data-high-contrast="true"] .text-purple-200\/70,
+html[data-high-contrast="true"] .text-purple-300\/60,
+html[data-high-contrast="true"] .text-purple-300\/70 {
+  color: #f3e8ff !important;
 }

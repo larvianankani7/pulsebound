@@ -31,7 +31,12 @@ export const IllustrationContainer: React.FC<IllustrationContainerProps> = ({
 }) => {
   const dimensionStyle: React.CSSProperties =
     typeof size === "number"
-      ? { width: `${size}px`, height: `${size}px`, minWidth: `${size}px`, minHeight: `${size}px` }
+      ? {
+          width: `${size}px`,
+          height: `${size}px`,
+          minWidth: `${size}px`,
+          minHeight: `${size}px`,
+        }
       : { width: size, height: size };
 
   return (

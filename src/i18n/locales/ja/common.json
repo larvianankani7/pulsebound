@@ -1,0 +1,125 @@
+{
+  "brand": "SYLVARA",
+  "tagline": "すべての食事が物語を明かし、すべての物語が新たな世界を開く。",
+  "navigation": {
+    "findings": "栄養発見 (Findings)",
+    "explore": "植物探検 (Explore)",
+    "learnings": "学びの記録 (Learnings)",
+    "settings": "設定 (Settings)",
+    "about": "SYLVARAについて",
+    "mainMenu": "メインメニュー",
+    "back": "戻る"
+  },
+  "settings": {
+    "title": "システム設定",
+    "subtitle": "プロフィール、音量、言語、アクセシビリティの環境設定",
+    "sections": {
+      "profile": "プロフィール",
+      "controls": "操作方法",
+      "language": "言語 (Language)",
+      "audio": "音響と音量",
+      "howToPlay": "遊び方ガイド",
+      "accessibility": "アクセシビリティ",
+      "data": "データと進捗"
+    },
+    "profile": {
+      "title": "プレイヤープロフィール",
+      "subtitle": "植物界でのあなたのアイデンティティをカスタマイズ",
+      "usernameLabel": "探検家名",
+      "usernamePlaceholder": "名前を入力してください...",
+      "saveUsername": "プロフィールを保存",
+      "usernameSavedToast": "名前が正常に更新されました！",
+      "avatarHeading": "アバターを選択",
+      "summaryHeading": "探検の歩み",
+      "currentLevel": "現在のレベル",
+      "badgesEarned": "獲得バッジ",
+      "learningsUnlocked": "解放された知識",
+      "quizzesCompleted": "クリア済みクイズ"
+    },
+    "controls": {
+      "title": "操作とインタラクション",
+      "subtitle": "植物の発見と詳細調査の基本操作",
+      "corePrinciple": "ホバーで発見し、クリックで詳しく探求する。",
+      "hoverTitle": "ホバーによる発見 (Hover)",
+      "hoverDesc": "カーソルを合わせるだけで、栄養素、植物の薬効、ヒントがその場で表示されます。",
+      "clickTitle": "クリックによる探求 (Click)",
+      "clickDesc": "クリックで詳細な解説カードを開き、アイテムを選択し、クイズに挑戦できます。",
+      "keyboardTitle": "キーボード操作",
+      "keyboardDesc": "Tab、Enter、Space、Escapeキーを用いたキーボード操作に対応しています。",
+      "demoTitle": "インタラクティブ操作プレビュー",
+      "demoSubtitle": "以下の植物標本にホバーやクリックをして実際の挙動をお試しください",
+      "specimenName": "ホーリーバジル (トゥルシー)",
+      "specimenCategory": "伝統的薬用ハーブ",
+      "specimenTooltip": "オイゲノールと抗酸化物質を豊富に含み、呼吸器の不快感を和らげます。",
+      "drawerTitle": "トゥルシーの植物カルテ",
+      "drawerDesc": "オキシマム・サンクタムは細胞ストレスを軽減し、粘膜保護をサポートすることが研究で示されています。",
+      "drawerClose": "閉じる"
+    },
+    "language": {
+      "title": "言語設定",
+      "subtitle": "アプリケーション全体の表示言語を切り替えます",
+      "selectPrompt": "言語を選択してください",
+      "currentNotice": "選択後すぐに画面全体が更新され、次回起動時にも保持されます。"
+    },
+    "audio": {
+      "title": "音響・音量コントロール",
+      "subtitle": "BGMと効果音の音量を個別に調整できます",
+      "musicHeading": "幻想的なBGM",
+      "musicVolume": "BGM音量",
+      "musicMute": "BGMをミュート",
+      "musicUnmute": "BGMのミュート解除",
+      "musicPlaying": "再生中",
+      "musicMuted": "ミュート中",
+      "sfxHeading": "操作効果音 (SFX)",
+      "sfxVolume": "効果音音量",
+      "sfxMute": "効果音をミュート",
+      "sfxUnmute": "効果音のミュート解除",
+      "note": "設定は全ページのYouTube BGMおよびWeb Audio効果音に即時反映されます。"
+    },
+    "howToPlay": {
+      "title": "総合プレイガイド",
+      "subtitle": "基本ルール、進行手順、クイズの仕組み",
+      "badgeNotice": "このガイドは探検(Explore)内のヘルプと常に完全に同期しています。"
+    },
+    "accessibility": {
+      "title": "アクセシビリティ設定",
+      "subtitle": "アニメーション、文字サイズ、視認性の調整",
+      "reducedMotionTitle": "視覚効果の抑制 (Reduced Motion)",
+      "reducedMotionDesc": "パーティクル効果や画面揺れなどのアニメーションを最小限に抑えます。",
+      "textSizeTitle": "文字サイズ",
+      "textSizeDesc": "見やすさに合わせてインターフェースのフォントサイズを変更します。",
+      "textSizeSmall": "小 (コンパクト)",
+      "textSizeDefault": "中 (標準)",
+      "textSizeLarge": "大 (拡大)",
+      "highContrastTitle": "ハイコントラスト表示",
+      "highContrastDesc": "枠線とテキストの発光を強調し、視認性を向上させます。"
+    },
+    "data": {
+      "title": "データと進捗管理",
+      "subtitle": "ローカル保存データの確認と探検のリセット",
+      "localNotice": "SYLVARAはすべてのゲーム進捗をブラウザ内(IndexedDB/LocalStorage)に保存します。外部への個人情報送信はありません。",
+      "statsHeading": "保存されている記録",
+      "resetHeading": "探検進捗のリセット",
+      "resetDesc": "Exploreの進行度、獲得バッジ、クイズの記録を初期状態に戻します。名前、言語、音量設定は消去されません。",
+      "resetBtn": "探検進捗をリセット",
+      "modalTitle": "探検進捗をリセットしますか？",
+      "modalWarning": "レベル2〜25が再ロックされ、バッジとクイズスコアが初期化されます。設定データは安全に保持されます。",
+      "modalConfirm": "はい、リセットする",
+      "modalCancel": "キャンセル",
+      "resetSuccess": "探検データが初期状態にリセットされました。"
+    }
+  },
+  "common": {
+    "level": "レベル",
+    "badge": "バッジ",
+    "score": "スコア",
+    "earned": "獲得済み",
+    "locked": "ロック",
+    "unlocked": "解放",
+    "completed": "完了",
+    "save": "保存",
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "confirm": "確認"
+  }
+}

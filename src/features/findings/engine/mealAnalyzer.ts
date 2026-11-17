@@ -54,7 +54,12 @@ interface ClaimedSpan {
   end: number;
 }
 
-function spansOverlap(aStart: number, aEnd: number, bStart: number, bEnd: number): boolean {
+function spansOverlap(
+  aStart: number,
+  aEnd: number,
+  bStart: number,
+  bEnd: number
+): boolean {
   return Math.max(aStart, bStart) < Math.min(aEnd, bEnd);
 }
 
@@ -239,8 +244,7 @@ const UNDERREPRESENTED_RULES: UnderrepresentedRule[] = [
         illustrationId: "food.paneer",
         nutrientContribution:
           "Dense calcium matrix supporting skeletal and dental mineral density",
-        pairingAdvice:
-          "Incorporate grilled cubes or crumble over warm dishes",
+        pairingAdvice: "Incorporate grilled cubes or crumble over warm dishes",
         excludeKeywords: ["paneer", "cottage cheese"],
       },
       {
@@ -350,8 +354,7 @@ const UNDERREPRESENTED_RULES: UnderrepresentedRule[] = [
         illustrationId: "food.peanuts-seeds",
         nutrientContribution:
           "Essential omega fatty acids, zinc, and lipid-soluble antioxidants",
-        pairingAdvice:
-          "Sprinkle raw or toasted seeds across morning meals",
+        pairingAdvice: "Sprinkle raw or toasted seeds across morning meals",
         excludeKeywords: [
           "almond",
           "almonds",
@@ -368,11 +371,7 @@ const UNDERREPRESENTED_RULES: UnderrepresentedRule[] = [
           "Medium-chain fatty acids aiding fat-soluble vitamin uptake",
         pairingAdvice:
           "Serve fresh alongside steamed grain cakes, dosas, or bowls",
-        excludeKeywords: [
-          "coconut",
-          "coconut chutney",
-          "nariyal chutney",
-        ],
+        excludeKeywords: ["coconut", "coconut chutney", "nariyal chutney"],
       },
     ],
   },
@@ -458,13 +457,7 @@ const UNDERREPRESENTED_RULES: UnderrepresentedRule[] = [
         nutrientContribution:
           "Lutein, zeaxanthin, and carotenoids shielding retinal tissue",
         pairingAdvice: "Incorporate into curries, sabzis, or warm dals",
-        excludeKeywords: [
-          "spinach",
-          "palak",
-          "saag",
-          "methi",
-          "greens",
-        ],
+        excludeKeywords: ["spinach", "palak", "saag", "methi", "greens"],
       },
       {
         name: "Bell Peppers / Capsicum",
@@ -669,12 +662,18 @@ export function evaluateOccasionSuitability(
         "The graph shows your meal's midday nutritional distribution. Combining complex carbohydrates with plant fibre and minerals helps maintain alertness through the second half of the day.";
     }
 
-    if (missingNames.includes("Dietary Fibre") || missingNames.includes("Vitamin A & Beta-Carotene")) {
+    if (
+      missingNames.includes("Dietary Fibre") ||
+      missingNames.includes("Vitamin A & Beta-Carotene")
+    ) {
       balanceTips.push(
         "Complement with a crisp cucumber-tomato kachumber salad or steamed greens for digestive enzymes and micronutrients."
       );
     }
-    if (missingNames.includes("Complete Protein") || missingNames.includes("Calcium")) {
+    if (
+      missingNames.includes("Complete Protein") ||
+      missingNames.includes("Calcium")
+    ) {
       balanceTips.push(
         "A bowl of homemade curd, a glass of spiced chaas, or paneer cubes adds probiotic calcium and amino acids."
       );
@@ -848,25 +847,28 @@ export function analyzeMeal(
     for (const rule of UNDERREPRESENTED_RULES) {
       if (!detectedNutrientIds.has(rule.nutrientId)) {
         // ADAPTIVE FILTERING: Exclude any foods the user has already included
-        const filteredCandidates: ComplementaryFoodSuggestion[] = rule.candidates
-          .filter((candidate) => {
-            const mentionedInInput = candidate.excludeKeywords.some((kw) =>
-              new RegExp(`\\b${escapeRegExp(kw)}\\b`, "i").test(normalizedDesc)
-            );
-            const mentionedInDetected = candidate.excludeKeywords.some((kw) =>
-              detectedIngredients.some((item) =>
-                item.name.toLowerCase().includes(kw)
-              )
-            );
-            return !mentionedInInput && !mentionedInDetected;
-          })
-          .map((candidate) => ({
-            name: candidate.name,
-            foodName: candidate.name,
-            illustrationId: candidate.illustrationId,
-            nutrientContribution: candidate.nutrientContribution,
-            pairingAdvice: candidate.pairingAdvice,
-          }));
+        const filteredCandidates: ComplementaryFoodSuggestion[] =
+          rule.candidates
+            .filter((candidate) => {
+              const mentionedInInput = candidate.excludeKeywords.some((kw) =>
+                new RegExp(`\\b${escapeRegExp(kw)}\\b`, "i").test(
+                  normalizedDesc
+                )
+              );
+              const mentionedInDetected = candidate.excludeKeywords.some((kw) =>
+                detectedIngredients.some((item) =>
+                  item.name.toLowerCase().includes(kw)
+                )
+              );
+              return !mentionedInInput && !mentionedInDetected;
+            })
+            .map((candidate) => ({
+              name: candidate.name,
+              foodName: candidate.name,
+              illustrationId: candidate.illustrationId,
+              nutrientContribution: candidate.nutrientContribution,
+              pairingAdvice: candidate.pairingAdvice,
+            }));
 
         if (filteredCandidates.length > 0) {
           underrepresentedNutrients.push({
@@ -905,8 +907,8 @@ export function analyzeMeal(
     }
   };
 
-  const profileScores: ProfileCategoryScore[] = occasionSuitability.qualitativeScores.map(
-    (score) => {
+  const profileScores: ProfileCategoryScore[] =
+    occasionSuitability.qualitativeScores.map((score) => {
       const { level, numericScore } = levelToNumeric(score.qualitativeLevel);
       return {
         category: score.category as ProfileCategoryScore["category"],
@@ -915,8 +917,7 @@ export function analyzeMeal(
         contributingFoods: score.contributingFoods,
         contextNote: score.contextNote,
       };
-    }
-  );
+    });
 
   // 6. Uncertainty and context notes
   const uncertaintyNotes: string[] = [];

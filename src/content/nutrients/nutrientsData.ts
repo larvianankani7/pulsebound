@@ -5,7 +5,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.complex-carbs",
     name: "Complex Carbohydrates",
     category: "macronutrient",
-    shortRole: "Sustained metabolic fuel delivering steady energy to the brain and working muscles.",
+    shortRole:
+      "Sustained metabolic fuel delivering steady energy to the brain and working muscles.",
     introduction:
       "Complex carbohydrates are polysaccharide starch chains that digest steadily, releasing an even stream of glucose into the bloodstream to power cognitive focus and physical vitality without sharp spikes.",
     biologicalRoles: [
@@ -49,7 +50,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.protein",
     name: "Protein",
     category: "macronutrient",
-    shortRole: "Structural foundation for muscle rebuilding, cellular repair, and enzymatic defense.",
+    shortRole:
+      "Structural foundation for muscle rebuilding, cellular repair, and enzymatic defense.",
     introduction:
       "Proteins are polymeric chains of amino acids that form the structural scaffolding of every human tissue. From muscle myofibrils and collagen matrices to circulating enzymes and immunoglobulins, protein is vital for renewal.",
     biologicalRoles: [
@@ -93,7 +95,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.healthy-fats",
     name: "Healthy Fats",
     category: "macronutrient",
-    shortRole: "Essential structural lipids enabling hormone synthesis and fat-soluble vitamin uptake.",
+    shortRole:
+      "Essential structural lipids enabling hormone synthesis and fat-soluble vitamin uptake.",
     introduction:
       "Healthy dietary lipids—including monounsaturated, polyunsaturated, and balanced traditional culinary fats—are indispensable components of cell membranes, brain myelination, and systemic hormone pathways.",
     biologicalRoles: [
@@ -137,7 +140,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.fibre",
     name: "Dietary Fibre",
     category: "macronutrient",
-    shortRole: "Nourishes gut microbiome flora, supports smooth digestion, and regulates glucose release.",
+    shortRole:
+      "Nourishes gut microbiome flora, supports smooth digestion, and regulates glucose release.",
     introduction:
       "Dietary fibre encompasses indigestible plant polysaccharides—both soluble prebiotics and insoluble structural cellulose—that cultivate an abundant, diverse gut microbiome while promoting optimal GI motility.",
     biologicalRoles: [
@@ -181,7 +185,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-a",
     name: "Vitamin A & Beta-Carotene",
     category: "vitamin",
-    shortRole: "Essential for low-light night vision, cellular differentiation, and immune barriers.",
+    shortRole:
+      "Essential for low-light night vision, cellular differentiation, and immune barriers.",
     introduction:
       "Vitamin A exists as preformed retinoids and provitamin carotenoids such as beta-carotene. It is fundamental for visual pigment regeneration, mucosal barrier integrity, and adaptive immune activation.",
     biologicalRoles: [
@@ -225,7 +230,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-b-complex",
     name: "Vitamin B-Complex",
     category: "vitamin",
-    shortRole: "Coenzymes driving cellular energy transformation, neuro-signaling, and DNA repair.",
+    shortRole:
+      "Coenzymes driving cellular energy transformation, neuro-signaling, and DNA repair.",
     introduction:
       "The Vitamin B-Complex includes essential water-soluble cofactors (B1 Thiamine, B2 Riboflavin, B3 Niacin, B5 Pantothenic Acid, B6 Pyridoxine, B7 Biotin, and B12 Cobalamin) that activate the Krebs cycle to turn nutrients into cellular ATP.",
     biologicalRoles: [
@@ -269,7 +275,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.folate",
     name: "Folate (Vitamin B9)",
     category: "vitamin",
-    shortRole: "Critical for DNA synthesis, genetic methylation, and red blood cell production.",
+    shortRole:
+      "Critical for DNA synthesis, genetic methylation, and red blood cell production.",
     introduction:
       "Folate (Vitamin B9) is a vital one-carbon metabolism cofactor required for nucleotide synthesis, rapid cellular division, and healthy red blood cell genesis.",
     biologicalRoles: [
@@ -313,7 +320,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-c",
     name: "Vitamin C",
     category: "vitamin",
-    shortRole: "Potent antioxidant catalyzing collagen synthesis and unlocking plant iron absorption.",
+    shortRole:
+      "Potent antioxidant catalyzing collagen synthesis and unlocking plant iron absorption.",
     introduction:
       "Vitamin C (L-ascorbic acid) is a powerful water-soluble antioxidant that protects cellular proteins from oxidative damage, drives collagen triple-helix assembly, and triples plant-based non-haem iron absorption.",
     biologicalRoles: [
@@ -357,7 +365,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-d",
     name: "Vitamin D",
     category: "vitamin",
-    shortRole: "Steroid hormone regulator of calcium absorption, bone mineralization, and immunity.",
+    shortRole:
+      "Steroid hormone regulator of calcium absorption, bone mineralization, and immunity.",
     introduction:
       "Vitamin D acts as a master seco-steroid hormone that regulates intestinal calcium transport, mineral homeostasis, inflammatory modulation, and immune cell gene expression.",
     biologicalRoles: [
@@ -401,7 +410,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-e",
     name: "Vitamin E",
     category: "vitamin",
-    shortRole: "Lipid-soluble antioxidant shielding cellular membranes and vascular walls from oxidation.",
+    shortRole:
+      "Lipid-soluble antioxidant shielding cellular membranes and vascular walls from oxidation.",
     introduction:
       "Vitamin E comprises a family of lipid-soluble tocols (prominently alpha-tocopherol) that embed within cellular and organelle membranes to halt the chain reaction of polyunsaturated lipid peroxidation.",
     biologicalRoles: [
@@ -445,7 +455,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.vitamin-k",
     name: "Vitamin K",
     category: "vitamin",
-    shortRole: "Directs calcium into skeletal bone matrices while preventing arterial calcification.",
+    shortRole:
+      "Directs calcium into skeletal bone matrices while preventing arterial calcification.",
     introduction:
       "Vitamin K (phylloquinone K1 from greens and menaquinones K2 from fermentation) is a mandatory cofactor for gamma-glutamyl carboxylase, activating proteins that regulate blood clotting and guide calcium into bones rather than arteries.",
     biologicalRoles: [
@@ -489,7 +500,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.iron",
     name: "Iron",
     category: "mineral",
-    shortRole: "Core element of haemoglobin, ferrying oxygen to brain cells and working muscles.",
+    shortRole:
+      "Core element of haemoglobin, ferrying oxygen to brain cells and working muscles.",
     introduction:
       "Iron is an indispensable trace mineral at the core of haemoglobin and myoglobin. It binds oxygen in the lungs and delivers it across the entire micro-circulation to fuel cellular respiration and cognitive alertness.",
     biologicalRoles: [
@@ -533,7 +545,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.calcium",
     name: "Calcium",
     category: "mineral",
-    shortRole: "Mineral foundation for bone density, nerve impulse conduction, and muscle flexing.",
+    shortRole:
+      "Mineral foundation for bone density, nerve impulse conduction, and muscle flexing.",
     introduction:
       "Calcium is the most abundant mineral in the human body. While 99% resides in bones and enamel as structural hydroxyapatite, the remaining 1% regulates nerve signals, muscle contractions, and heart rhythm.",
     biologicalRoles: [
@@ -577,7 +590,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.potassium",
     name: "Potassium",
     category: "mineral",
-    shortRole: "Primary intracellular electrolyte balancing cellular fluids and smoothing blood pressure.",
+    shortRole:
+      "Primary intracellular electrolyte balancing cellular fluids and smoothing blood pressure.",
     introduction:
       "Potassium is the primary positively charged electrolyte inside human cells. It maintains the electrochemical gradient across cell membranes, offsets excess dietary sodium, and promotes smooth arterial dilation.",
     biologicalRoles: [
@@ -621,7 +635,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.magnesium",
     name: "Magnesium",
     category: "mineral",
-    shortRole: "Master enzymatic activator for over 300 metabolic reactions and muscular relaxation.",
+    shortRole:
+      "Master enzymatic activator for over 300 metabolic reactions and muscular relaxation.",
     introduction:
       "Magnesium is a vital intracellular macromineral that acts as a mandatory counter-ion for ATP. It participates as a catalytic cofactor in over 300 enzymatic cascades governing energy synthesis, DNA repair, and muscle relaxation.",
     biologicalRoles: [
@@ -665,7 +680,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.zinc",
     name: "Zinc",
     category: "mineral",
-    shortRole: "Catalytic core for cellular immunity, wound recovery, and protein synthesis.",
+    shortRole:
+      "Catalytic core for cellular immunity, wound recovery, and protein synthesis.",
     introduction:
       "Zinc is an indispensable trace mineral incorporated into thousands of zinc-finger transcription proteins. It regulates gene transcription, maintains sensory taste acuity, and directs white blood cell maturation.",
     biologicalRoles: [
@@ -709,7 +725,8 @@ export const VERIFIED_NUTRIENTS: Record<string, NutrientInfo> = {
     id: "nutrient.phosphorus",
     name: "Phosphorus",
     category: "mineral",
-    shortRole: "Structural backbone of DNA, cell membranes, and ATP high-energy bonds.",
+    shortRole:
+      "Structural backbone of DNA, cell membranes, and ATP high-energy bonds.",
     introduction:
       "Phosphorus is the second most abundant mineral in the body after calcium. Working in precise ratio with calcium, it forms bone mineral matrices and constitutes the phosphate backbone of DNA, RNA, and ATP.",
     biologicalRoles: [

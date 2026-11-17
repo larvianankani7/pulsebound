@@ -1,3 +1,5 @@
+import { useSettingsStore } from "../../settings/store/useSettingsStore";
+
 /**
  * Web Audio API based sound synthesizer for an elegant, soft, and premium interaction effect.
  * Designed specifically for a mysterious, sophisticated fantasy game interface.
@@ -5,6 +7,9 @@
  */
 export function playMenuClickSound(): void {
   try {
+    const sfxVol = useSettingsStore.getState().getEffectiveSfxVolume();
+    if (sfxVol <= 0) return;
+
     const AudioContextClass =
       window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext })
@@ -25,11 +30,11 @@ export function playMenuClickSound(): void {
     filter.frequency.setValueAtTime(1400, now);
     filter.Q.setValueAtTime(1.8, now);
 
-    // Master gain node with smooth envelope
+    // Master gain node with smooth envelope scaled by sfxVol
     const masterGain = ctx.createGain();
     masterGain.gain.setValueAtTime(0.0001, now);
     // Soft, rounded attack (3ms) to avoid any harsh popping
-    masterGain.gain.linearRampToValueAtTime(0.065, now + 0.003);
+    masterGain.gain.linearRampToValueAtTime(0.065 * sfxVol, now + 0.003);
     // Natural resonant exponential decay
     masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
 

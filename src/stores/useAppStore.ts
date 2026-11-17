@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 type AppState = {
-  language: "en" | "hi";
-  setLanguage: (language: "en" | "hi") => void;
+  language: "en" | "hi" | "ja" | "zh";
+  setLanguage: (language: "en" | "hi" | "ja" | "zh") => void;
 };
 
 export const useAppStore = create<AppState>((set) => ({

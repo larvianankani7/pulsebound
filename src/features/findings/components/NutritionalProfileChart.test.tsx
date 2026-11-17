@@ -4,10 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { NutritionalProfileChart } from "./NutritionalProfileChart";
 import { MealProfileSection } from "./MealProfileSection";
 import { MealContextSelector } from "./MealContextSelector";
-import {
-  type OccasionEvaluation,
-  type ProfileCategoryScore,
-} from "../types";
+import { type OccasionEvaluation, type ProfileCategoryScore } from "../types";
 import * as soundEffects from "../../main-menu/utils/soundEffects";
 
 // Mock sound effects
@@ -88,8 +85,8 @@ const mockBreakfastEvaluation: OccasionEvaluation = {
       s.category === "Complex Energy"
         ? "Well represented"
         : s.category === "Protein"
-        ? "Moderately represented"
-        : s.qualitativeLevel,
+          ? "Moderately represented"
+          : s.qualitativeLevel,
   })),
 };
 
@@ -185,10 +182,7 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
     it("triggers onChange and plays sound when a different occasion is clicked", () => {
       const handleChange = vi.fn();
       render(
-        <MealContextSelector
-          selectedOccasion="lunch"
-          onChange={handleChange}
-        />
+        <MealContextSelector selectedOccasion="lunch" onChange={handleChange} />
       );
 
       const breakfastRadio = screen.getByRole("radio", { name: /Breakfast/i });
@@ -201,10 +195,7 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
     it("does not re-trigger onChange or sound when the already selected occasion is clicked", () => {
       const handleChange = vi.fn();
       render(
-        <MealContextSelector
-          selectedOccasion="lunch"
-          onChange={handleChange}
-        />
+        <MealContextSelector selectedOccasion="lunch" onChange={handleChange} />
       );
 
       const lunchRadio = screen.getByRole("radio", { name: /Lunch/i });
@@ -232,11 +223,15 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
 
   describe("NutritionalProfileChart Component", () => {
     it("renders the graph title 'Meal Composition & Occasion Suitability' and qualitative subtitle", () => {
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       const graphTitle = screen.getByTestId("graph-title");
       expect(graphTitle).toBeInTheDocument();
-      expect(graphTitle).toHaveTextContent("Meal Composition & Occasion Suitability");
+      expect(graphTitle).toHaveTextContent(
+        "Meal Composition & Occasion Suitability"
+      );
 
       // Verify backwards-compatible subtitle text is present
       expect(
@@ -245,7 +240,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
     });
 
     it("displays purely qualitative Y-axis labels and zero numeric values", () => {
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       // Exactly 3 qualitative scale levels on the Y-axis
       expect(screen.getByText("Well represented")).toBeInTheDocument();
@@ -254,7 +251,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
     });
 
     it("renders all 6 core nutritional categories along the X-axis", () => {
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       const categories = [
         "Protein",
@@ -274,7 +273,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
 
     it("shows informative tooltip on hover or click of a data point", async () => {
       const user = userEvent.setup();
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       // Find the interactive point for Protein
       const proteinPoint = screen.getByRole("button", {
@@ -291,16 +292,16 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       expect(tooltip).toHaveTextContent("Protein");
       expect(tooltip).toHaveTextContent("Well represented");
       expect(tooltip).toHaveTextContent("Dal / Lentils, Curd / Yogurt");
-      expect(
-        tooltip
-      ).toHaveTextContent(
+      expect(tooltip).toHaveTextContent(
         "Contributes amino acids for muscle maintenance, cellular renewal, and satiety."
       );
       expect(soundEffects.playMenuClickSound).toHaveBeenCalled();
     });
 
     it("supports keyboard Enter/Space activation on data points", () => {
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       const fibrePoint = screen.getByRole("button", {
         name: /Dietary Fibre: Well represented/i,
@@ -311,11 +312,15 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       const tooltip = screen.getByTestId("chart-point-tooltip");
       expect(tooltip).toBeInTheDocument();
       expect(tooltip).toHaveTextContent("Dietary Fibre");
-      expect(tooltip).toHaveTextContent("Roti / Chapatis, Spinach / Leafy Greens");
+      expect(tooltip).toHaveTextContent(
+        "Roti / Chapatis, Spinach / Leafy Greens"
+      );
     });
 
     it("renders compact well-represented and complementary summary cards beneath the graph", () => {
-      render(<NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />);
+      render(
+        <NutritionalProfileChart occasionEvaluation={mockLunchEvaluation} />
+      );
 
       expect(
         screen.getByText(/Well Represented Components/i)
@@ -373,9 +378,13 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       );
 
       expect(screen.queryByTestId("meal-context-selector")).toBeNull();
-      expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("nutritional-profile-chart")
+      ).toBeInTheDocument();
       expect(screen.getByTestId("why-meal-looks-this-way")).toBeInTheDocument();
-      expect(screen.getByTestId("how-to-make-more-balanced")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("how-to-make-more-balanced")
+      ).toBeInTheDocument();
     });
 
     it("renders 'Why Does Your Meal Look This Way?' with contextual occasion and curve reasoning", () => {
@@ -411,8 +420,12 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       ).toBeInTheDocument();
 
       // Recognized food contributions list
-      expect(screen.getByText(/Recognized Food Contributions/i)).toBeInTheDocument();
-      expect(screen.getByText(/Dal \/ Lentils, Curd \/ Yogurt/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Recognized Food Contributions/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Dal \/ Lentils, Curd \/ Yogurt/i)
+      ).toBeInTheDocument();
     });
 
     it("renders 'How Could You Make This Meal More Balanced?' with practical tips and non-judgmental tone", () => {
@@ -435,7 +448,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
 
       // Verify specific practical tips from the evaluation
       expect(
-        screen.getByText(/Complement with a crisp cucumber-tomato kachumber salad/i)
+        screen.getByText(
+          /Complement with a crisp cucumber-tomato kachumber salad/i
+        )
       ).toBeInTheDocument();
       expect(
         screen.getByText(/A bowl of homemade curd, a glass of spiced chaas/i)
@@ -443,7 +458,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
 
       // Reassurance celebration note
       expect(
-        screen.getByText(/SYLVARA celebrates the rich traditions of home-cooked meals/i)
+        screen.getByText(
+          /SYLVARA celebrates the rich traditions of home-cooked meals/i
+        )
       ).toBeInTheDocument();
     });
 
@@ -508,7 +525,9 @@ describe("Nutritional Profile & Occasion Graph Suite (Task 7)", () => {
       const allText = container.textContent || "";
 
       // Assert zero grams, milligrams, micrograms
-      expect(allText).not.toMatch(/\b\d+\s*(?:g|grams?|mg|milligrams?|mcg|micrograms?)\b/i);
+      expect(allText).not.toMatch(
+        /\b\d+\s*(?:g|grams?|mg|milligrams?|mcg|micrograms?)\b/i
+      );
 
       // Assert zero calories / kcal
       expect(allText).not.toMatch(/\b\d+\s*(?:kcal|calories?)\b/i);

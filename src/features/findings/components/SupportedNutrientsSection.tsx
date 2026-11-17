@@ -44,11 +44,9 @@ function getCategoryLabel(category?: string): string {
  * Clicking any nutrient card triggers `onSelectNutrient(nutrient)` to reveal the
  * full educational `NutrientDetailCard`.
  */
-export const SupportedNutrientsSection: React.FC<SupportedNutrientsSectionProps> = ({
-  nutrients,
-  onSelectNutrient,
-  className = "",
-}) => {
+export const SupportedNutrientsSection: React.FC<
+  SupportedNutrientsSectionProps
+> = ({ nutrients, onSelectNutrient, className = "" }) => {
   const shouldReduceMotion = useReducedMotion();
 
   // Harmonious empty state: No verified nutrients identified yet
@@ -71,7 +69,9 @@ export const SupportedNutrientsSection: React.FC<SupportedNutrientsSectionProps>
             Nutrients Supported by This Meal
           </h2>
           <p className="mt-3 text-xs sm:text-sm text-[#d8b4fe]/85 max-w-xl mx-auto font-sans leading-relaxed">
-            No verified nutrients were identified from the description yet. Enter or refine your meal description to explore its supported nutritional components.
+            No verified nutrients were identified from the description yet.
+            Enter or refine your meal description to explore its supported
+            nutritional components.
           </p>
         </div>
       </section>
@@ -109,7 +109,8 @@ export const SupportedNutrientsSection: React.FC<SupportedNutrientsSectionProps>
           Nutrients Supported by This Meal
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-[#d8b4fe]/80 font-sans max-w-xl mx-auto leading-relaxed">
-          Explore the nutritional components represented by the ingredients in your meal.
+          Explore the nutritional components represented by the ingredients in
+          your meal.
         </p>
       </div>
 
@@ -121,14 +122,19 @@ export const SupportedNutrientsSection: React.FC<SupportedNutrientsSectionProps>
       >
         {nutrients.map((nutrient, index) => {
           const benefitSummary =
-            nutrient.shortRole || nutrient.fullBenefit || nutrient.introduction || "";
+            nutrient.shortRole ||
+            nutrient.fullBenefit ||
+            nutrient.introduction ||
+            "";
 
           return (
             <motion.div
               key={nutrient.id || index}
               role="listitem"
               initial={
-                shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }
+                shouldReduceMotion
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 16 }
               }
               animate={{ opacity: 1, y: 0 }}
               transition={{

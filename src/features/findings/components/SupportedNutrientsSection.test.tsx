@@ -90,9 +90,7 @@ describe("SupportedNutrientsSection Component", () => {
       // Verify Carbohydrates card content
       expect(screen.getByText("Complex Carbohydrates")).toBeInTheDocument();
       expect(
-        screen.getByText(
-          VERIFIED_NUTRIENTS["nutrient.complex-carbs"].shortRole
-        )
+        screen.getByText(VERIFIED_NUTRIENTS["nutrient.complex-carbs"].shortRole)
       ).toBeInTheDocument();
     });
   });

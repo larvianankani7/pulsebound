@@ -156,8 +156,14 @@ export const NutrientDetailCard: React.FC<NutrientDetailCardProps> = ({
             </div>
             <ul className="space-y-3">
               {nutrient.biologicalRoles.map((role, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#e2d9f3] leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-[#a855f7] shrink-0 mt-0.5" aria-hidden="true" />
+                <li
+                  key={idx}
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-[#e2d9f3] leading-relaxed"
+                >
+                  <CheckCircle2
+                    className="w-4 h-4 text-[#a855f7] shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
                   <span>{role}</span>
                 </li>
               ))}
@@ -176,8 +182,14 @@ export const NutrientDetailCard: React.FC<NutrientDetailCardProps> = ({
             </div>
             <ul className="space-y-3">
               {nutrient.generalBenefits.map((benefit, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#e2d9f3] leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-[#c084fc] shrink-0 mt-0.5" aria-hidden="true" />
+                <li
+                  key={idx}
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-[#e2d9f3] leading-relaxed"
+                >
+                  <CheckCircle2
+                    className="w-4 h-4 text-[#c084fc] shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
                   <span>{benefit}</span>
                 </li>
               ))}
@@ -252,7 +264,10 @@ export const NutrientDetailCard: React.FC<NutrientDetailCardProps> = ({
         {nutrient.educationalFact && (
           <div className="rounded-2xl border border-amber-400/30 bg-gradient-to-r from-amber-950/30 via-[#1a0f26]/80 to-purple-950/40 backdrop-blur-xl p-5 sm:p-6 shadow-sm">
             <div className="flex items-center gap-2.5 mb-2 text-amber-200">
-              <Lightbulb className="w-5 h-5 text-amber-300" aria-hidden="true" />
+              <Lightbulb
+                className="w-5 h-5 text-amber-300"
+                aria-hidden="true"
+              />
               <h3 className="font-['Cinzel',serif] text-sm sm:text-base font-bold tracking-wider uppercase">
                 Did You Know? Scientific Fact
               </h3>

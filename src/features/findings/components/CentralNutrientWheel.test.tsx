@@ -12,9 +12,9 @@ const testIron = VERIFIED_NUTRIENTS["nutrient.iron"];
 const testVitaminC = VERIFIED_NUTRIENTS["nutrient.vitamin-c"];
 
 const mockNutrients: NutrientInfo[] = [
-  testCarbs,    // index 0 -> 12 o'clock (top, y < 0)
-  testProtein,  // index 1 -> 3 o'clock (right, y = 0)
-  testIron,     // index 2 -> 6 o'clock (bottom, y > 0)
+  testCarbs, // index 0 -> 12 o'clock (top, y < 0)
+  testProtein, // index 1 -> 3 o'clock (right, y = 0)
+  testIron, // index 2 -> 6 o'clock (bottom, y > 0)
   testVitaminC, // index 3 -> 9 o'clock (left, y = 0)
 ];
 
@@ -44,12 +44,7 @@ describe("CentralNutrientWheel Component", () => {
   });
 
   it("renders all provided nutrients in the circular wheel", () => {
-    render(
-      <CentralNutrientWheel
-        mealTitle="POHA"
-        nutrients={mockNutrients}
-      />
-    );
+    render(<CentralNutrientWheel mealTitle="POHA" nutrients={mockNutrients} />);
 
     expect(screen.getByText("Complex Carbohydrates")).toBeInTheDocument();
     expect(screen.getByText("Protein")).toBeInTheDocument();
@@ -61,12 +56,7 @@ describe("CentralNutrientWheel Component", () => {
   });
 
   it("displays hover tooltip showing biological role on hover and hides on mouse leave", async () => {
-    render(
-      <CentralNutrientWheel
-        mealTitle="POHA"
-        nutrients={mockNutrients}
-      />
-    );
+    render(<CentralNutrientWheel mealTitle="POHA" nutrients={mockNutrients} />);
 
     // Initial state: tooltip should not be visible
     expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
@@ -90,12 +80,7 @@ describe("CentralNutrientWheel Component", () => {
   });
 
   it("anchors tooltips outward away from the central meal (top for upper nodes, bottom for lower nodes)", () => {
-    render(
-      <CentralNutrientWheel
-        mealTitle="POHA"
-        nutrients={mockNutrients}
-      />
-    );
+    render(<CentralNutrientWheel mealTitle="POHA" nutrients={mockNutrients} />);
 
     // 1. Carbs is at 12 o'clock (index 0, y < 0, above center) -> should have placement="top"
     const carbsButton = screen.getByRole("button", {
@@ -163,7 +148,9 @@ describe("CentralNutrientWheel Component", () => {
     expect(
       screen.getByText("Nutritional Synergies & Interactions")
     ).toBeInTheDocument();
-    expect(screen.getByText(testProtein.relatedInteraction!)).toBeInTheDocument();
+    expect(
+      screen.getByText(testProtein.relatedInteraction!)
+    ).toBeInTheDocument();
 
     // Educational scientific facts rendered
     expect(
@@ -245,7 +232,9 @@ describe("CentralNutrientWheel Component", () => {
     });
     await user.click(ironButton);
 
-    expect(screen.getByRole("heading", { name: "Iron", level: 2 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Iron", level: 2 })
+    ).toBeInTheDocument();
 
     // Click return button
     const backButtons = screen.getAllByRole("button", {
@@ -285,7 +274,9 @@ describe("CentralNutrientWheel Component", () => {
     fireEvent.keyDown(window, { key: "Escape" });
 
     // Wheel view restored
-    expect(screen.getByTestId("central-meal-title")).toHaveTextContent("ROTI AND DAL");
+    expect(screen.getByTestId("central-meal-title")).toHaveTextContent(
+      "ROTI AND DAL"
+    );
   });
 
   it("supports controlled mode when selectedNutrient prop is provided", () => {
@@ -302,18 +293,17 @@ describe("CentralNutrientWheel Component", () => {
       screen.getByRole("heading", { name: "Vitamin C", level: 2 })
     ).toBeInTheDocument();
     expect(screen.getByText("vitamin")).toBeInTheDocument();
-    expect(screen.getByText(testVitaminC.biologicalRoles[0])).toBeInTheDocument();
+    expect(
+      screen.getByText(testVitaminC.biologicalRoles[0])
+    ).toBeInTheDocument();
   });
 
   it("handles empty nutrients list gracefully without crashing", () => {
-    render(
-      <CentralNutrientWheel
-        mealTitle="UNKNOWN MEAL"
-        nutrients={[]}
-      />
-    );
+    render(<CentralNutrientWheel mealTitle="UNKNOWN MEAL" nutrients={[]} />);
 
-    expect(screen.getByTestId("central-meal-title")).toHaveTextContent("UNKNOWN MEAL");
+    expect(screen.getByTestId("central-meal-title")).toHaveTextContent(
+      "UNKNOWN MEAL"
+    );
     expect(screen.getByText("0 Nutrients")).toBeInTheDocument();
     expect(
       screen.getByText(/No individual nutrients detected for this meal/i)
@@ -345,10 +335,7 @@ describe("CentralNutrientWheel Component", () => {
 
     it("positions each nutrient circle in an absolute radial orbit around the center", () => {
       render(
-        <CentralNutrientWheel
-          mealTitle="POHA"
-          nutrients={mockNutrients}
-        />
+        <CentralNutrientWheel mealTitle="POHA" nutrients={mockNutrients} />
       );
 
       // Verify node wrappers are absolutely positioned with left/top calc offsets
@@ -364,10 +351,7 @@ describe("CentralNutrientWheel Component", () => {
 
     it("places the nutrient text label directly beneath the circular vessel inside the button", () => {
       render(
-        <CentralNutrientWheel
-          mealTitle="POHA"
-          nutrients={mockNutrients}
-        />
+        <CentralNutrientWheel mealTitle="POHA" nutrients={mockNutrients} />
       );
 
       const proteinButton = screen.getByRole("button", {
@@ -399,7 +383,9 @@ describe("CentralNutrientWheel Component", () => {
       expect(screen.queryByTestId("radial-wheel-stage")).toBeNull();
 
       // Central meal title rendered
-      expect(screen.getByTestId("central-meal-title")).toHaveTextContent("MOONG DAL CHILLA");
+      expect(screen.getByTestId("central-meal-title")).toHaveTextContent(
+        "MOONG DAL CHILLA"
+      );
 
       // All nutrients rendered in clean responsive grid
       expect(screen.getByText("Complex Carbohydrates")).toBeInTheDocument();

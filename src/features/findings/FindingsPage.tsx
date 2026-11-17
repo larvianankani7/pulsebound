@@ -19,8 +19,9 @@ export function FindingsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [analysisResult, setAnalysisResult] =
     useState<MealAnalysisResult | null>(null);
-  const [selectedNutrient, setSelectedNutrient] =
-    useState<NutrientInfo | null>(null);
+  const [selectedNutrient, setSelectedNutrient] = useState<NutrientInfo | null>(
+    null
+  );
 
   const shouldReduceMotion = useReducedMotion();
   const discoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

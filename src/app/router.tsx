@@ -3,7 +3,9 @@ import { App } from "./App";
 import { MainMenu } from "../features/main-menu/MainMenu";
 import { AboutPage } from "../features/about/AboutPage";
 import { FindingsPage } from "../features/findings/FindingsPage";
-import { PlaceholderSection } from "../shared/components/PlaceholderSection";
+import { ExplorePage } from "../features/explore/ExplorePage";
+import { LearningsPage } from "../features/learnings/LearningsPage";
+import { SettingsPage } from "../features/settings/SettingsPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,9 +14,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <MainMenu /> },
       { path: "findings", element: <FindingsPage /> },
-      { path: "explore", element: <PlaceholderSection title="Explore" /> },
-      { path: "learnings", element: <PlaceholderSection title="Learnings" /> },
-      { path: "settings", element: <PlaceholderSection title="Settings" /> },
+      { path: "explore", element: <ExplorePage /> },
+      { path: "learnings", element: <LearningsPage /> },
+      { path: "settings", element: <SettingsPage /> },
       { path: "about", element: <AboutPage /> },
     ],
   },

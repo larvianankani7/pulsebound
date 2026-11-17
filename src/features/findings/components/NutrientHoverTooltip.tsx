@@ -53,13 +53,18 @@ export const NutrientHoverTooltip: React.FC<NutrientHoverTooltipProps> = ({
         }
       }}
       className={`absolute z-50 w-64 sm:w-72 rounded-2xl border border-purple-400/40 bg-[#120921]/95 backdrop-blur-2xl p-4 text-left shadow-[0_0_30px_rgba(0,0,0,0.85),0_0_20px_rgba(192,132,252,0.3)] animate-in fade-in zoom-in-95 duration-150 ${
-        onOpenDetail ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
+        onOpenDetail
+          ? "pointer-events-auto cursor-pointer"
+          : "pointer-events-none"
       } ${placementClasses} ${className}`}
     >
       {/* Top Header: Nutrient Name & Category Badge */}
       <div className="flex items-center justify-between border-b border-purple-500/25 pb-2 mb-2 gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
-          <Sparkles className="w-3.5 h-3.5 text-[#c084fc] shrink-0" aria-hidden="true" />
+          <Sparkles
+            className="w-3.5 h-3.5 text-[#c084fc] shrink-0"
+            aria-hidden="true"
+          />
           <span className="font-['Cinzel',serif] text-xs sm:text-sm font-bold text-white tracking-wider truncate">
             {nutrient.name}
           </span>

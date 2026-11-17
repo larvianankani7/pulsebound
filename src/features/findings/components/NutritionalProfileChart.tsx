@@ -17,7 +17,8 @@ export interface NutritionalProfileChartProps {
 
 interface ChartPoint {
   category: string;
-  qualitativeLevel: "Well represented" | "Moderately represented" | "Less represented";
+  qualitativeLevel:
+    "Well represented" | "Moderately represented" | "Less represented";
   contributingFoods: string[];
   contextNote: string;
   normalizedY: number; // 0 to 1 where 1 is top, 0 is bottom
@@ -31,7 +32,8 @@ const DEFAULT_CATEGORIES: {
 }[] = [
   {
     category: "Protein",
-    contextNote: "Supplies essential amino acids for tissue repair and enduring satiety.",
+    contextNote:
+      "Supplies essential amino acids for tissue repair and enduring satiety.",
   },
   {
     category: "Dietary Fibre",
@@ -39,19 +41,23 @@ const DEFAULT_CATEGORIES: {
   },
   {
     category: "Key Vitamins",
-    contextNote: "Delivers essential micronutrients, cellular antioxidants, and cofactors.",
+    contextNote:
+      "Delivers essential micronutrients, cellular antioxidants, and cofactors.",
   },
   {
     category: "Essential Minerals",
-    contextNote: "Trace elements supporting bone integrity, nerve transmission, and fluid balance.",
+    contextNote:
+      "Trace elements supporting bone integrity, nerve transmission, and fluid balance.",
   },
   {
     category: "Healthy Fats",
-    contextNote: "Supports cellular structure and absorption of fat-soluble vitamins.",
+    contextNote:
+      "Supports cellular structure and absorption of fat-soluble vitamins.",
   },
   {
     category: "Complex Energy",
-    contextNote: "Slow-burning complex carbohydrates providing steady daytime energy.",
+    contextNote:
+      "Slow-burning complex carbohydrates providing steady daytime energy.",
   },
 ];
 
@@ -77,7 +83,11 @@ export function NutritionalProfileChart({
   const mapLevelToNormalizedY = (
     level: string,
     numericScore?: number
-  ): { levelName: "Well represented" | "Moderately represented" | "Less represented"; normY: number } => {
+  ): {
+    levelName:
+      "Well represented" | "Moderately represented" | "Less represented";
+    normY: number;
+  } => {
     const normalized = level.toLowerCase();
     if (
       normalized.includes("well") ||
@@ -114,7 +124,8 @@ export function NutritionalProfileChart({
 
     const { levelName, normY } = mapLevelToNormalizedY(rawLevel, numericScore);
 
-    const x = paddingLeft + (index / (DEFAULT_CATEGORIES.length - 1)) * innerWidth;
+    const x =
+      paddingLeft + (index / (DEFAULT_CATEGORIES.length - 1)) * innerWidth;
     // Invert Y: 0 in SVG is top
     const y = paddingTop + innerHeight - normY * innerHeight;
 
@@ -176,7 +187,8 @@ export function NutritionalProfileChart({
               Meal Composition & Occasion Suitability
             </h4>
             <p className="text-xs text-[#d8b4fe]/75 font-sans">
-              Qualitative Nutritional Contribution Profile across core nutritional areas
+              Qualitative Nutritional Contribution Profile across core
+              nutritional areas
             </p>
           </div>
         </div>
@@ -300,7 +312,9 @@ export function NutritionalProfileChart({
               strokeLinecap="round"
               strokeLinejoin="round"
               filter="url(#violetProfileGlow)"
-              initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
+              initial={
+                shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }
+              }
               animate={{ pathLength: 1, opacity: 1 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             />
@@ -420,8 +434,8 @@ export function NutritionalProfileChart({
             {wellRepresented.length > 0
               ? wellRepresented.map((s) => s.category).join(", ")
               : moderatelyRepresented.length > 0
-              ? moderatelyRepresented.map((s) => s.category).join(", ")
-              : "All categories are currently in educational balance review."}
+                ? moderatelyRepresented.map((s) => s.category).join(", ")
+                : "All categories are currently in educational balance review."}
           </p>
         </div>
 

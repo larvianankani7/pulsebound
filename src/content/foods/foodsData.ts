@@ -351,13 +351,7 @@ export const VERIFIED_FOODS: FoodItem[] = [
   {
     id: "food.oats",
     name: "Oats / Porridge",
-    aliases: [
-      "oats",
-      "oatmeal",
-      "porridge",
-      "rolled oats",
-      "steel cut oats",
-    ],
+    aliases: ["oats", "oatmeal", "porridge", "rolled oats", "steel cut oats"],
     foodGroup: "grains",
     nutrientsProvided: [
       "nutrient.fibre",

@@ -1,10 +1,7 @@
 export type MealOccasion = "breakfast" | "lunch" | "dinner";
 
 export type ContributionLevel =
-  | "High"
-  | "Moderate"
-  | "Mild"
-  | "Low/Underrepresented";
+  "High" | "Moderate" | "Mild" | "Low/Underrepresented";
 
 export interface NutrientInfo {
   id: string;
@@ -76,7 +73,8 @@ export interface UnderrepresentedNutrient {
 
 export interface QualitativeScoreItem {
   category: string;
-  qualitativeLevel: "Less represented" | "Moderately represented" | "Well represented";
+  qualitativeLevel:
+    "Less represented" | "Moderately represented" | "Well represented";
   contributingFoods: string[];
   contextNote: string;
 }

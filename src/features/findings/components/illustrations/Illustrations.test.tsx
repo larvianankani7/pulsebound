@@ -62,7 +62,9 @@ describe("Vector Illustration Library - Nutrient Illustrations", () => {
   });
 
   it("renders a safe, beautiful fallback for an unrecognized nutrient ID", () => {
-    const { container } = render(<NutrientIllustration id="nutrient.unknown-xyz" />);
+    const { container } = render(
+      <NutrientIllustration id="nutrient.unknown-xyz" />
+    );
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
     expect(svg).toHaveAttribute("role", "img");
@@ -82,7 +84,10 @@ describe("Vector Illustration Library - Nutrient Illustrations", () => {
     expect(svg).toHaveAttribute("width", "80");
     expect(svg).toHaveAttribute("height", "80");
     expect(svg).toHaveClass("custom-test-class");
-    expect(svg).toHaveAttribute("aria-label", "Custom Accessible Protein Graphic");
+    expect(svg).toHaveAttribute(
+      "aria-label",
+      "Custom Accessible Protein Graphic"
+    );
   });
 });
 

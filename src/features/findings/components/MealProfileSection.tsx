@@ -33,7 +33,8 @@ function createFallbackEvaluation(
 ): OccasionEvaluation {
   const qualitativeScores: QualitativeScoreItem[] = (profileScores ?? []).map(
     (score) => {
-      let qualitativeLevel: "Well represented" | "Moderately represented" | "Less represented" =
+      let qualitativeLevel:
+        "Well represented" | "Moderately represented" | "Less represented" =
         "Less represented";
       if (score.level === "High") {
         qualitativeLevel = "Well represented";
@@ -131,8 +132,8 @@ export function MealProfileSection({
     occasion === "breakfast"
       ? "Breakfast Context"
       : occasion === "dinner"
-      ? "Dinner Context"
-      : "Midday Balance Context";
+        ? "Dinner Context"
+        : "Midday Balance Context";
 
   return (
     <section
@@ -154,7 +155,8 @@ export function MealProfileSection({
           Explore Your Meal&apos;s Nutritional Profile
         </h3>
         <p className="mt-2 text-xs sm:text-sm text-[#d8b4fe]/80 max-w-xl mx-auto font-sans leading-relaxed">
-          Discover how your meal&apos;s composition fits across core nutritional areas.
+          Discover how your meal&apos;s composition fits across core nutritional
+          areas.
         </p>
       </div>
 
@@ -179,7 +181,8 @@ export function MealProfileSection({
               Why Does Your Meal Look This Way?
             </h4>
             <p className="text-xs text-[#d8b4fe]/75 font-sans">
-              Understanding the qualitative shape of your meal&apos;s nutritional profile
+              Understanding the qualitative shape of your meal&apos;s
+              nutritional profile
             </p>
           </div>
         </div>
@@ -246,8 +249,8 @@ export function MealProfileSection({
               Nutritional Diversity Observation:{" "}
             </strong>
             Components like {lessRepresented.map((l) => l.category).join(", ")}{" "}
-            are less represented in this meal description. Exploring gentle pairings
-            can broaden your plate&apos;s nutritional spectrum.
+            are less represented in this meal description. Exploring gentle
+            pairings can broaden your plate&apos;s nutritional spectrum.
           </div>
         )}
       </div>
@@ -266,7 +269,8 @@ export function MealProfileSection({
               How Could You Make This Meal More Balanced?
             </h4>
             <p className="text-xs text-[#d8b4fe]/75 font-sans">
-              Practical, gentle whole-food pairings to expand nutritional harmony
+              Practical, gentle whole-food pairings to expand nutritional
+              harmony
             </p>
           </div>
         </div>
@@ -292,9 +296,9 @@ export function MealProfileSection({
         <div className="rounded-xl border border-purple-500/15 bg-[#120822]/60 p-4 text-xs text-[#d8b4fe]/80 font-sans leading-relaxed flex items-center gap-3">
           <Sparkles className="w-5 h-5 text-[#c084fc] shrink-0" />
           <span>
-            SYLVARA celebrates the rich traditions of home-cooked meals. These suggestions
-            are gentle ideas to complement dietary diversity over your day, rather than
-            strict rules or restrictions.
+            SYLVARA celebrates the rich traditions of home-cooked meals. These
+            suggestions are gentle ideas to complement dietary diversity over
+            your day, rather than strict rules or restrictions.
           </span>
         </div>
       </div>

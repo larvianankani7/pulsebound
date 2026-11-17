@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "motion/react";
+import { useSettingsStore } from "../../settings/store/useSettingsStore";
 
 interface YTPlayer {
   playVideo: () => void;
@@ -53,8 +54,6 @@ declare global {
   }
 }
 
-const STORAGE_KEY = "sylvara_music_muted";
-const ATMOSPHERIC_VOLUME = 25; // 25% comfortable background volume
 const TARGET_PLAYBACK_RATE = 0.8; // User requested 0.8x (20% slower)
 
 interface MusicControlProps {
@@ -62,15 +61,7 @@ interface MusicControlProps {
 }
 
 export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
-  // Read persisted preference; default to unmuted if user previously allowed, or muted for polite autoplay
-  const [isMuted, setIsMuted] = useState<boolean>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved !== null ? saved === "true" : true; // default polite muted on first visit
-    } catch {
-      return true;
-    }
-  });
+  const { musicVolume, isMusicMuted, toggleMusicMute } = useSettingsStore();
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -112,8 +103,8 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
               setIsReady(true);
               const player = event.target;
 
-              // Apply comfortable atmospheric volume (25%)
-              player.setVolume(ATMOSPHERIC_VOLUME);
+              // Apply current volume from settings
+              player.setVolume(musicVolume);
 
               // Attempt to set requested 0.8x speed
               try {
@@ -125,11 +116,7 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
               }
 
               // Apply mute state based on preference
-              const initialMuted = localStorage.getItem(STORAGE_KEY);
-              const shouldMute =
-                initialMuted !== null ? initialMuted === "true" : true;
-
-              if (shouldMute) {
+              if (isMusicMuted) {
                 player.mute();
               } else {
                 player.unMute();
@@ -200,12 +187,40 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
         playerRef.current = null;
       }
     };
-  }, [videoId]);
+  }, [videoId, isMusicMuted, musicVolume]);
+
+  // Synchronize dynamic volume changes from Settings
+  useEffect(() => {
+    if (playerRef.current && isReady) {
+      try {
+        playerRef.current.setVolume(musicVolume);
+      } catch {
+        // ignore
+      }
+    }
+  }, [musicVolume, isReady]);
+
+  // Synchronize dynamic mute/unmute changes from Settings
+  useEffect(() => {
+    if (playerRef.current && isReady) {
+      try {
+        if (isMusicMuted) {
+          playerRef.current.mute();
+        } else {
+          playerRef.current.unMute();
+          playerRef.current.setVolume(musicVolume);
+          playerRef.current.playVideo();
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, [isMusicMuted, musicVolume, isReady]);
 
   // Handle first user interaction to unlock browser autoplay if unmuted
   useEffect(() => {
     const handleFirstUserInteraction = () => {
-      if (!isMuted && playerRef.current) {
+      if (!isMusicMuted && playerRef.current) {
         try {
           playerRef.current.unMute();
           playerRef.current.playVideo();
@@ -228,35 +243,11 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
       window.removeEventListener("pointerdown", handleFirstUserInteraction);
       window.removeEventListener("keydown", handleFirstUserInteraction);
     };
-  }, [isMuted]);
+  }, [isMusicMuted]);
 
   // Toggle Mute / Unmute
   const toggleMute = () => {
-    const newMuted = !isMuted;
-    setIsMuted(newMuted);
-
-    try {
-      localStorage.setItem(STORAGE_KEY, String(newMuted));
-    } catch {
-      // Storage unavailable
-    }
-
-    if (playerRef.current) {
-      if (newMuted) {
-        playerRef.current.mute();
-      } else {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(ATMOSPHERIC_VOLUME);
-        playerRef.current.playVideo();
-        // Re-attempt playback rate when unmuting
-        try {
-          playerRef.current.setPlaybackRate(TARGET_PLAYBACK_RATE);
-          setActualPlaybackRate(playerRef.current.getPlaybackRate());
-        } catch {
-          // Ignore
-        }
-      }
-    }
+    toggleMusicMute();
   };
 
   return (
@@ -275,16 +266,16 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
         whileTap={{ scale: 0.95 }}
         className="group flex items-center gap-2.5 px-3.5 py-2 rounded-full border border-[#c084fc]/30 bg-[#120a1f]/70 backdrop-blur-md text-[#e9d5ff] text-xs sm:text-sm font-['Cinzel',serif] tracking-wider transition-all duration-300 hover:border-[#d8b4fe]/80 hover:bg-[#1e1035]/85 hover:shadow-[0_0_16px_rgba(192,132,252,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07050a] cursor-pointer"
         aria-label={
-          isMuted ? "Unmute background music" : "Mute background music"
+          isMusicMuted ? "Unmute background music" : "Mute background music"
         }
         title={
-          isMuted
+          isMusicMuted
             ? "Background music is muted (Click to unmute)"
-            : `Background music playing at 25% volume (${actualPlaybackRate ?? 0.8}x speed)`
+            : `Background music playing at ${musicVolume}% volume (${actualPlaybackRate ?? 0.8}x speed)`
         }
       >
         <span className="relative flex items-center justify-center text-[#c084fc] transition-colors group-hover:text-white">
-          {isMuted ? (
+          {isMusicMuted ? (
             <VolumeX className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
           ) : (
             <Volume2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 animate-pulse" />
@@ -292,13 +283,17 @@ export function MusicControl({ videoId = "UrngDTXkOEk" }: MusicControlProps) {
         </span>
 
         <span className="select-none font-medium text-[#d8b4fe] group-hover:text-white transition-colors">
-          {!isReady ? "Music: Loading" : isMuted ? "Music: Muted" : "Music: On"}
+          {!isReady
+            ? "Music: Loading"
+            : isMusicMuted
+              ? "Music: Muted"
+              : "Music: On"}
         </span>
 
         {/* Small subtle status pill */}
         <span
           className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-            !isMuted && isPlaying
+            !isMusicMuted && isPlaying
               ? "bg-[#c084fc] shadow-[0_0_8px_#c084fc]"
               : "bg-white/20"
           }`}

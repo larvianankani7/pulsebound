@@ -208,11 +208,7 @@ export const CentralNutrientWheel: React.FC<CentralNutrientWheelProps> = ({
               {/* Surrounding Orbiting Nutrient Circles (Radial Formation) */}
               {total > 0 ? (
                 nutrients.map((nutrient, idx) => {
-                  const { x, y } = getOrbitCoordinates(
-                    idx,
-                    total,
-                    orbitRadius
-                  );
+                  const { x, y } = getOrbitCoordinates(idx, total, orbitRadius);
                   const placement = y < 0 ? "top" : "bottom";
 
                   return (

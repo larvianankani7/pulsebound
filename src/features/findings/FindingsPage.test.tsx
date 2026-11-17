@@ -44,7 +44,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
         </MemoryRouter>
       );
 
-      const backLink = screen.getByRole("link", { name: /Return to Main Menu/i });
+      const backLink = screen.getByRole("link", {
+        name: /Return to Main Menu/i,
+      });
       expect(backLink).toBeInTheDocument();
       expect(backLink).toHaveAttribute("href", "/");
     });
@@ -120,7 +122,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
 
       // Clicking an example pill fills the textarea
       fireEvent.click(
-        screen.getByRole("button", { name: "Poha with peanuts, peas and lemon" })
+        screen.getByRole("button", {
+          name: "Poha with peanuts, peas and lemon",
+        })
       );
       expect(textarea).toHaveValue("Poha with peanuts, peas and lemon");
 
@@ -211,7 +215,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
           name: /Explore Your Meal's Nutritional Profile/i,
         })
       ).toBeInTheDocument();
-      expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("nutritional-profile-chart")
+      ).toBeInTheDocument();
       expect(
         screen.getByText(/Qualitative Nutritional Contribution Profile/i)
       ).toBeInTheDocument();
@@ -302,7 +308,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
       ).toBeInTheDocument();
 
       // Violet line graph and its components
-      expect(screen.getByTestId("nutritional-profile-chart")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("nutritional-profile-chart")
+      ).toBeInTheDocument();
       expect(
         screen.getByText(/Qualitative Nutritional Contribution Profile/i)
       ).toBeInTheDocument();
@@ -321,7 +329,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
         })
       ).toBeInTheDocument();
 
-      expect(screen.getByTestId("how-to-make-more-balanced")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("how-to-make-more-balanced")
+      ).toBeInTheDocument();
       expect(
         screen.getByRole("heading", {
           name: /How Could You Make This Meal More Balanced\?/i,
@@ -330,9 +340,15 @@ describe("SYLVARA Findings Discovery Experience", () => {
 
       // 3. Verify that the complete Findings sequence flows smoothly without empty spaces
       expect(screen.getByTestId("central-meal-title")).toBeInTheDocument();
-      expect(screen.getByText(/What Could Be Missing From This Meal\?/i)).toBeInTheDocument();
-      expect(screen.getByText(/Nutrients Supported by This Meal/i)).toBeInTheDocument();
-      expect(screen.getByText(/Educational Awareness Notice/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/What Could Be Missing From This Meal\?/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Nutrients Supported by This Meal/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Educational Awareness Notice/i)
+      ).toBeInTheDocument();
     });
   });
 
@@ -426,7 +442,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
       );
 
       // Supported nutrients section contains cards
-      const supportedSection = screen.getByTestId("supported-nutrients-section");
+      const supportedSection = screen.getByTestId(
+        "supported-nutrients-section"
+      );
       expect(supportedSection).toBeInTheDocument();
 
       // Click on a nutrient card in the supported section using its data-testid
@@ -527,7 +545,9 @@ describe("SYLVARA Findings Discovery Experience", () => {
       expect(text).not.toMatch(/\b\d+\s*(?:kcal|calories?)\b/i);
 
       // Strictly zero portions or bowl quantities
-      expect(text).not.toMatch(/\b\d+\s*(?:bowl|bowls|katori|katoris|cups?)\b/i);
+      expect(text).not.toMatch(
+        /\b\d+\s*(?:bowl|bowls|katori|katoris|cups?)\b/i
+      );
       expect(text).not.toMatch(/\bportions?\b/i);
     });
   });

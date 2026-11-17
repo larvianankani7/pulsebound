@@ -21,10 +21,9 @@ export interface UnderrepresentedSectionProps {
  * When no underrepresented nutrients are flagged, displays an elegant "Nutritional Harmony"
  * card celebrating balanced variety.
  */
-export const UnderrepresentedSection: React.FC<UnderrepresentedSectionProps> = ({
-  underrepresented,
-  className = "",
-}) => {
+export const UnderrepresentedSection: React.FC<
+  UnderrepresentedSectionProps
+> = ({ underrepresented, className = "" }) => {
   const shouldReduceMotion = useReducedMotion();
 
   // Harmonious State: Meal incorporates a rich spectrum of food groups

@@ -67,7 +67,9 @@ export const ComplementaryFoodCard: React.FC<ComplementaryFoodCardProps> = ({
           {/* Biological Role */}
           {item.role && (
             <p className="mt-2 text-xs text-[#d8b4fe]/85 font-sans leading-relaxed">
-              <span className="font-semibold text-[#f3e8ff]">Biological role: </span>
+              <span className="font-semibold text-[#f3e8ff]">
+                Biological role:{" "}
+              </span>
               {item.role}
             </p>
           )}
@@ -89,11 +91,11 @@ export const ComplementaryFoodCard: React.FC<ComplementaryFoodCardProps> = ({
           {/* Food Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {item.suggestedFoods.map((food, foodIdx) => {
-              const displayName = food.name || food.foodName || "Complementary Food";
+              const displayName =
+                food.name || food.foodName || "Complementary Food";
               const contributionText =
                 food.nutrientContribution || food.foodGroup || "";
-              const pairingText =
-                food.pairingAdvice || food.description || "";
+              const pairingText = food.pairingAdvice || food.description || "";
 
               return (
                 <div
@@ -134,7 +136,9 @@ export const ComplementaryFoodCard: React.FC<ComplementaryFoodCardProps> = ({
                   {pairingText && (
                     <div className="mt-4 pt-3 border-t border-purple-500/15">
                       <p className="text-xs text-[#d8b4fe]/85 font-sans leading-relaxed">
-                        <span className="font-semibold text-[#c084fc]">Pairing advice: </span>
+                        <span className="font-semibold text-[#c084fc]">
+                          Pairing advice:{" "}
+                        </span>
                         {pairingText}
                       </p>
                     </div>
@@ -148,8 +152,13 @@ export const ComplementaryFoodCard: React.FC<ComplementaryFoodCardProps> = ({
 
       {/* 3. Non-judgmental Footnote */}
       <div className="mt-6 pt-4 border-t border-purple-500/15 flex items-center justify-between text-[11px] text-[#d8b4fe]/60 font-sans italic">
-        <span>* Additional ingredients or custom preparation methods may change this assessment.</span>
-        <span className="hidden sm:inline-block">Educational discovery only</span>
+        <span>
+          * Additional ingredients or custom preparation methods may change this
+          assessment.
+        </span>
+        <span className="hidden sm:inline-block">
+          Educational discovery only
+        </span>
       </div>
     </article>
   );
