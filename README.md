@@ -1,5 +1,4 @@
 # SYLVARA
-
 > **"Every meal uncovers a tale, and every tale opens a new world."**
 
 SYLVARA is an interactive, gamified educational web application designed to transform how learners explore food, micronutrients, botanical lore, and public health awareness. Built with a modern dark-lavender aesthetic, tactile micro-animations, and an atmospheric soundscape, SYLVARA replaces anxiety-inducing calorie counting and sterile charts with visual discovery, scenario-based garden exploration, educational dossiers, and badge-linked quizzes.
